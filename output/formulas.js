@@ -393,7 +393,7 @@ window.ECE4330_FORMULAS = [
     tex: "D_n = \\frac{1}{T_0}\\int_{t_0}^{t_0+T_0} f(t)\\,e^{-jn\\omega_0 t}\\,dt",
     category: "Fourier series",
     page: 7,
-    triggers: ["D_n\\s*=", "fourier coefficient", "\\\\int.*e\\^\\(-jn"],
+    triggers: ["fourier coefficient", "\\\\int.*e\\^\\(-jn", "D_n\\s*=\\s*\\(?1/T", "exponential.*coefficient"],
   },
   {
     id: "fourier_series_trig",
@@ -409,7 +409,7 @@ window.ECE4330_FORMULAS = [
     tex: "a_n = \\frac{2}{T_0}\\int_{t_0}^{t_0+T_0} f(t)\\cos(n\\omega_0 t)\\,dt",
     category: "Fourier series",
     page: 7,
-    triggers: ["a_n\\s*=", "(2/T_0).*cos\\(n"],
+    triggers: ["a_n\\s*=\\s*\\(?2/T", "\\(2/T_0\\).*cos\\(n", "a_n.*cos\\(n\\\\?omega"],
   },
   {
     id: "fourier_series_bn",
@@ -417,7 +417,7 @@ window.ECE4330_FORMULAS = [
     tex: "b_n = \\frac{2}{T_0}\\int_{t_0}^{t_0+T_0} f(t)\\sin(n\\omega_0 t)\\,dt",
     category: "Fourier series",
     page: 7,
-    triggers: ["b_n\\s*=", "(2/T_0).*sin\\(n"],
+    triggers: ["b_n\\s*=\\s*\\(?2/T", "\\(2/T_0\\).*sin\\(n", "b_n.*sin\\(n\\\\?omega"],
   },
   {
     id: "fourier_series_compact",
@@ -513,7 +513,7 @@ window.ECE4330_FORMULAS = [
     tex: "\\delta(t) \\;\\longleftrightarrow\\; 1",
     category: "Fourier transform",
     page: 10,
-    triggers: ["\\\\delta\\(t\\).*1", "FT.*delta"],
+    triggers: ["fourier.*\\\\?delta\\(t\\).*1", "F\\{\\\\?delta", "\\\\?delta\\(t\\)\\s*[<→\\\\]+\\s*1\\b"],
   },
   {
     id: "ft_pair_one",
@@ -529,7 +529,7 @@ window.ECE4330_FORMULAS = [
     tex: "\\cos(\\omega_0 t) \\;\\longleftrightarrow\\; \\pi[\\delta(\\omega-\\omega_0)+\\delta(\\omega+\\omega_0)]",
     category: "Fourier transform",
     page: 10,
-    triggers: ["FT.*cos\\(\\\\omega_0", "\\\\delta\\(\\\\?omega-\\\\?omega_0\\)\\s*\\+\\s*\\\\delta"],
+    triggers: ["fourier.*cos\\(\\\\?omega_0", "\\\\?delta\\(\\\\?omega\\s*-\\s*\\\\?omega_0\\)\\s*\\+\\s*\\\\?delta"],
   },
   {
     id: "ft_pair_sin",
@@ -537,7 +537,7 @@ window.ECE4330_FORMULAS = [
     tex: "\\sin(\\omega_0 t) \\;\\longleftrightarrow\\; j\\pi[\\delta(\\omega+\\omega_0)-\\delta(\\omega-\\omega_0)]",
     category: "Fourier transform",
     page: 10,
-    triggers: ["FT.*sin\\(\\\\omega_0", "j\\\\?pi.*\\\\delta\\(\\\\?omega"],
+    triggers: ["fourier.*sin\\(\\\\?omega_0", "j\\\\?pi\\s*\\[\\\\?delta\\(\\\\?omega"],
   },
   {
     id: "ft_pair_u",
@@ -545,7 +545,7 @@ window.ECE4330_FORMULAS = [
     tex: "u(t) \\;\\longleftrightarrow\\; \\pi\\delta(\\omega) + \\dfrac{1}{j\\omega}",
     category: "Fourier transform",
     page: 10,
-    triggers: ["FT.*u\\(t\\)", "\\\\?pi\\\\?delta.*1/\\(j\\\\?omega\\)"],
+    triggers: ["fourier.*u\\(t\\)\\s*[<→\\\\]", "\\\\?pi\\\\?delta\\(\\\\?omega\\).*1/\\(j\\\\?omega\\)"],
   },
   {
     id: "ft_pair_rect",
@@ -673,7 +673,7 @@ window.ECE4330_FORMULAS = [
     tex: "u(t) \\;\\longleftrightarrow\\; \\dfrac{1}{s}",
     category: "Laplace transform",
     page: 13,
-    triggers: ["L.*u\\(t\\)", "1/s", "L\\{u"],
+    triggers: ["L\\{u\\(t\\)\\}", "u\\(t\\)\\s*[<→\\\\]+\\s*1/s", "Laplace.*u\\(t\\)\\s*=\\s*1/s", "transform of u\\(t\\)"],
   },
   {
     id: "laplace_pair_t",
@@ -681,7 +681,7 @@ window.ECE4330_FORMULAS = [
     tex: "t\\,u(t) \\;\\longleftrightarrow\\; \\dfrac{1}{s^2}",
     category: "Laplace transform",
     page: 13,
-    triggers: ["tu\\(t\\).*1/s\\^2", "1/s\\^2"],
+    triggers: ["tu\\(t\\)\\s*[<→\\\\]+\\s*1/s\\^2", "ramp.*1/s\\^2", "transform of tu\\(t\\)"],
   },
   {
     id: "laplace_pair_tn",
@@ -773,7 +773,7 @@ window.ECE4330_FORMULAS = [
     tex: "\\int_{0^-}^{t} f(\\tau)\\,d\\tau \\;\\longleftrightarrow\\; \\dfrac{1}{s}F(s)",
     category: "Laplace properties",
     page: 14,
-    triggers: ["F\\(s\\)/s", "integration.*laplace", "L.*integral.*f"],
+    triggers: ["integration.*laplace", "L\\{\\\\int", "laplace.*integral", "1/s\\s*\\*?\\s*F\\(s\\)\\s*=", "\\\\int_\\{0", "(?:integral|integration) property"],
   },
   {
     id: "laplace_op_time_shift",
@@ -841,7 +841,7 @@ window.ECE4330_FORMULAS = [
     tex: "Z_L(s) = sL,\\quad V_L(s) = sL\\,I_L(s) - L\\,i_L(0^-)",
     category: "s-domain circuits",
     page: 12,
-    triggers: ["inductor.*s-domain", "sL", "i_L\\(0", "Z_L"],
+    triggers: ["inductor.*s-domain", "i_L\\(0", "Z_L\\(s\\)", "sL\\s*\\(\\\\?Omega\\)", "sL\\s*I_L", "V_L\\(s\\)\\s*=\\s*sL"],
   },
   {
     id: "circuit_transfer_function",
@@ -1125,7 +1125,7 @@ window.ECE4330_FORMULAS = [
     tex: "\\lim \\dfrac{f(x)}{g(x)} = \\lim \\dfrac{f'(x)}{g'(x)}\\;\\;(\\tfrac{0}{0}\\text{ or }\\tfrac{\\infty}{\\infty})",
     category: "Calculus",
     page: 37,
-    triggers: ["l'?h.?pital", "indeterminate", "0/0", "\\\\infty/\\\\infty"],
+    triggers: ["l'?h.?pital", "indeterminate form", "indeterminate.*limit", "\\\\infty\\s*/\\s*\\\\infty"],
   },
 
   /* ============================================================
@@ -1218,10 +1218,9 @@ window.ECE4330_FORMULA_TRIGGERS = window.ECE4330_FORMULAS.map((f) => {
 
 /* Match step text → formula IDs.
  * `text` is the step's work/notebook string.
- * `topicHint` and `subtopicHints` (arrays of strings) bias which categories matter.
  * Returns ordered array of formula ids.
  */
-window.ECE4330_MATCH_FORMULAS = function (text, topicHint, subtopicHints) {
+window.ECE4330_MATCH_FORMULAS = function (text) {
   if (!text) return [];
   const haystack = String(text);
   const matched = new Set();
@@ -1229,4 +1228,102 @@ window.ECE4330_MATCH_FORMULAS = function (text, topicHint, subtopicHints) {
     if (regs.some((re) => re.test(haystack))) matched.add(id);
   });
   return Array.from(matched);
+};
+
+/* Map a problem topic + subtopics → small list of formula ids that frame the
+ * problem. Used as a fallback for generic step lines ("Method:", "Target:",
+ * "Check:") that don't carry specific math but still belong to the same topic.
+ * Order matters: most-relevant first; capped to ~6 in the renderer.
+ */
+window.ECE4330_TOPIC_FORMULAS = {
+  "Signals/Math": [
+    "euler_identity", "euler_cos", "euler_sin", "complex_polar", "trig_pythagorean", "trig_phase_combine",
+  ],
+  "Convolution": [
+    "conv_definition", "conv_with_delta", "conv_commutative", "conv_distributive", "conv_time_shift", "conv_exp_exp",
+  ],
+  "Fourier Series": [
+    "fourier_series_exp", "fourier_series_dn", "fourier_series_trig", "fourier_series_an", "fourier_series_bn",
+    "parseval_series", "fourier_even_odd",
+  ],
+  "Fourier Transform": [
+    "ft_def", "ft_pair_delta", "ft_pair_cos", "ft_pair_sin", "ft_op_time_shift", "ft_op_freq_shift",
+    "ft_op_time_conv", "parseval_ft",
+  ],
+  "PFE": [
+    "laplace_pair_step", "laplace_pair_t", "laplace_pair_exp", "laplace_pair_cos", "laplace_pair_sin",
+    "laplace_pair_e_cos", "laplace_pair_e_sin", "laplace_op_diff",
+  ],
+  "ZIR/ZSR": [
+    "laplace_op_diff", "laplace_op_diff2", "circuit_transfer_function", "laplace_pair_exp",
+    "laplace_pair_cos", "laplace_op_initial_value", "laplace_op_final_value",
+  ],
+  "Z-Transform": [
+    "z_def", "z_pair_step", "z_pair_geometric", "z_op_right_shift", "z_op_left_shift", "z_op_conv", "z_stability",
+  ],
+  "DTFT": [
+    "dtft_pair_delta", "dtft_pair_step", "dtft_pair_geom", "dtft_op_time_shift", "dtft_op_freq_shift",
+    "dtft_periodicity", "parseval_dtft",
+  ],
+  "Difference Equations": [
+    "z_def", "z_op_right_shift", "z_op_left_shift", "z_pair_step", "conv_discrete_def",
+  ],
+  "Sampling/Nyquist": [
+    "sampling_theorem", "ft_op_modulation", "ft_pair_cos", "ft_op_freq_shift",
+  ],
+  "Bilinear Transform": [
+    "impulse_invariance", "z_def", "circuit_transfer_function",
+  ],
+  "Butterworth": [
+    "butterworth_lowpass", "circuit_transfer_function", "stability_lti",
+  ],
+};
+
+/* Subtopic → formula ids. Subtopics already exist in problem.subtopics, set by
+ * the python enrichment script. Each one biases an extra formula or two.
+ */
+window.ECE4330_SUBTOPIC_FORMULAS = {
+  "Euler identity": ["euler_identity", "euler_cos", "euler_sin"],
+  "Trigonometric identities": ["trig_pythagorean", "trig_sum_sin", "trig_sum_cos", "trig_phase_combine", "trig_product_to_sum_cc"],
+  "Complex numbers": ["complex_polar", "complex_de_moivre", "complex_unit_circle", "euler_identity"],
+  "Series and sums": ["series_geometric", "series_finite_geometric", "series_arithmetic", "taylor_series"],
+  "Delta functions": ["impulse_sample", "impulse_sift", "impulse_scaling", "impulse_derivative_step"],
+  "Convolution": ["conv_definition", "conv_with_delta", "conv_time_shift"],
+  "Laplace transform": ["laplace_def", "laplace_pair_step", "laplace_pair_exp", "laplace_op_diff", "laplace_op_int"],
+  "Partial fractions": ["laplace_pair_exp", "laplace_pair_cos", "laplace_pair_sin", "laplace_pair_e_cos", "laplace_pair_e_sin"],
+  "Zero-input response": ["laplace_op_diff", "laplace_op_diff2", "laplace_pair_exp"],
+  "Zero-state response": ["circuit_transfer_function", "laplace_op_conv", "laplace_pair_step"],
+  "Steady-state response": ["circuit_transfer_function", "laplace_op_final_value"],
+  "Fourier series": ["fourier_series_exp", "fourier_series_dn", "parseval_series"],
+  "Fourier transform": ["ft_def", "ft_pair_cos", "ft_op_freq_shift", "parseval_ft"],
+  "Sampling": ["sampling_theorem", "ft_op_modulation"],
+  "Z-transform": ["z_def", "z_pair_step", "z_pair_geometric"],
+  "Difference equations": ["z_op_right_shift", "z_op_left_shift", "z_pair_step"],
+  "Bilinear transform": ["impulse_invariance"],
+  "Filter design": ["butterworth_lowpass", "stability_lti"],
+  "Differential equations": ["laplace_op_diff", "laplace_op_diff2", "laplace_def"],
+  "Circuit response": ["circuit_capacitor", "circuit_inductor", "circuit_transfer_function"],
+};
+
+/* Resolve formulas for a problem from topic + subtopics.
+ * Caller passes `formula_ids` (from problems.json), topic, subtopics.
+ * If formula_ids is present we trust it; otherwise we derive from topic+subtopics.
+ */
+window.ECE4330_FORMULAS_FOR_CONCEPT = function (topic, subtopics, explicitIds) {
+  const out = [];
+  const seen = new Set();
+  const push = (id) => {
+    if (id && window.ECE4330_FORMULA_INDEX[id] && !seen.has(id)) {
+      seen.add(id);
+      out.push(window.ECE4330_FORMULA_INDEX[id]);
+    }
+  };
+  if (Array.isArray(explicitIds)) explicitIds.forEach(push);
+  if (topic && window.ECE4330_TOPIC_FORMULAS[topic]) {
+    window.ECE4330_TOPIC_FORMULAS[topic].forEach(push);
+  }
+  (subtopics || []).forEach((sub) => {
+    (window.ECE4330_SUBTOPIC_FORMULAS[sub] || []).forEach(push);
+  });
+  return out;
 };

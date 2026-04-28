@@ -19,8 +19,8 @@
       };
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="./output/formulas.js?v=20260428-formulas-v1"></script>
-    <script src="./output/problems.js?v=20260428-4"></script>
+    <script src="./output/formulas.js?v=20260428-formulas-v2"></script>
+    <script src="./output/problems.js?v=20260428-formulas-v2"></script>
     <style>
       :root {
         color-scheme: light;
@@ -909,7 +909,7 @@
     <script>
       (() => {
         const STORAGE_KEY = "ece4330.studyProgress.v2";
-        const ASSET_VERSION = "20260428-formulas-v1";
+        const ASSET_VERSION = "20260428-formulas-v2";
         const STATUS_OPTIONS = [
           ["new", "New"],
           ["tried", "Tried"],
@@ -987,31 +987,61 @@
         const FORMULAS = Array.isArray(window.ECE4330_FORMULAS) ? window.ECE4330_FORMULAS : [];
         const FORMULA_INDEX = window.ECE4330_FORMULA_INDEX || {};
         const matchFormulas = window.ECE4330_MATCH_FORMULAS || (() => []);
-        const formulaCache = new WeakMap();
+        const formulasForConcept = window.ECE4330_FORMULAS_FOR_CONCEPT || (() => []);
+        const formulaStepCache = new WeakMap();
+        const conceptCache = new WeakMap();
 
-        function formulasForStep(step) {
+        function isGenericMetaStep(step) {
+          const text = (step && (step.work || step.notebook) || "").trim();
+          return /^(target|method|setup|check|state |reproduce |use |pause |identify |confirm |copy |line[- ]by[- ]line)/i.test(text);
+        }
+
+        function formulasForStep(step, problem) {
           if (!step) return [];
-          if (formulaCache.has(step)) return formulaCache.get(step);
+          if (formulaStepCache.has(step)) return formulaStepCache.get(step);
           const text = `${step.work || ""} ${step.notebook || ""} ${step.why || ""}`;
-          const ids = matchFormulas(text);
-          const resolved = ids.map((id) => FORMULA_INDEX[id]).filter(Boolean);
-          formulaCache.set(step, resolved);
+          let resolved = (Array.isArray(step.formula_ids) ? step.formula_ids : matchFormulas(text))
+            .map((id) => FORMULA_INDEX[id])
+            .filter(Boolean);
+          // Generic meta lines (Method/Target/Setup/Check) get the problem's
+          // concept-level formulas instead of nothing — preserves the teaching
+          // value when the line has no concrete math.
+          if (resolved.length === 0 && isGenericMetaStep(step) && problem) {
+            resolved = formulasForProblemConcept(problem).slice(0, 3);
+          }
+          formulaStepCache.set(step, resolved);
           return resolved;
+        }
+
+        function formulasForProblemConcept(problem) {
+          if (!problem) return [];
+          if (conceptCache.has(problem)) return conceptCache.get(problem);
+          const learning = problem.learning || {};
+          const explicit = Array.isArray(learning.formula_ids) ? learning.formula_ids : null;
+          const result = formulasForConcept(problem.topic, problem.subtopics || [], explicit);
+          conceptCache.set(problem, result);
+          return result;
         }
 
         function formulasForProblem(problem) {
           const seen = new Map();
           const learning = (problem && problem.learning) || {};
-          const sources = [];
-          (learning.steps || []).forEach((step) => sources.push(formulasForStep(step)));
-          // Bias against false positives by also matching the goal/concept summary.
-          const summary = `${learning.goal || ""} ${learning.concept || ""} ${learning.final_answer || ""} ${(problem.subtopics || []).join(" ")}`;
-          if (summary.trim()) {
-            sources.push(matchFormulas(summary).map((id) => FORMULA_INDEX[id]).filter(Boolean));
-          }
-          sources.flat().forEach((f) => {
-            if (f && !seen.has(f.id)) seen.set(f.id, f);
+          formulasForProblemConcept(problem).forEach((f) => {
+            if (!seen.has(f.id)) seen.set(f.id, f);
           });
+          (learning.steps || []).forEach((step) => {
+            formulasForStep(step, problem).forEach((f) => {
+              if (!seen.has(f.id)) seen.set(f.id, f);
+            });
+          });
+          // Catch any direct mentions in the problem/solution text that didn't surface from steps.
+          const summary = `${learning.goal || ""} ${learning.final_answer || ""}`;
+          if (summary.trim()) {
+            matchFormulas(summary).forEach((id) => {
+              const f = FORMULA_INDEX[id];
+              if (f && !seen.has(id)) seen.set(id, f);
+            });
+          }
           return Array.from(seen.values());
         }
 
@@ -1454,7 +1484,7 @@
           card.appendChild(block);
         }
 
-        function renderStepList(steps, visibleCount, expandWhy = false) {
+        function renderStepList(steps, visibleCount, expandWhy = false, problem) {
           const count = Math.min(visibleCount || 0, steps.length);
           if (count <= 0) return null;
           const stepList = document.createElement("div");
@@ -1477,8 +1507,13 @@
             const whyText = textDiv("meta", step.why || "This step moves the solution toward the requested result.");
             why.append(summary, whyText);
             stepEl.append(title, notebookLabel, notebook, why);
-            const stepFormulas = formulasForStep(step);
-            renderFormulaChips(stepFormulas, stepEl, "Formula(s) used");
+            const stepFormulas = formulasForStep(step, problem);
+            const isFallback = stepFormulas.length > 0 && isGenericMetaStep(step) && !(Array.isArray(step.formula_ids) && step.formula_ids.length);
+            renderFormulaChips(
+              stepFormulas,
+              stepEl,
+              isFallback ? "Likely formulas (topic-level)" : "Formula(s) used"
+            );
             stepList.appendChild(stepEl);
           });
           return stepList;
@@ -1556,7 +1591,7 @@
           }
 
           if (!progress.solutionVisible) {
-            const revealedSteps = renderStepList(steps, progress.stepsRevealed);
+            const revealedSteps = renderStepList(steps, progress.stepsRevealed, false, problem);
             if (revealedSteps) panel.appendChild(revealedSteps);
             const revealedSolutionImages = solutionDiagramImages(problem);
             if (progress.stepsRevealed > 0 && revealedSolutionImages.length) {
@@ -1572,7 +1607,7 @@
             solution.appendChild(heading);
             const stepsHeading = document.createElement("h4");
             stepsHeading.textContent = "Worked steps";
-            const fullStepList = renderStepList(steps, steps.length, true);
+            const fullStepList = renderStepList(steps, steps.length, true, problem);
             if (fullStepList) {
               solution.append(stepsHeading, fullStepList);
             }

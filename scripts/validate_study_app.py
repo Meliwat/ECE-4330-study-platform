@@ -188,12 +188,20 @@ def validate_html() -> None:
         "Written work",
         "notebook-work",
         "solutionDiagramImages",
-        "output/problems.js?v=20260428-4",
     ]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")
         if needle not in fixed_study:
             raise AssertionError(f"study-graphs-fixed.html missing expected text: {needle}")
+    if not re.search(r"output/problems\.js\?v=", study):
+        raise AssertionError("study.html missing problems.js version pin")
+    if not re.search(r"output/problems\.js\?v=", fixed_study):
+        raise AssertionError("study-graphs-fixed.html missing problems.js version pin")
+    if not re.search(r"output/formulas\.js\?v=", fixed_study):
+        raise AssertionError("study-graphs-fixed.html missing formulas.js version pin")
+    for needle in ("formula-chip", "reference-fab", "Formula sheet"):
+        if needle not in fixed_study:
+            raise AssertionError(f"study-graphs-fixed.html missing formula-reference markup: {needle}")
     if "scan-backed" in study:
         raise AssertionError("study.html should not render the scan-backed pill")
     if "Felt like" in study:

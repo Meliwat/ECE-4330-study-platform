@@ -139,6 +139,254 @@ METHOD_CUES = {
 }
 
 
+# ----------------------------------------------------------------------------
+# Formula tagging
+# Mirrors window.ECE4330_TOPIC_FORMULAS / SUBTOPIC_FORMULAS / regex catalogue in
+# output/formulas.js. Keep these in sync. Tag IDs MUST exist in formulas.js.
+# ----------------------------------------------------------------------------
+TOPIC_FORMULA_IDS = {
+    "Signals/Math": [
+        "euler_identity",
+        "euler_cos",
+        "euler_sin",
+        "complex_polar",
+        "trig_pythagorean",
+        "trig_phase_combine",
+    ],
+    "Convolution": [
+        "conv_definition",
+        "conv_with_delta",
+        "conv_commutative",
+        "conv_distributive",
+        "conv_time_shift",
+        "conv_exp_exp",
+    ],
+    "Fourier Series": [
+        "fourier_series_exp",
+        "fourier_series_dn",
+        "fourier_series_trig",
+        "fourier_series_an",
+        "fourier_series_bn",
+        "parseval_series",
+        "fourier_even_odd",
+    ],
+    "Fourier Transform": [
+        "ft_def",
+        "ft_pair_delta",
+        "ft_pair_cos",
+        "ft_pair_sin",
+        "ft_op_time_shift",
+        "ft_op_freq_shift",
+        "ft_op_time_conv",
+        "parseval_ft",
+    ],
+    "PFE": [
+        "laplace_pair_step",
+        "laplace_pair_t",
+        "laplace_pair_exp",
+        "laplace_pair_cos",
+        "laplace_pair_sin",
+        "laplace_pair_e_cos",
+        "laplace_pair_e_sin",
+        "laplace_op_diff",
+    ],
+    "ZIR/ZSR": [
+        "laplace_op_diff",
+        "laplace_op_diff2",
+        "circuit_transfer_function",
+        "laplace_pair_exp",
+        "laplace_pair_cos",
+        "laplace_op_initial_value",
+        "laplace_op_final_value",
+    ],
+    "Z-Transform": [
+        "z_def",
+        "z_pair_step",
+        "z_pair_geometric",
+        "z_op_right_shift",
+        "z_op_left_shift",
+        "z_op_conv",
+        "z_stability",
+    ],
+    "DTFT": [
+        "dtft_pair_delta",
+        "dtft_pair_step",
+        "dtft_pair_geom",
+        "dtft_op_time_shift",
+        "dtft_op_freq_shift",
+        "dtft_periodicity",
+        "parseval_dtft",
+    ],
+    "Difference Equations": [
+        "z_def",
+        "z_op_right_shift",
+        "z_op_left_shift",
+        "z_pair_step",
+        "conv_discrete_def",
+    ],
+    "Sampling/Nyquist": [
+        "sampling_theorem",
+        "ft_op_modulation",
+        "ft_pair_cos",
+        "ft_op_freq_shift",
+    ],
+    "Bilinear Transform": [
+        "impulse_invariance",
+        "z_def",
+        "circuit_transfer_function",
+    ],
+    "Butterworth": [
+        "butterworth_lowpass",
+        "circuit_transfer_function",
+        "stability_lti",
+    ],
+}
+
+
+SUBTOPIC_FORMULA_IDS = {
+    "Euler identity": ["euler_identity", "euler_cos", "euler_sin"],
+    "Trigonometric identities": [
+        "trig_pythagorean",
+        "trig_sum_sin",
+        "trig_sum_cos",
+        "trig_phase_combine",
+        "trig_product_to_sum_cc",
+    ],
+    "Complex numbers": [
+        "complex_polar",
+        "complex_de_moivre",
+        "complex_unit_circle",
+        "euler_identity",
+    ],
+    "Series and sums": [
+        "series_geometric",
+        "series_finite_geometric",
+        "series_arithmetic",
+        "taylor_series",
+    ],
+    "Delta functions": [
+        "impulse_sample",
+        "impulse_sift",
+        "impulse_scaling",
+        "impulse_derivative_step",
+    ],
+    "Convolution": ["conv_definition", "conv_with_delta", "conv_time_shift"],
+    "Laplace transform": [
+        "laplace_def",
+        "laplace_pair_step",
+        "laplace_pair_exp",
+        "laplace_op_diff",
+        "laplace_op_int",
+    ],
+    "Partial fractions": [
+        "laplace_pair_exp",
+        "laplace_pair_cos",
+        "laplace_pair_sin",
+        "laplace_pair_e_cos",
+        "laplace_pair_e_sin",
+    ],
+    "Zero-input response": ["laplace_op_diff", "laplace_op_diff2", "laplace_pair_exp"],
+    "Zero-state response": [
+        "circuit_transfer_function",
+        "laplace_op_conv",
+        "laplace_pair_step",
+    ],
+    "Steady-state response": ["circuit_transfer_function", "laplace_op_final_value"],
+    "Fourier series": ["fourier_series_exp", "fourier_series_dn", "parseval_series"],
+    "Fourier transform": ["ft_def", "ft_pair_cos", "ft_op_freq_shift", "parseval_ft"],
+    "Sampling": ["sampling_theorem", "ft_op_modulation"],
+    "Z-transform": ["z_def", "z_pair_step", "z_pair_geometric"],
+    "Difference equations": ["z_op_right_shift", "z_op_left_shift", "z_pair_step"],
+    "Bilinear transform": ["impulse_invariance"],
+    "Filter design": ["butterworth_lowpass", "stability_lti"],
+    "Differential equations": ["laplace_op_diff", "laplace_op_diff2", "laplace_def"],
+    "Circuit response": [
+        "circuit_capacitor",
+        "circuit_inductor",
+        "circuit_transfer_function",
+    ],
+}
+
+
+# Per-step keyword → formula tagging. Tighter than the JS catalogue: explicit
+# substrings only, used to seed step.formula_ids ahead of time so the JS runtime
+# does not have to redo the work for every render.
+STEP_KEYWORD_FORMULA_IDS = [
+    (("euler",), ["euler_identity"]),
+    (("e^(jθ) + e^(-jθ)", "e^(jx) + e^(-jx)", "2 cos θ", "2cos θ", "2 cos(x"), ["euler_cos"]),
+    (("e^(jθ) - e^(-jθ)", "e^(jx) - e^(-jx)", "2j sin θ", "2j sin(x"), ["euler_sin"]),
+    (("polar form", "phasor", "rectangular to polar"), ["complex_polar"]),
+    (("pythagorean",), ["trig_pythagorean"]),
+    (("product-to-sum", "product to sum"), ["trig_product_to_sum_sc", "trig_product_to_sum_cc"]),
+    (("amplitude-phase", "single sinusoid", "a cos x + b sin x"), ["trig_phase_combine"]),
+    (("sifting",), ["impulse_sift"]),
+    (("sampling property",), ["impulse_sample"]),
+    (("convolution definition", "set up the convolution", "set up convolution"), ["conv_definition"]),
+    (("convolution with the unit-impulse", "convolution with delta"), ["conv_with_delta"]),
+    (("u(t) * u(t)", "u(t)*u(t)"), ["conv_u_u"]),
+    (("fourier series",), ["fourier_series_exp", "fourier_series_dn"]),
+    (("parseval",), ["parseval_series"]),
+    (("nyquist", "sampling theorem"), ["sampling_theorem"]),
+    (("butterworth",), ["butterworth_lowpass"]),
+    (("bilinear",), ["impulse_invariance"]),
+    (("transfer function",), ["circuit_transfer_function"]),
+    (("inverse laplace",), ["laplace_pair_step", "laplace_pair_exp", "laplace_pair_cos", "laplace_pair_sin"]),
+    (("laplace transform", "take the laplace"), ["laplace_def"]),
+    (("z-transform definition", "z-transform of"), ["z_def"]),
+    (("region of convergence", "roc"), ["z_pair_geometric"]),
+    (("partial fraction",), ["laplace_pair_exp", "laplace_pair_cos"]),
+    (("l'hopital", "l'hôpital"), ["lhopital"]),
+    (("integration by parts",), ["int_by_parts"]),
+    (("taylor series", "maclaurin"), ["taylor_series"]),
+    (("geometric series",), ["series_geometric"]),
+    (("ramp", "tu(t)"), ["laplace_pair_t"]),
+    (("u(t)", "unit step"), ["laplace_pair_step"]),
+    (("difference equation",), ["z_op_right_shift", "z_op_left_shift"]),
+    (("initial value theorem",), ["laplace_op_initial_value"]),
+    (("final value theorem",), ["laplace_op_final_value"]),
+    (("differentiat",), ["laplace_op_diff"]),
+    (("frequency response",), ["circuit_transfer_function"]),
+    (("inductor", "i_l(0"), ["circuit_inductor"]),
+    (("capacitor", "v_c(0"), ["circuit_capacitor"]),
+    (("delta function", "δ(t)"), ["impulse_sample", "impulse_sift"]),
+    (("modulation",), ["ft_op_modulation", "ft_op_freq_shift"]),
+    (("frequency shift", "shift in frequency"), ["ft_op_freq_shift"]),
+    (("time shift", "shifted by"), ["ft_op_time_shift"]),
+]
+
+
+def _ordered_unique(seq):
+    seen = set()
+    out = []
+    for item in seq:
+        if item not in seen:
+            seen.add(item)
+            out.append(item)
+    return out
+
+
+def step_formula_ids(step_text: str, topic: str) -> List[str]:
+    lowered = step_text.lower()
+    found = []
+    for needles, ids in STEP_KEYWORD_FORMULA_IDS:
+        if any(needle in lowered for needle in needles):
+            found.extend(ids)
+    return _ordered_unique(found)
+
+
+def problem_formula_ids(topic: str, subtopics: List[str], steps: List[dict]) -> List[str]:
+    found = []
+    for ids in (TOPIC_FORMULA_IDS.get(topic, []),):
+        found.extend(ids)
+    for sub in subtopics:
+        found.extend(SUBTOPIC_FORMULA_IDS.get(sub, []))
+    for step in steps:
+        for fid in step.get("formula_ids", []) or []:
+            if fid not in found:
+                found.append(fid)
+    return _ordered_unique(found)[:12]
+
+
 CHECK_CUES = {
     "Fourier Series": "Check the period, symmetry, and coefficient scaling against the original signal.",
     "Fourier Transform": "Check frequency shifts, bandwidth, and constants in radians per second.",
@@ -589,22 +837,29 @@ def enrich_record(problem: dict, index: int, seen: dict) -> dict:
     problem["topic"] = refine_topic(problem)
     subtopics = infer_subtopics(problem)
     steps = build_steps(problem)
+    topic = problem.get("topic", "Signals/Math")
+    for step in steps:
+        ids = step_formula_ids(f"{step.get('work', '')} {step.get('notebook', '')}", topic)
+        if ids:
+            step["formula_ids"] = ids
     problem["subtopics"] = subtopics
     problem["difficulty"] = infer_difficulty(problem, subtopics)
+    formula_ids = problem_formula_ids(topic, subtopics, steps)
     problem["learning"] = {
         "given": normalize_spaces(problem.get("problem", ""))[:500]
         or "Use the problem scan and diagrams as the given information.",
         "goal": infer_goal(problem.get("problem", "")),
-        "concept": f"{problem.get('topic', 'Signals/Math')} with {', '.join(subtopics) if subtopics else 'core course methods'}",
+        "concept": f"{topic} with {', '.join(subtopics) if subtopics else 'core course methods'}",
         "hints": build_hints(problem, subtopics),
         "steps": steps,
         "final_answer": final_answer(problem, steps),
         "check": "Verify the result against the original problem statement, units/indexing, and the provided solution scan when available.",
         "common_mistake": COMMON_MISTAKES.get(
-            problem.get("topic", "Signals/Math"),
+            topic,
             "Do not skip the setup; most errors come from applying the right formula to the wrong quantity.",
         ),
         "needs_review": bool(problem.get("problem_text_bad") or problem.get("solution_text_bad")),
+        "formula_ids": formula_ids,
     }
     return problem
 

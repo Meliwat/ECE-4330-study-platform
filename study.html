@@ -473,6 +473,11 @@
         font-size: 1rem;
       }
 
+      .solution h4 {
+        margin: 12px 0 8px;
+        font-size: 0.92rem;
+      }
+
       .solution-text {
         white-space: pre-wrap;
       }
@@ -1082,6 +1087,31 @@
           card.appendChild(block);
         }
 
+        function renderStepList(steps, visibleCount, expandWhy = false) {
+          const count = Math.min(visibleCount || 0, steps.length);
+          if (count <= 0) return null;
+          const stepList = document.createElement("div");
+          stepList.className = "step-list";
+          steps.slice(0, count).forEach((step, index) => {
+            const stepEl = document.createElement("div");
+            stepEl.className = "step";
+            const title = document.createElement("p");
+            title.className = "step-title";
+            title.textContent = `Step ${index + 1} of ${steps.length}`;
+            const work = textDiv("step-work", step.work || "");
+            const why = document.createElement("details");
+            why.className = "why";
+            why.open = expandWhy;
+            const summary = document.createElement("summary");
+            summary.textContent = "Why this step";
+            const whyText = textDiv("meta", step.why || "This step moves the solution toward the requested result.");
+            why.append(summary, whyText);
+            stepEl.append(title, work, why);
+            stepList.appendChild(stepEl);
+          });
+          return stepList;
+        }
+
         function renderLearning(problem, card) {
           const learning = problem.learning || {};
           const progress = readProgress(problem);
@@ -1139,26 +1169,9 @@
             panel.appendChild(hintList);
           }
 
-          if (progress.stepsRevealed > 0) {
-            const stepList = document.createElement("div");
-            stepList.className = "step-list";
-            steps.slice(0, progress.stepsRevealed).forEach((step, index) => {
-              const stepEl = document.createElement("div");
-              stepEl.className = "step";
-              const title = document.createElement("p");
-              title.className = "step-title";
-              title.textContent = `Step ${index + 1} of ${steps.length}`;
-              const work = textDiv("step-work", step.work || "");
-              const why = document.createElement("details");
-              why.className = "why";
-              const summary = document.createElement("summary");
-              summary.textContent = "Why this step";
-              const whyText = textDiv("meta", step.why || "This step moves the solution toward the requested result.");
-              why.append(summary, whyText);
-              stepEl.append(title, work, why);
-              stepList.appendChild(stepEl);
-            });
-            panel.appendChild(stepList);
+          if (!progress.solutionVisible) {
+            const revealedSteps = renderStepList(steps, progress.stepsRevealed);
+            if (revealedSteps) panel.appendChild(revealedSteps);
           }
 
           if (progress.solutionVisible) {
@@ -1167,6 +1180,12 @@
             const heading = document.createElement("h3");
             heading.textContent = "Full solution and checks";
             solution.appendChild(heading);
+            const stepsHeading = document.createElement("h4");
+            stepsHeading.textContent = "Worked steps";
+            const fullStepList = renderStepList(steps, steps.length, true);
+            if (fullStepList) {
+              solution.append(stepsHeading, fullStepList);
+            }
             if (learning.final_answer) {
               solution.appendChild(textDiv("solution-text", `Final answer: ${learning.final_answer}`));
             }

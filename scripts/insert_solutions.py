@@ -274,6 +274,16 @@ SOLUTIONS.update(
             "Set y'(x) = 0 and solve numerically near x = 1. Newton's method gives x* ≈ 1.112. "
             "Substitute back into y(x): y(1.112) ≈ 4.56. So the nearest local maximum to x = 1 is approximately 4.56."
         ),
+        "Assignment 2 Problem 1": (
+            "If f(x) is periodic with period T, then f(x + T) = f(x) for all x. Differentiate both sides with respect to x to get "
+            "f'(x + T) = f'(x). Therefore the derivative has the same period T, so it is periodic as well."
+        ),
+        "Assignment 2 Problem 3": (
+            "Any real limit y of the iteration y_n = cos(y_{n-1}) must satisfy the fixed-point equation y = cos(y). "
+            "That equation has the unique real solution y ≈ 0.7390851332, the Dottie number. Starting from y0 = 2, the iteration converges to that value, "
+            "and in fact it converges to the same real fixed point for any real initial value because cos maps reals into [-1, 1] and is a contraction near the fixed point. "
+            "For complex initial values the behavior is not universal: the iteration need not converge to the same value for every complex y0, so the real conclusion does not extend unchanged to all complex starting points."
+        ),
         "Assignment 2 Problem 10": (
             "For the standard Lorentzian distribution f(t) = a / (π(t^2 + a^2)) with a > 0, compute "
             "∫_{-∞}^{∞} f(t) dt = (1/π) ∫_{-∞}^{∞} a/(t^2 + a^2) dt. Since "

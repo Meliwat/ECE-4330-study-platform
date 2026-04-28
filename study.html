@@ -3,17 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ECE 4330 Problem Drill</title>
+    <title>ECE 4330 Study Platform</title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+        },
+        startup: {
+          typeset: false,
+        },
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
       :root {
-        --bg: #f5f0e8;
-        --surface: #fffaf2;
-        --surface-strong: #f2eadf;
-        --ink: #221f1a;
-        --muted: #6f665a;
-        --accent: #9d4a2f;
-        --border: #d4c7b7;
-        --shadow: 0 18px 50px rgba(42, 34, 24, 0.1);
+        color-scheme: light;
+        --bg: #f6f7fb;
+        --surface: #ffffff;
+        --surface-soft: #eef2f7;
+        --surface-blue: #eaf2ff;
+        --surface-green: #e9f7ef;
+        --surface-amber: #fff4dc;
+        --ink: #20242c;
+        --muted: #677083;
+        --border: #d8dee8;
+        --accent: #2457d6;
+        --accent-strong: #173e9c;
+        --success: #13795b;
+        --warning: #9a5b00;
+        --danger: #b42318;
+        --shadow: 0 12px 36px rgba(25, 33, 52, 0.08);
       }
 
       * {
@@ -22,245 +44,164 @@
 
       body {
         margin: 0;
-        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-        background: radial-gradient(1200px 500px at 15% 0%, #fbf5ec, var(--bg));
+        background: var(--bg);
         color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.45;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        min-height: 36px;
       }
 
       .page {
-        max-width: 1200px;
-        margin: 36px auto 80px;
-        padding: 0 24px;
+        width: min(1280px, calc(100% - 32px));
+        margin: 28px auto 64px;
       }
 
-      .hero {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 28px 32px;
-        box-shadow: var(--shadow);
-      }
-
-      h1 {
-        margin: 0 0 8px;
-        font-size: clamp(2rem, 2vw + 1.6rem, 3rem);
-        letter-spacing: 0.01em;
-      }
-
-      .subhead {
-        margin: 0;
-        color: var(--muted);
-        font-size: 1.05rem;
-      }
-
-      .controls {
-        margin-top: 22px;
-        display: grid;
-        gap: 16px;
-        grid-template-columns: minmax(220px, 320px) minmax(220px, 320px) minmax(220px, 320px) 1fr;
-        align-items: end;
-      }
-
-      .field label {
-        display: block;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        letter-spacing: 0.14em;
-        color: var(--muted);
-        margin-bottom: 8px;
-      }
-
-      .data-source {
-        background: var(--surface-strong);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 14px 16px;
-        color: var(--muted);
-      }
-
-      .dropdown {
-        position: relative;
-      }
-
-      .dropdown-trigger {
-        width: 100%;
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid var(--border);
-        background: #fff;
-        font-size: 1rem;
-        text-align: left;
-        color: var(--ink);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-      }
-
-      .dropdown-menu {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 0;
-        z-index: 9999;
-        width: 100%;
-        max-height: 300px;
-        overflow-y: auto;
-        background-color: #fff;
-        color: #000;
-        border: 1px solid #ccc;
-        border-radius: 12px;
-        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
-        padding: 8px 0;
-        display: none;
-      }
-
-      .dropdown.open .dropdown-menu {
-        display: block;
-        height: auto;
-      }
-
-      .dropdown-item {
-        width: 100%;
-        text-align: left;
-        background: transparent;
-        border: none;
-        padding: 10px 14px;
-        font-size: 0.96rem;
-        cursor: pointer;
-      }
-
-      .dropdown-item:hover,
-      .dropdown-item.active {
-        background: var(--surface-strong);
-      }
-
-      .status {
-        margin-top: 12px;
-        font-size: 0.95rem;
-        color: var(--muted);
-      }
-
-      .grid {
-        margin-top: 28px;
-        display: grid;
-        gap: 22px;
-      }
-
+      .hero,
+      .panel,
       .card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 20px 22px 24px;
+        border-radius: 8px;
         box-shadow: var(--shadow);
       }
 
-      .card-header {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 12px;
-        align-items: center;
-        justify-content: space-between;
+      .hero {
+        padding: 22px;
       }
 
-      .meta {
-        font-size: 0.92rem;
+      .hero-top {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: start;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: clamp(1.8rem, 1.1rem + 2vw, 3rem);
+        letter-spacing: 0;
+      }
+
+      .subhead {
+        max-width: 780px;
+        margin: 0;
         color: var(--muted);
+        font-size: 1rem;
       }
 
-      .tag {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: var(--surface-strong);
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(86px, 1fr));
+        gap: 8px;
+        min-width: 390px;
+      }
+
+      .stat {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px;
+        background: var(--surface-soft);
+      }
+
+      .stat-value {
+        display: block;
+        font-size: 1.35rem;
+        font-weight: 750;
+      }
+
+      .stat-label {
+        display: block;
         color: var(--muted);
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-
-      .problem-text {
-        margin: 16px 0 14px;
-        white-space: pre-wrap;
-        line-height: 1.55;
-        font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
-        font-size: 1.03rem;
-        text-rendering: optimizeLegibility;
-        font-kerning: normal;
-      }
-
-      .problem-text.muted {
-        color: var(--muted);
-        font-style: italic;
-      }
-
-      .solution-text.muted {
-        color: var(--muted);
-        font-style: italic;
-      }
-
-      .diagram-label {
-        margin: 10px 0 6px;
-        color: var(--muted);
-        font-size: 0.88rem;
+        font-size: 0.78rem;
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
 
-      .scan-note {
-        margin: 8px 0 10px;
+      .controls {
+        display: grid;
+        grid-template-columns: minmax(240px, 1.4fr) repeat(4, minmax(150px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .field label,
+      .workspace label {
+        display: block;
+        margin-bottom: 6px;
         color: var(--muted);
-        font-size: 0.95rem;
+        font-size: 0.76rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
-      .diagram {
-        display: block;
+      .field input,
+      .field select,
+      .workspace textarea {
         width: 100%;
-        max-width: 600px;
-        max-height: 520px;
-        border-radius: 12px;
         border: 1px solid var(--border);
-        margin-bottom: 12px;
+        border-radius: 8px;
         background: #fff;
-        object-fit: contain;
+        color: var(--ink);
       }
 
-      .solution {
-        margin-top: 12px;
-        padding: 14px 16px;
-        border-radius: 12px;
-        border: 1px dashed var(--border);
-        background: #fffdf8;
-        display: none;
+      .field input,
+      .field select {
+        min-height: 42px;
+        padding: 9px 11px;
       }
 
-      .solution.visible {
-        display: block;
-      }
-
-      .solution-text {
-        white-space: pre-wrap;
-        line-height: 1.55;
-        font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
-        font-size: 1.01rem;
-        text-rendering: optimizeLegibility;
-        font-kerning: normal;
-      }
-
-      .solution-actions {
-        margin-top: 12px;
+      .toolbar {
         display: flex;
+        flex-wrap: wrap;
         gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
+      }
+
+      .status {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .button-row,
+      .solution-actions,
+      .rating-row,
+      .card-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
       }
 
       .btn {
         border: 1px solid var(--border);
-        background: var(--surface-strong);
+        border-radius: 8px;
+        background: var(--surface-soft);
         color: var(--ink);
-        border-radius: 999px;
-        padding: 8px 14px;
+        padding: 7px 11px;
         cursor: pointer;
-        font-size: 0.95rem;
+      }
+
+      .btn:hover:not(:disabled) {
+        border-color: #aeb8c8;
+        background: #e6ebf3;
+      }
+
+      .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
       }
 
       .btn.primary {
@@ -269,175 +210,411 @@
         color: #fff;
       }
 
-      .empty {
-        padding: 24px;
-        background: var(--surface);
-        border-radius: 16px;
-        border: 1px dashed var(--border);
-        color: var(--muted);
+      .btn.primary:hover:not(:disabled) {
+        background: var(--accent-strong);
       }
 
-      @media (max-width: 900px) {
-        .controls {
+      .btn.active {
+        border-color: var(--accent);
+        background: var(--surface-blue);
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+
+      .btn.success.active {
+        border-color: var(--success);
+        background: var(--surface-green);
+        color: var(--success);
+      }
+
+      .btn.warning.active {
+        border-color: var(--warning);
+        background: var(--surface-amber);
+        color: var(--warning);
+      }
+
+      .progress-track {
+        height: 8px;
+        margin-top: 14px;
+        border-radius: 999px;
+        background: var(--surface-soft);
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--success));
+        transition: width 0.2s ease;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        margin-top: 20px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .card-header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 3px 8px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--surface-soft);
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .tag.review {
+        border-color: #f0c36a;
+        background: var(--surface-amber);
+        color: var(--warning);
+      }
+
+      .problem-text,
+      .solution-text,
+      .step-work,
+      .hint-list,
+      .brief-value {
+        font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+        text-rendering: optimizeLegibility;
+      }
+
+      .problem-text {
+        margin: 16px 0;
+        white-space: pre-wrap;
+        font-size: 1.05rem;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .study-brief {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin: 12px 0;
+      }
+
+      .brief-item {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 10px;
+      }
+
+      .brief-label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .workspace {
+        margin: 14px 0;
+      }
+
+      .workspace textarea {
+        min-height: 110px;
+        resize: vertical;
+        padding: 10px;
+      }
+
+      .rating-block {
+        display: grid;
+        gap: 8px;
+        margin: 12px 0;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+      }
+
+      .rating-label {
+        width: 92px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 750;
+      }
+
+      .learning-panel {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .hint-list {
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      .hint-list li {
+        margin: 5px 0;
+      }
+
+      .step-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .step {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 12px;
+      }
+
+      .step-title {
+        margin: 0 0 6px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .step-work {
+        white-space: pre-wrap;
+      }
+
+      details.why {
+        margin-top: 8px;
+      }
+
+      details.why summary {
+        cursor: pointer;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .solution {
+        border: 1px dashed #aeb8c8;
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 12px;
+      }
+
+      .solution h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+
+      .solution-text {
+        white-space: pre-wrap;
+      }
+
+      .scan-note,
+      .diagram-label {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 750;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .diagram-label {
+        margin: 12px 0 6px;
+      }
+
+      .diagram {
+        display: block;
+        width: min(100%, 760px);
+        max-height: 620px;
+        margin-bottom: 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fff;
+        object-fit: contain;
+      }
+
+      .empty,
+      .exam-lock {
+        border: 1px dashed var(--border);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--muted);
+        padding: 18px;
+      }
+
+      .exam-lock {
+        background: var(--surface-amber);
+        color: var(--warning);
+      }
+
+      @media (max-width: 980px) {
+        .hero-top,
+        .card-header {
           grid-template-columns: 1fr;
+        }
+
+        .stats,
+        .controls,
+        .study-brief {
+          grid-template-columns: 1fr 1fr;
+          min-width: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(100% - 20px, 1280px);
+          margin-top: 10px;
+        }
+
+        .hero,
+        .card {
+          padding: 14px;
+        }
+
+        .stats,
+        .controls,
+        .study-brief {
+          grid-template-columns: 1fr;
+        }
+
+        .rating-row {
+          align-items: stretch;
+        }
+
+        .rating-label {
+          width: 100%;
+        }
+
+        .btn {
+          flex: 1 1 auto;
         }
       }
     </style>
   </head>
   <body>
-    <div class="page">
+    <main class="page">
       <section class="hero">
-        <h1>ECE 4330 Problem Drill</h1>
-        <p class="subhead">
-          Filter by problem type, review every diagram, and reveal solutions when you are ready.
-        </p>
-
-        <div class="controls">
-          <div class="field dropdown" id="topicDropdown">
-            <label for="topicButton">Problem Type</label>
-            <button class="dropdown-trigger" id="topicButton" type="button" aria-expanded="false">
-              <span id="topicLabel">All</span>
-              <span aria-hidden="true">▾</span>
-            </button>
-            <div class="dropdown-menu" id="topicMenu" role="listbox" aria-hidden="true"></div>
+        <div class="hero-top">
+          <div>
+            <h1>ECE 4330 Study Platform</h1>
+            <p class="subhead">
+              Attempt problems first, reveal hints and worked steps gradually, expand why each step is done, and review the problems that need another pass.
+            </p>
           </div>
-
-          <div class="field dropdown" id="categoryDropdown">
-            <label for="categoryButton">Source</label>
-            <button class="dropdown-trigger" id="categoryButton" type="button" aria-expanded="false">
-              <span id="categoryLabel">All</span>
-              <span aria-hidden="true">▾</span>
-            </button>
-            <div class="dropdown-menu" id="categoryMenu" role="listbox" aria-hidden="true"></div>
-          </div>
-
-          <div class="field dropdown" id="sourceItemDropdown">
-            <label for="sourceItemButton">Exam / Assignment</label>
-            <button class="dropdown-trigger" id="sourceItemButton" type="button" aria-expanded="false">
-              <span id="sourceItemLabel">All</span>
-              <span aria-hidden="true">▾</span>
-            </button>
-            <div class="dropdown-menu" id="sourceItemMenu" role="listbox" aria-hidden="true"></div>
-          </div>
-
-          <div class="field">
-            <label>Data Source</label>
-            <div class="data-source">Loaded from <code>output/problems.json</code></div>
+          <div class="stats" aria-label="Study progress">
+            <div class="stat">
+              <span class="stat-value" id="shownCount">0</span>
+              <span class="stat-label">Shown</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="attemptedCount">0</span>
+              <span class="stat-label">Tried</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="correctCount">0</span>
+              <span class="stat-label">Correct</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="reviewCount">0</span>
+              <span class="stat-label">Review</span>
+            </div>
           </div>
         </div>
 
-        <div class="status" id="status">Loading problems…</div>
+        <div class="controls">
+          <div class="field">
+            <label for="searchInput">Search</label>
+            <input id="searchInput" type="search" placeholder="topic, source, equation, keyword" />
+          </div>
+          <div class="field">
+            <label for="modeSelect">Mode</label>
+            <select id="modeSelect">
+              <option value="practice">Practice</option>
+              <option value="learn">Learn</option>
+              <option value="exam">Exam</option>
+              <option value="review">Review weak</option>
+              <option value="browse">Browse</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="topicSelect">Problem Type</label>
+            <select id="topicSelect"></select>
+          </div>
+          <div class="field">
+            <label for="categorySelect">Source</label>
+            <select id="categorySelect"></select>
+          </div>
+          <div class="field">
+            <label for="sourceItemSelect">Exam / Assignment</label>
+            <select id="sourceItemSelect"></select>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="status" id="status">Loading problems...</div>
+          <div class="button-row">
+            <button class="btn" id="shuffleButton" type="button">Shuffle shown</button>
+            <button class="btn" id="resetFiltersButton" type="button">Reset filters</button>
+            <button class="btn" id="exportButton" type="button">Export progress</button>
+            <button class="btn" id="resetProgressButton" type="button">Reset progress</button>
+          </div>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
       </section>
 
       <section class="grid" id="problemList"></section>
-    </div>
+    </main>
 
     <script>
       (() => {
-        const state = {
-          problems: [],
-          topics: ["All"],
-          categories: ["All"],
-          sourceItems: ["All"],
-          currentTopic: "All",
-          currentCategory: "All",
-          currentSourceItem: "All",
-        };
-
-        const statusEl = document.getElementById("status");
-        const listEl = document.getElementById("problemList");
-        const dropdownEl = document.getElementById("topicDropdown");
-        const topicButton = document.getElementById("topicButton");
-        const topicMenu = document.getElementById("topicMenu");
-        const topicLabel = document.getElementById("topicLabel");
-        const categoryDropdown = document.getElementById("categoryDropdown");
-        const categoryButton = document.getElementById("categoryButton");
-        const categoryMenu = document.getElementById("categoryMenu");
-        const categoryLabel = document.getElementById("categoryLabel");
-        const sourceItemDropdown = document.getElementById("sourceItemDropdown");
-        const sourceItemButton = document.getElementById("sourceItemButton");
-        const sourceItemMenu = document.getElementById("sourceItemMenu");
-        const sourceItemLabel = document.getElementById("sourceItemLabel");
-
-        if (
-          !dropdownEl ||
-          !topicMenu ||
-          !topicButton ||
-          !topicLabel ||
-          !categoryDropdown ||
-          !categoryMenu ||
-          !categoryButton ||
-          !categoryLabel ||
-          !sourceItemDropdown ||
-          !sourceItemMenu ||
-          !sourceItemButton ||
-          !sourceItemLabel
-        ) {
-          console.error("Topic dropdown elements not found.");
-          statusEl.textContent = "UI error: dropdown elements missing.";
-          return;
-        }
-
-        const closeDropdown = (wrapper, button, menu) => {
-          wrapper.classList.remove("open");
-          button.setAttribute("aria-expanded", "false");
-          menu.setAttribute("aria-hidden", "true");
-        };
-
-        const openDropdown = (wrapper, button, menu) => {
-          wrapper.classList.add("open");
-          button.setAttribute("aria-expanded", "true");
-          menu.setAttribute("aria-hidden", "false");
-        };
-
-        const toggleDropdown = (event, wrapper, button, menu) => {
-          event.preventDefault();
-          const isOpen = wrapper.classList.contains("open");
-          if (isOpen) {
-            closeDropdown(wrapper, button, menu);
-          } else {
-            openDropdown(wrapper, button, menu);
-          }
-        };
-
-        const setStatus = (text) => {
-          statusEl.textContent = text;
-        };
-
-        const escapeText = (value) => (value == null ? "" : String(value));
-
-        const buildTopics = () => {
-          const found = new Set();
-          state.problems.forEach((problem) => {
-            if (problem && problem.topic) {
-              found.add(problem.topic);
-            }
-          });
-          state.topics = ["All", ...Array.from(found).sort()];
-        };
-
-        const getCategory = (source) => {
-          const normalized = (source || "").toLowerCase();
-          if (normalized.includes("assignment")) {
-            return "Assignments";
-          }
-          if (normalized.includes("exam") || normalized.includes("test")) {
-            return "Exams";
-          }
-          if (normalized.includes("lecture")) {
-            return "Lectures";
-          }
-          return "Other";
-        };
-
-        const buildCategories = () => {
-          const found = new Set();
-          state.problems.forEach((problem) => {
-            found.add(getCategory(problem.source));
-          });
-          state.categories = ["All", ...Array.from(found).sort()];
-        };
-
+        const STORAGE_KEY = "ece4330.studyProgress.v2";
+        const ASSET_VERSION = "20260428-1";
+        const STATUS_OPTIONS = [
+          ["new", "New"],
+          ["tried", "Tried"],
+          ["correct", "Correct"],
+          ["stuck", "Stuck"],
+          ["review", "Review again"],
+        ];
+        const CONFIDENCE_OPTIONS = [
+          ["", "Confidence"],
+          ["low", "Low"],
+          ["medium", "Medium"],
+          ["high", "High"],
+        ];
+        const DIFFICULTY_OPTIONS = [
+          ["", "Difficulty"],
+          ["easy", "Easy"],
+          ["medium", "Medium"],
+          ["hard", "Hard"],
+        ];
         const SOURCE_ITEM_ORDER = [
           "Assignment 1",
           "Assignment 2",
@@ -454,331 +631,653 @@
           "Exam 3",
           "Final",
         ];
+        const EMPTY_PROGRESS = {
+          status: "new",
+          confidence: "",
+          userDifficulty: "",
+          notes: "",
+          hintsRevealed: 0,
+          stepsRevealed: 0,
+          solutionVisible: false,
+          updatedAt: "",
+        };
 
-        const getSourceItem = (source) => {
-          const text = String(source || "").trim();
+        const state = {
+          problems: [],
+          progress: loadProgress(),
+          currentTopic: "All",
+          currentCategory: "All",
+          currentSourceItem: "All",
+          mode: "practice",
+          search: "",
+          shuffled: false,
+        };
 
-          const assignmentMatch = text.match(/^Assignment\s+(\d+)/i);
-          if (assignmentMatch) {
-            return `Assignment ${assignmentMatch[1]}`;
+        const els = {
+          list: document.getElementById("problemList"),
+          status: document.getElementById("status"),
+          shownCount: document.getElementById("shownCount"),
+          attemptedCount: document.getElementById("attemptedCount"),
+          correctCount: document.getElementById("correctCount"),
+          reviewCount: document.getElementById("reviewCount"),
+          progressFill: document.getElementById("progressFill"),
+          searchInput: document.getElementById("searchInput"),
+          modeSelect: document.getElementById("modeSelect"),
+          topicSelect: document.getElementById("topicSelect"),
+          categorySelect: document.getElementById("categorySelect"),
+          sourceItemSelect: document.getElementById("sourceItemSelect"),
+          shuffleButton: document.getElementById("shuffleButton"),
+          resetFiltersButton: document.getElementById("resetFiltersButton"),
+          exportButton: document.getElementById("exportButton"),
+          resetProgressButton: document.getElementById("resetProgressButton"),
+        };
+
+        function loadProgress() {
+          try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+          } catch {
+            return {};
           }
+        }
 
-          if (/^Assignment 5 Extra/i.test(text)) {
-            return "Assignment 5";
+        function saveProgress() {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
+        }
+
+        function problemId(problem) {
+          return problem.id || slugify(problem.source || "problem");
+        }
+
+        function slugify(value) {
+          return String(value || "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+        }
+
+        function progressFor(problem) {
+          const id = problemId(problem);
+          if (!state.progress[id]) {
+            state.progress[id] = { ...EMPTY_PROGRESS };
           }
+          return state.progress[id];
+        }
 
-          if (/^Linear Exam 1 Review/i.test(text) || /^Test 1 Sample/i.test(text)) {
-            return "Exam 1";
-          }
+        function readProgress(problem) {
+          return state.progress[problemId(problem)] || EMPTY_PROGRESS;
+        }
 
-          if (/^Exam 2\b/i.test(text) || /^Test 2 Sample/i.test(text)) {
-            return "Exam 2";
-          }
+        function updateProgress(problem, changes) {
+          const progress = progressFor(problem);
+          Object.assign(progress, changes, { updatedAt: new Date().toISOString() });
+          saveProgress();
+          render();
+        }
 
-          if (/^Exam 3\b/i.test(text) || /^Test 3 Sample/i.test(text)) {
-            return "Exam 3";
-          }
-
-          if (/^Final Sample/i.test(text)) {
-            return "Final";
-          }
-
+        function getCategory(source) {
+          const normalized = String(source || "").toLowerCase();
+          if (normalized.includes("assignment")) return "Assignments";
+          if (normalized.includes("exam") || normalized.includes("test")) return "Exams";
+          if (normalized.includes("lecture")) return "Lectures";
           return "Other";
-        };
+        }
 
-        const buildSourceItems = () => {
-          const found = new Set();
-          state.problems.forEach((problem) => {
-            const categoryMatch =
-              state.currentCategory === "All" ||
-              getCategory(problem.source) === state.currentCategory;
-            if (categoryMatch) {
-              found.add(getSourceItem(problem.source));
-            }
+        function getSourceItem(source) {
+          const text = String(source || "").trim();
+          const assignmentMatch = text.match(/^Assignment\s+(\d+)/i);
+          if (assignmentMatch) return `Assignment ${assignmentMatch[1]}`;
+          if (/^Assignment 5 Extra/i.test(text)) return "Assignment 5";
+          if (/^Linear Exam 1 Review/i.test(text) || /^Test 1 Sample/i.test(text)) return "Exam 1";
+          if (/^Exam 2\b/i.test(text) || /^Test 2 Sample/i.test(text)) return "Exam 2";
+          if (/^Exam 3\b/i.test(text) || /^Test 3 Sample/i.test(text)) return "Exam 3";
+          if (/^Final Sample/i.test(text)) return "Final";
+          return "Other";
+        }
+
+        function uniqueSorted(values) {
+          return ["All", ...Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b))];
+        }
+
+        function populateSelect(select, values, current) {
+          select.innerHTML = "";
+          values.forEach((value) => {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = value;
+            if (value === current) option.selected = true;
+            select.appendChild(option);
           });
-          const ordered = Array.from(found).sort((a, b) => {
-            const aIndex = SOURCE_ITEM_ORDER.indexOf(a);
-            const bIndex = SOURCE_ITEM_ORDER.indexOf(b);
-            if (aIndex === -1 && bIndex === -1) {
-              return a.localeCompare(b);
-            }
-            if (aIndex === -1) {
-              return 1;
-            }
-            if (bIndex === -1) {
-              return -1;
-            }
-            return aIndex - bIndex;
+        }
+
+        function buildFilterOptions() {
+          populateSelect(els.topicSelect, uniqueSorted(state.problems.map((problem) => problem.topic)), state.currentTopic);
+          populateSelect(
+            els.categorySelect,
+            uniqueSorted(state.problems.map((problem) => getCategory(problem.source))),
+            state.currentCategory
+          );
+          const sourceItems = state.problems
+            .filter((problem) => state.currentCategory === "All" || getCategory(problem.source) === state.currentCategory)
+            .map((problem) => getSourceItem(problem.source));
+          const ordered = Array.from(new Set(sourceItems)).sort((a, b) => {
+            const ai = SOURCE_ITEM_ORDER.indexOf(a);
+            const bi = SOURCE_ITEM_ORDER.indexOf(b);
+            if (ai === -1 && bi === -1) return a.localeCompare(b);
+            if (ai === -1) return 1;
+            if (bi === -1) return -1;
+            return ai - bi;
           });
-          state.sourceItems = ["All", ...ordered];
-          if (!state.sourceItems.includes(state.currentSourceItem)) {
-            state.currentSourceItem = "All";
-            sourceItemLabel.textContent = "All";
+          const values = ["All", ...ordered];
+          if (!values.includes(state.currentSourceItem)) state.currentSourceItem = "All";
+          populateSelect(els.sourceItemSelect, values, state.currentSourceItem);
+        }
+
+        function searchableText(problem) {
+          const learning = problem.learning || {};
+          const steps = (learning.steps || []).map((step) => `${step.work} ${step.why}`).join(" ");
+          return [
+            problem.source,
+            problem.topic,
+            problem.problem,
+            problem.solution,
+            problem.difficulty,
+            ...(problem.subtopics || []),
+            learning.goal,
+            learning.concept,
+            learning.final_answer,
+            steps,
+          ]
+            .join(" ")
+            .toLowerCase();
+        }
+
+        function isWeak(problem) {
+          const progress = readProgress(problem);
+          return (
+            progress.status === "stuck" ||
+            progress.status === "review" ||
+            progress.confidence === "low" ||
+            progress.userDifficulty === "hard"
+          );
+        }
+
+        function getFilteredProblems() {
+          const query = state.search.trim().toLowerCase();
+          let filtered = state.problems.filter((problem) => {
+            const topicMatch = state.currentTopic === "All" || problem.topic === state.currentTopic;
+            const categoryMatch = state.currentCategory === "All" || getCategory(problem.source) === state.currentCategory;
+            const sourceMatch = state.currentSourceItem === "All" || getSourceItem(problem.source) === state.currentSourceItem;
+            const searchMatch = !query || searchableText(problem).includes(query);
+            const reviewMatch = state.mode !== "review" || isWeak(problem);
+            return topicMatch && categoryMatch && sourceMatch && searchMatch && reviewMatch;
+          });
+          if (state.shuffled) {
+            filtered = filtered
+              .map((problem) => [Math.sin(problemId(problem).split("").reduce((sum, char) => sum + char.charCodeAt(0), 0)) % 1, problem])
+              .sort((a, b) => a[0] - b[0])
+              .map(([, problem]) => problem);
           }
-        };
+          return filtered;
+        }
 
-        const populateMenu = (menuEl, items, currentValue, onSelect) => {
-          menuEl.innerHTML = "";
-          items.forEach((itemValue) => {
-            const item = document.createElement("button");
-            item.type = "button";
-            item.className = "dropdown-item";
-            item.textContent = itemValue;
-            if (itemValue === currentValue) {
-              item.classList.add("active");
-            }
-            item.addEventListener("click", () => {
-              onSelect(itemValue);
-            });
-            menuEl.appendChild(item);
-          });
-        };
+        function textDiv(className, text) {
+          const div = document.createElement("div");
+          div.className = className;
+          div.textContent = text || "";
+          return div;
+        }
 
-        const ASSET_VERSION = "20260426-1";
+        function button(label, className, disabled, onClick) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = className || "btn";
+          btn.textContent = label;
+          btn.disabled = Boolean(disabled);
+          btn.addEventListener("click", onClick);
+          return btn;
+        }
 
-        const normalizeImagePath = (path) => {
+        function normalizeImagePath(path) {
           const trimmed = String(path || "").trim();
-          if (!trimmed) {
-            return "";
-          }
-          if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
-            return trimmed;
-          }
+          if (!trimmed) return "";
+          if (/^https?:\/\//i.test(trimmed)) return trimmed;
           const cleaned = trimmed.replace(/^\.?\//, "");
-          const separator = cleaned.includes("?") ? "&" : "?";
-          return `/${cleaned}${separator}v=${ASSET_VERSION}`;
-        };
+          const url = new URL(cleaned, window.location.href);
+          url.searchParams.set("v", ASSET_VERSION);
+          return url.href;
+        }
 
-        const renderImages = (images, container, labelText = "Diagram") => {
-          if (!images || images.length === 0) {
-            return;
-          }
+        function renderImages(images, container, labelText) {
+          if (!images || images.length === 0) return;
           const label = document.createElement("div");
           label.className = "diagram-label";
-          label.textContent = labelText;
+          label.textContent = labelText || "Diagram";
           container.appendChild(label);
-
           images.forEach((path) => {
             const resolvedPath = normalizeImagePath(path);
             const img = document.createElement("img");
             img.className = "diagram";
             img.loading = "lazy";
             img.src = resolvedPath;
-            img.alt = "Problem diagram";
+            img.alt = labelText || "Problem diagram";
             img.addEventListener("error", () => {
-              const error = document.createElement("div");
-              error.className = "meta";
-              error.textContent = `Image failed to load: ${resolvedPath}`;
+              const error = textDiv("meta", `Image failed to load: ${resolvedPath}`);
               container.appendChild(error);
               img.remove();
             });
             container.appendChild(img);
           });
-        };
+        }
 
-        const renderProblems = () => {
-          listEl.innerHTML = "";
-          const filtered = state.problems.filter((problem) => {
-            const topicMatch =
-              state.currentTopic === "All" || problem.topic === state.currentTopic;
-            const categoryMatch =
-              state.currentCategory === "All" ||
-              getCategory(problem.source) === state.currentCategory;
-            const sourceItemMatch =
-              state.currentSourceItem === "All" ||
-              getSourceItem(problem.source) === state.currentSourceItem;
-            return topicMatch && categoryMatch && sourceItemMatch;
+        function renderTags(problem, container) {
+          const tags = [problem.topic || "Uncategorized", problem.difficulty || "Core", ...(problem.subtopics || []).slice(0, 4)];
+          tags.forEach((tagText) => {
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.textContent = tagText;
+            container.appendChild(tag);
+          });
+          if (problem.learning && problem.learning.needs_review) {
+            const tag = document.createElement("span");
+            tag.className = "tag review";
+            tag.textContent = "scan-backed";
+            container.appendChild(tag);
+          }
+        }
+
+        function renderBrief(problem, card) {
+          if (state.mode === "exam") return;
+          const learning = problem.learning || {};
+          const brief = document.createElement("div");
+          brief.className = "study-brief";
+          [
+            ["Goal", learning.goal || "Solve the requested problem."],
+            ["Concept", learning.concept || problem.topic || "Course method"],
+            ["Check", learning.check || "Verify against the original statement."],
+          ].forEach(([label, value]) => {
+            const item = document.createElement("div");
+            item.className = "brief-item";
+            const labelEl = document.createElement("span");
+            labelEl.className = "brief-label";
+            labelEl.textContent = label;
+            const valueEl = document.createElement("div");
+            valueEl.className = "brief-value";
+            valueEl.textContent = value;
+            item.append(labelEl, valueEl);
+            brief.appendChild(item);
+          });
+          card.appendChild(brief);
+        }
+
+        function renderRatings(problem, card) {
+          const progress = readProgress(problem);
+          const block = document.createElement("div");
+          block.className = "rating-block";
+
+          const statusRow = document.createElement("div");
+          statusRow.className = "rating-row";
+          const statusLabel = document.createElement("span");
+          statusLabel.className = "rating-label";
+          statusLabel.textContent = "Status";
+          statusRow.appendChild(statusLabel);
+          STATUS_OPTIONS.forEach(([value, label]) => {
+            const cls = [
+              "btn",
+              progress.status === value ? "active" : "",
+              value === "correct" ? "success" : "",
+              value === "stuck" || value === "review" ? "warning" : "",
+            ]
+              .filter(Boolean)
+              .join(" ");
+            statusRow.appendChild(button(label, cls, false, () => updateProgress(problem, { status: value })));
           });
 
-          if (filtered.length === 0) {
-            const empty = document.createElement("div");
-            empty.className = "empty";
-            empty.textContent = "No problems match this filter.";
-            listEl.appendChild(empty);
-            setStatus("0 problems loaded.");
-            return;
+          const confidenceRow = document.createElement("div");
+          confidenceRow.className = "rating-row";
+          const confidenceLabel = document.createElement("span");
+          confidenceLabel.className = "rating-label";
+          confidenceLabel.textContent = "Confidence";
+          confidenceRow.appendChild(confidenceLabel);
+          CONFIDENCE_OPTIONS.forEach(([value, label]) => {
+            const cls = ["btn", progress.confidence === value ? "active" : ""].filter(Boolean).join(" ");
+            confidenceRow.appendChild(button(label, cls, false, () => updateProgress(problem, { confidence: value })));
+          });
+
+          const difficultyRow = document.createElement("div");
+          difficultyRow.className = "rating-row";
+          const difficultyLabel = document.createElement("span");
+          difficultyLabel.className = "rating-label";
+          difficultyLabel.textContent = "Felt like";
+          difficultyRow.appendChild(difficultyLabel);
+          DIFFICULTY_OPTIONS.forEach(([value, label]) => {
+            const cls = ["btn", progress.userDifficulty === value ? "active" : ""].filter(Boolean).join(" ");
+            difficultyRow.appendChild(button(label, cls, false, () => updateProgress(problem, { userDifficulty: value })));
+          });
+
+          block.append(statusRow, confidenceRow, difficultyRow);
+          card.appendChild(block);
+        }
+
+        function renderWorkspace(problem, card) {
+          if (state.mode === "browse") return;
+          const progress = readProgress(problem);
+          const workspace = document.createElement("div");
+          workspace.className = "workspace";
+          const label = document.createElement("label");
+          label.textContent = "Your work";
+          label.htmlFor = `notes-${problemId(problem)}`;
+          const textarea = document.createElement("textarea");
+          textarea.id = `notes-${problemId(problem)}`;
+          textarea.placeholder = "Work the problem here before revealing hints or steps. Notes stay in this browser.";
+          textarea.value = progress.notes || "";
+          textarea.addEventListener("input", () => {
+            const current = progressFor(problem);
+            current.notes = textarea.value;
+            current.updatedAt = new Date().toISOString();
+            saveProgress();
+            updateStats(getFilteredProblems());
+          });
+          workspace.append(label, textarea);
+          card.appendChild(workspace);
+        }
+
+        function renderLearning(problem, card) {
+          const learning = problem.learning || {};
+          const progress = readProgress(problem);
+          const panel = document.createElement("div");
+          panel.className = "learning-panel";
+          const steps = learning.steps || [];
+          const hints = learning.hints || [];
+          const examLocked = state.mode === "exam" && progress.status === "new";
+
+          if (examLocked) {
+            const lock = document.createElement("div");
+            lock.className = "exam-lock";
+            lock.textContent = "Exam mode hides hints and worked steps until you mark the problem as tried.";
+            panel.appendChild(lock);
           }
 
-          setStatus(`${filtered.length} problems loaded.`);
+          const actions = document.createElement("div");
+          actions.className = "solution-actions";
+          actions.appendChild(
+            button("Reveal hint", "btn", examLocked || progress.hintsRevealed >= hints.length, () =>
+              updateProgress(problem, {
+                hintsRevealed: Math.min((progress.hintsRevealed || 0) + 1, hints.length),
+                status: progress.status === "new" ? "tried" : progress.status,
+              })
+            )
+          );
+          actions.appendChild(
+            button("Reveal next step", "btn primary", examLocked || progress.stepsRevealed >= steps.length, () =>
+              updateProgress(problem, {
+                stepsRevealed: Math.min((progress.stepsRevealed || 0) + 1, steps.length),
+                status: progress.status === "new" ? "tried" : progress.status,
+              })
+            )
+          );
+          actions.appendChild(
+            button(progress.solutionVisible ? "Hide full solution" : "Show full solution", "btn", examLocked, () =>
+              updateProgress(problem, {
+                solutionVisible: !progress.solutionVisible,
+                hintsRevealed: !progress.solutionVisible ? hints.length : progress.hintsRevealed,
+                stepsRevealed: !progress.solutionVisible ? steps.length : progress.stepsRevealed,
+                status: progress.status === "new" ? "tried" : progress.status,
+              })
+            )
+          );
+          panel.appendChild(actions);
 
-          filtered.forEach((problem) => {
-            const card = document.createElement("article");
-            card.className = "card";
-
-            const header = document.createElement("div");
-            header.className = "card-header";
-
-            const source = document.createElement("div");
-            source.className = "meta";
-            source.textContent = escapeText(problem.source || "Untitled problem");
-
-            const tag = document.createElement("div");
-            tag.className = "tag";
-            tag.textContent = escapeText(problem.topic || "Uncategorized");
-
-            header.appendChild(source);
-            header.appendChild(tag);
-            card.appendChild(header);
-
-            const rawProblem = escapeText(problem.problem || "").trim();
-            const problemTextBad = Boolean(problem.problem_text_bad && problem.problem_scan);
-            const text = document.createElement("div");
-            text.className = "problem-text";
-            if (problemTextBad) {
-              text.textContent = "Formatted math is shown in the exact problem scan below.";
-              text.classList.add("muted");
-            } else if (!rawProblem) {
-              text.textContent = (problem.images || []).length
-                ? "Problem statement is shown in the diagram."
-                : "Problem statement not found.";
-              text.classList.add("muted");
-            } else {
-              text.textContent = rawProblem;
-            }
-            card.appendChild(text);
-
-            if (problemTextBad && problem.problem_scan) {
-              const note = document.createElement("div");
-              note.className = "scan-note";
-              note.textContent = "Exact problem scan:";
-              card.appendChild(note);
-              renderImages([problem.problem_scan], card, "Problem Scan");
-            }
-
-            renderImages(problem.images || [], card);
-
-            const actions = document.createElement("div");
-            actions.className = "solution-actions";
-
-            const solutionBtn = document.createElement("button");
-            solutionBtn.type = "button";
-            solutionBtn.className = "btn primary";
-            solutionBtn.textContent = problem.has_solution ? "Show solution / work" : "No solution";
-            solutionBtn.disabled = !problem.has_solution;
-
-            const solutionBox = document.createElement("div");
-            solutionBox.className = "solution";
-
-            const solutionText = document.createElement("div");
-            solutionText.className = "solution-text";
-            const rawSolution = escapeText(problem.solution || "").trim();
-            const solutionTextBad = Boolean(problem.solution_text_bad && problem.solution_scan);
-            if (solutionTextBad) {
-              solutionText.textContent = "Formatted solution is shown in the exact solution scan below.";
-              solutionText.classList.add("muted");
-            } else if (!rawSolution) {
-              solutionText.textContent = (problem.solution_images || []).length
-                ? "Solution is shown in the diagram."
-                : "Solution not available.";
-              solutionText.classList.add("muted");
-            } else {
-              solutionText.textContent = rawSolution;
-            }
-            solutionBox.appendChild(solutionText);
-
-            if (problem.solution_scan && (solutionTextBad || !rawSolution)) {
-              const solutionNote = document.createElement("div");
-              solutionNote.className = "scan-note";
-              solutionNote.textContent = "Exact solution scan:";
-              solutionBox.appendChild(solutionNote);
-              renderImages([problem.solution_scan], solutionBox, "Solution Scan");
-            }
-
-            const extraSolutionImages = (problem.solution_images || []).filter(
-              (path) => path !== problem.solution_scan
-            );
-            if (solutionTextBad || !rawSolution) {
-              renderImages(extraSolutionImages, solutionBox, "Solution Diagram");
-            }
-
-            solutionBtn.addEventListener("click", () => {
-              const isVisible = solutionBox.classList.contains("visible");
-              solutionBox.classList.toggle("visible", !isVisible);
-              solutionBtn.textContent = isVisible ? "Show solution / work" : "Hide solution / work";
+          if (progress.hintsRevealed > 0) {
+            const hintList = document.createElement("ol");
+            hintList.className = "hint-list";
+            hints.slice(0, progress.hintsRevealed).forEach((hint) => {
+              const item = document.createElement("li");
+              item.textContent = hint;
+              hintList.appendChild(item);
             });
+            panel.appendChild(hintList);
+          }
 
-            actions.appendChild(solutionBtn);
-            card.appendChild(actions);
-            card.appendChild(solutionBox);
-            listEl.appendChild(card);
-          });
-        };
+          if (progress.stepsRevealed > 0) {
+            const stepList = document.createElement("div");
+            stepList.className = "step-list";
+            steps.slice(0, progress.stepsRevealed).forEach((step, index) => {
+              const stepEl = document.createElement("div");
+              stepEl.className = "step";
+              const title = document.createElement("p");
+              title.className = "step-title";
+              title.textContent = `Step ${index + 1}`;
+              const work = textDiv("step-work", step.work || "");
+              const why = document.createElement("details");
+              why.className = "why";
+              const summary = document.createElement("summary");
+              summary.textContent = "Why this step";
+              const whyText = textDiv("meta", step.why || "This step moves the solution toward the requested result.");
+              why.append(summary, whyText);
+              stepEl.append(title, work, why);
+              stepList.appendChild(stepEl);
+            });
+            panel.appendChild(stepList);
+          }
 
-        const loadProblems = async () => {
-          try {
-            const response = await fetch("./output/problems.json", { cache: "no-store" });
-            if (!response.ok) {
-              throw new Error(`HTTP ${response.status}`);
+          if (progress.solutionVisible) {
+            const solution = document.createElement("div");
+            solution.className = "solution";
+            const heading = document.createElement("h3");
+            heading.textContent = "Full solution and checks";
+            solution.appendChild(heading);
+            if (learning.final_answer) {
+              solution.appendChild(textDiv("solution-text", `Final answer: ${learning.final_answer}`));
             }
-            state.problems = await response.json();
-            buildTopics();
-            buildCategories();
-            buildSourceItems();
-            populateMenu(topicMenu, state.topics, state.currentTopic, (topic) => {
-              state.currentTopic = topic;
-              topicLabel.textContent = topic;
-              closeDropdown(dropdownEl, topicButton, topicMenu);
-              renderProblems();
+            if (learning.common_mistake) {
+              solution.appendChild(textDiv("meta", `Common mistake: ${learning.common_mistake}`));
+            }
+            if (problem.solution_text_bad && problem.solution_scan) {
+              solution.appendChild(textDiv("scan-note", "Exact solution scan"));
+              renderImages([problem.solution_scan], solution, "Solution Scan");
+            } else if (problem.solution) {
+              solution.appendChild(textDiv("solution-text", problem.solution));
+            }
+            const extraSolutionImages = (problem.solution_images || []).filter((path) => path !== problem.solution_scan);
+            if (extraSolutionImages.length) {
+              renderImages(extraSolutionImages, solution, "Solution Diagram");
+            }
+            panel.appendChild(solution);
+          }
+
+          card.appendChild(panel);
+        }
+
+        function renderProblemCard(problem) {
+          const card = document.createElement("article");
+          card.className = "card";
+
+          const header = document.createElement("div");
+          header.className = "card-header";
+          const titleBlock = document.createElement("div");
+          titleBlock.appendChild(textDiv("meta", problem.source || "Untitled problem"));
+          const tags = document.createElement("div");
+          tags.className = "tag-row";
+          renderTags(problem, tags);
+          titleBlock.appendChild(tags);
+          const quickActions = document.createElement("div");
+          quickActions.className = "card-actions";
+          quickActions.appendChild(button("Copy link", "btn", false, () => copyProblemLink(problem)));
+          header.append(titleBlock, quickActions);
+          card.appendChild(header);
+
+          const rawProblem = String(problem.problem || "").trim();
+          const problemText = document.createElement("div");
+          problemText.className = "problem-text";
+          if (problem.problem_text_bad && problem.problem_scan) {
+            problemText.classList.add("muted");
+            problemText.textContent = "Formatted math is shown in the exact problem scan below.";
+          } else if (!rawProblem) {
+            problemText.classList.add("muted");
+            problemText.textContent = (problem.images || []).length ? "Problem statement is shown in the diagram." : "Problem statement not found.";
+          } else {
+            problemText.textContent = rawProblem;
+          }
+          card.appendChild(problemText);
+
+          if (problem.problem_text_bad && problem.problem_scan) {
+            renderImages([problem.problem_scan], card, "Problem Scan");
+          }
+          renderImages(problem.images || [], card, "Diagram");
+          renderBrief(problem, card);
+          renderWorkspace(problem, card);
+          renderRatings(problem, card);
+          renderLearning(problem, card);
+
+          return card;
+        }
+
+        function copyProblemLink(problem) {
+          const url = new URL(window.location.href);
+          url.hash = problemId(problem);
+          navigator.clipboard
+            ?.writeText(url.href)
+            .then(() => {
+              els.status.textContent = `Copied link for ${problem.source}.`;
+            })
+            .catch(() => {
+              window.location.hash = problemId(problem);
             });
-            populateMenu(categoryMenu, state.categories, state.currentCategory, (category) => {
-              state.currentCategory = category;
-              categoryLabel.textContent = category;
-              state.currentSourceItem = "All";
-              sourceItemLabel.textContent = "All";
-              buildSourceItems();
-              populateMenu(sourceItemMenu, state.sourceItems, state.currentSourceItem, (sourceItem) => {
-                state.currentSourceItem = sourceItem;
-                sourceItemLabel.textContent = sourceItem;
-                closeDropdown(sourceItemDropdown, sourceItemButton, sourceItemMenu);
-                renderProblems();
-              });
-              closeDropdown(categoryDropdown, categoryButton, categoryMenu);
-              renderProblems();
-            });
-            populateMenu(
-              sourceItemMenu,
-              state.sourceItems,
-              state.currentSourceItem,
-              (sourceItem) => {
-                state.currentSourceItem = sourceItem;
-                sourceItemLabel.textContent = sourceItem;
-                closeDropdown(sourceItemDropdown, sourceItemButton, sourceItemMenu);
-                renderProblems();
-              }
-            );
-            renderProblems();
-          } catch (error) {
-            console.error("Failed to load problems.json", error);
-            setStatus("Failed to load problems.json. Run a local server and reload.");
-            listEl.innerHTML = "";
+        }
+
+        function updateStats(filtered) {
+          const allProgress = state.problems.map((problem) => readProgress(problem));
+          const attempted = allProgress.filter((item) => item.status !== "new").length;
+          const correct = allProgress.filter((item) => item.status === "correct").length;
+          const review = state.problems.filter(isWeak).length;
+          els.shownCount.textContent = filtered.length;
+          els.attemptedCount.textContent = attempted;
+          els.correctCount.textContent = correct;
+          els.reviewCount.textContent = review;
+          const total = state.problems.length || 1;
+          els.progressFill.style.width = `${Math.round((correct / total) * 100)}%`;
+        }
+
+        function render() {
+          buildFilterOptions();
+          const filtered = getFilteredProblems();
+          updateStats(filtered);
+          els.list.innerHTML = "";
+          els.status.textContent = `${filtered.length} of ${state.problems.length} problems shown. Progress is saved in this browser.`;
+          if (!filtered.length) {
             const empty = document.createElement("div");
             empty.className = "empty";
             empty.textContent =
-              "Could not load problems.json. Run `py -3 -m http.server 8000` and open http://localhost:8000/study.html";
-            listEl.appendChild(empty);
+              state.mode === "review"
+                ? "No weak problems yet. Mark problems as stuck, review again, low confidence, or hard to build this queue."
+                : "No problems match the current filters.";
+            els.list.appendChild(empty);
+            return;
           }
-        };
+          filtered.forEach((problem) => els.list.appendChild(renderProblemCard(problem)));
+          typesetMath();
+          scrollToHash();
+        }
 
-        topicButton.addEventListener("click", (event) =>
-          toggleDropdown(event, dropdownEl, topicButton, topicMenu)
-        );
-        categoryButton.addEventListener("click", (event) =>
-          toggleDropdown(event, categoryDropdown, categoryButton, categoryMenu)
-        );
-        sourceItemButton.addEventListener("click", (event) =>
-          toggleDropdown(event, sourceItemDropdown, sourceItemButton, sourceItemMenu)
-        );
-        document.addEventListener("click", (event) => {
-          if (
-            !dropdownEl.contains(event.target) &&
-            !categoryDropdown.contains(event.target) &&
-            !sourceItemDropdown.contains(event.target)
-          ) {
-            closeDropdown(dropdownEl, topicButton, topicMenu);
-            closeDropdown(categoryDropdown, categoryButton, categoryMenu);
-            closeDropdown(sourceItemDropdown, sourceItemButton, sourceItemMenu);
+        function typesetMath() {
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([els.list]).catch(() => {});
           }
-        });
+        }
+
+        function scrollToHash() {
+          const id = window.location.hash.replace("#", "");
+          if (!id) return;
+          const problem = state.problems.find((item) => problemId(item) === id);
+          if (!problem) return;
+          const cards = Array.from(els.list.querySelectorAll(".card"));
+          const filtered = getFilteredProblems();
+          const index = filtered.findIndex((item) => problemId(item) === id);
+          if (index >= 0 && cards[index]) {
+            cards[index].scrollIntoView({ block: "start" });
+          }
+        }
+
+        function exportProgress() {
+          const payload = {
+            exportedAt: new Date().toISOString(),
+            app: "ECE 4330 Study Platform",
+            progress: state.progress,
+          };
+          const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "ece-4330-study-progress.json";
+          link.click();
+          URL.revokeObjectURL(url);
+        }
+
+        function wireEvents() {
+          els.searchInput.addEventListener("input", () => {
+            state.search = els.searchInput.value;
+            render();
+          });
+          els.modeSelect.addEventListener("change", () => {
+            state.mode = els.modeSelect.value;
+            render();
+          });
+          els.topicSelect.addEventListener("change", () => {
+            state.currentTopic = els.topicSelect.value;
+            render();
+          });
+          els.categorySelect.addEventListener("change", () => {
+            state.currentCategory = els.categorySelect.value;
+            state.currentSourceItem = "All";
+            render();
+          });
+          els.sourceItemSelect.addEventListener("change", () => {
+            state.currentSourceItem = els.sourceItemSelect.value;
+            render();
+          });
+          els.shuffleButton.addEventListener("click", () => {
+            state.shuffled = !state.shuffled;
+            els.shuffleButton.classList.toggle("active", state.shuffled);
+            render();
+          });
+          els.resetFiltersButton.addEventListener("click", () => {
+            state.search = "";
+            state.mode = "practice";
+            state.currentTopic = "All";
+            state.currentCategory = "All";
+            state.currentSourceItem = "All";
+            state.shuffled = false;
+            els.searchInput.value = "";
+            els.modeSelect.value = "practice";
+            els.shuffleButton.classList.remove("active");
+            render();
+          });
+          els.exportButton.addEventListener("click", exportProgress);
+          els.resetProgressButton.addEventListener("click", () => {
+            if (!confirm("Reset all saved progress and notes in this browser?")) return;
+            state.progress = {};
+            saveProgress();
+            render();
+          });
+        }
+
+        async function loadProblems() {
+          try {
+            const response = await fetch("./output/problems.json", { cache: "no-store" });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            state.problems = await response.json();
+            wireEvents();
+            render();
+          } catch (error) {
+            console.error("Failed to load problems.json", error);
+            els.status.textContent = "Failed to load problems.json. Run a local server and reload.";
+            const empty = document.createElement("div");
+            empty.className = "empty";
+            empty.textContent =
+              "Could not load problems.json. Run `python3 -m http.server 8000` and open http://localhost:8000/study.html.";
+            els.list.appendChild(empty);
+          }
+        }
 
         loadProblems();
       })();

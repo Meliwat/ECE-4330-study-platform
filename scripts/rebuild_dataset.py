@@ -9,6 +9,7 @@ import pytesseract
 from PIL import Image
 
 from insert_solutions import SOLUTIONS as MANUAL_SOLUTIONS
+from learning_enrichment import enrich_records
 
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -66,14 +67,22 @@ MANUAL_EXAM_SOLUTIONS = {
 }
 
 MANUAL_PROBLEM_TEXT = {
-    "Assignment 1 Problem 1": "1. The following numbers are irrational: ππ, ee, (√2)^(√2). However, in general, if we raise an irrational number to an irrational power we may get a rational number; give an example without using a calculator/computer.",
+    "Assignment 1 Problem 1": "1. The following numbers are irrational: π^π, e^e, (√2)^(√2). However, in general, if we raise an irrational number to an irrational power we may get a rational number; give an example without using a calculator/computer.",
     "Assignment 1 Problem 10": "10. Starting from Euler's identity, e^(jθ) = cos(θ) + j sin(θ), show that cos(θ) = (1/2)[e^(jθ) + e^(-jθ)] and sin(θ) = (1/(2j))[e^(jθ) - e^(-jθ)].",
     "Assignment 1 Problem 11": "11. Show that e^(jx) - 1 = e^(jx/2) (e^(jx/2) - e^(-jx/2)) = 2j sin(x/2) e^(jx/2). Also, show that e^(jx) + 1 = e^(jx/2) (e^(jx/2) + e^(-jx/2)) = 2 cos(x/2) e^(jx/2).",
+    "Assignment 1 Problem 12": "12. As a way to refresh your calculus skills, show that, without using a calculator, e^π > π^e. Hint: first show that the maximum of h(x) = ln(x)/x occurs at x = e.",
+    "Assignment 1 Problem 2": "2. Find the roots of the following polynomial: (a) by hand and (b) using Mathcad. x^4 - x^3 - 2x^2 + 6x - 4.",
+    "Assignment 1 Problem 4": "4. Expand the following expressions as a sum of pure sinusoids: (a) employing trigonometric identities and (b) employing the formulas. cos^5(x) = ? and sin^4(x) = ?",
+    "Assignment 1 Problem 7": "7. Express the following functions as a single cosine function. Verify your answer by plotting the functions: f(x) = cos(x) - sin(x), f(x) = -cos(x) + sin(x), and f(x) = cos(x) + sin(x + π/3).",
+    "Assignment 1 Problem 8": "8. Find a complex-valued solution for: ln(-1) = ?, i^π = ?, i^e = ?, i^(√2) = ?, and sin^(-1)(2) = ?. (After you try, you may find the solutions in the course website article \"On π, e, √-1\".)",
     "Assignment 2 Problem 11": "11. Evaluate t e^(-t) δ̇(t) = ?",
     "Assignment 5 Problem 8": "8. Let f(t) ↔ F(s). Show that: d/dt f(t) ↔ sF(s) - f(0-) [if Re(s) > 0].",
+    "Assignment 8 Problem 4": "4. Determine the Z-transform of δ[k] starting with the pair u[k] ↔ z/(z - 1) and employ appropriate Z-transform properties. Hint: δ[k] = u[k] - u[k - 1].",
+    "Assignment 9 Problem 2": "2. Show that Euler’s integration rule y[k + 1] = y[k] + T f[k + 1] leads to the mapping z = 1/(1 - sT). Where does the whole left-half s-plane map into the z-plane?",
     "Final Sample Problem 2": "2. Consider the LTIC system H(s) = 1/(s^2 + 2). Determine yzs(t) if f(t) = u(t).",
     "Final Sample Problem 4": "4. Consider the system in P-3. Determine yss[k] if f(t) = 1 + 2 cos((10π/3)t). Assume Ts = 0.1. (You may use a calculator.)",
     "Test 1 Sample 1 Problem 4": "4. (15 points) Evaluate ∫_1^2 t^2 δ(2t - 3) dt.",
+    "Test 3 Sample 3 Problem 2": "2. Consider the signal f(t) = cos(ω0 t). Determine the bandwidth of f(t) and f^2(t).",
 }
 
 MANUAL_CLEAN_SOLUTION_SOURCES = {
@@ -85,6 +94,12 @@ MANUAL_CLEAN_SOLUTION_SOURCES = {
     "Assignment 8 Problem 5",
     "Assignment 8 Problem 10",
     "Test 2 Sample 2 Problem 1",
+}
+
+FORCE_BAD_SOLUTION_SOURCES = {
+    "Assignment 3 Problem 6",
+    "Assignment 7 Problem 4",
+    "Assignment 7 Problem 5",
 }
 
 MANUAL_DROP_SOURCES = {
@@ -256,9 +271,15 @@ def extract_problem_number(source: str) -> int:
 def classify_topic(problem_text: str) -> str:
     lowered = problem_text.lower()
     for topic, keywords in TOPIC_RULES:
-        if any(keyword in lowered for keyword in keywords):
+        if any(matches_keyword(lowered, keyword) for keyword in keywords):
             return topic
     return "Signals/Math"
+
+
+def matches_keyword(text: str, keyword: str) -> bool:
+    if re.fullmatch(r"[a-z0-9]+", keyword):
+        return re.search(rf"\b{re.escape(keyword)}\b", text) is not None
+    return keyword in text
 
 
 def word_fingerprint(text: str, max_chars: int = 600) -> set:
@@ -351,6 +372,12 @@ def looks_bad_solution_text(solution_text: str) -> bool:
     if not text:
         return True
     if "|" in text:
+        return True
+    if text.startswith("Solutions to selected problems"):
+        return True
+    if "The following is the solution using Matlab" in text:
+        return True
+    if "accepted it with no penalty" in text:
         return True
     if any(bad in text for bad in ["Ã°", "Ã¢", "Ã", "ÃŒ", "ï¿½"]):
         return True
@@ -691,6 +718,8 @@ def finalize_solution_text_flags(records: List[dict]) -> None:
     for record in records:
         if record.get("source") in MANUAL_CLEAN_SOLUTION_SOURCES:
             record["solution_text_bad"] = False
+        elif record.get("source") in FORCE_BAD_SOLUTION_SOURCES:
+            record["solution_text_bad"] = True
         else:
             record["solution_text_bad"] = looks_bad_solution_text(record.get("solution", ""))
         record["solution_scan"] = record.get("solution_scan", "")
@@ -841,6 +870,7 @@ def main() -> None:
     finalize_problem_text_flags(merged)
     finalize_solution_text_flags(merged)
     merged = remove_unusable_records(merged)
+    merged = enrich_records(merged)
     OUTPUT_PATH.write_text(json.dumps(merged, indent=2, ensure_ascii=False), encoding="utf-8")
     summarize(merged)
 

@@ -353,6 +353,7 @@
       .problem-text,
       .solution-text,
       .step-work,
+      .notebook-work,
       .hint-list,
       .brief-value {
         font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
@@ -449,6 +450,24 @@
 
       .step-work {
         white-space: pre-wrap;
+      }
+
+      .notebook-label {
+        display: block;
+        margin: 8px 0 4px;
+        color: var(--muted);
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .notebook-work {
+        white-space: pre-wrap;
+        border-left: 3px solid var(--accent);
+        padding: 8px 10px;
+        background: #fff;
       }
 
       details.why {
@@ -658,7 +677,7 @@
     <script>
       (() => {
         const STORAGE_KEY = "ece4330.studyProgress.v2";
-        const ASSET_VERSION = "20260428-2";
+        const ASSET_VERSION = "20260428-3";
         const STATUS_OPTIONS = [
           ["new", "New"],
           ["tried", "Tried"],
@@ -946,7 +965,7 @@
             const resolvedPath = normalizeImagePath(path);
             const img = document.createElement("img");
             img.className = "diagram";
-            img.loading = "lazy";
+            img.loading = labelText === "Solution Diagram" ? "eager" : "lazy";
             img.src = resolvedPath;
             img.alt = labelText || "Problem diagram";
             img.addEventListener("error", () => {
@@ -1098,7 +1117,10 @@
             const title = document.createElement("p");
             title.className = "step-title";
             title.textContent = `Step ${index + 1} of ${steps.length}`;
-            const work = textDiv("step-work", step.work || "");
+            const notebookLabel = document.createElement("span");
+            notebookLabel.className = "notebook-label";
+            notebookLabel.textContent = "Notebook work";
+            const notebook = textDiv("notebook-work", step.notebook || step.work || "");
             const why = document.createElement("details");
             why.className = "why";
             why.open = expandWhy;
@@ -1106,7 +1128,7 @@
             summary.textContent = "Why this step";
             const whyText = textDiv("meta", step.why || "This step moves the solution toward the requested result.");
             why.append(summary, whyText);
-            stepEl.append(title, work, why);
+            stepEl.append(title, notebookLabel, notebook, why);
             stepList.appendChild(stepEl);
           });
           return stepList;

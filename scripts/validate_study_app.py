@@ -70,6 +70,8 @@ def validate_problem(record: dict, index: int, ids: set) -> None:
     for step in learning["steps"]:
         if not step.get("work") or not step.get("why"):
             raise AssertionError(f"{record['source']} has an incomplete step")
+        if not step.get("notebook"):
+            raise AssertionError(f"{record['source']} has a step without notebook work")
 
 
 def validate_assets(record: dict) -> None:
@@ -141,6 +143,28 @@ def validate_unique_diagram_content(records: list, key: str) -> None:
         raise AssertionError(f"{key} has identical diagram content on multiple problems: {asset_hash[:12]} -> {sources}")
 
 
+def validate_manual_graph_diagrams(records: list) -> None:
+    records_by_source = {record["source"]: record for record in records}
+    expected = {
+        "Final Sample Problem 6": ["output/problem_images/FinalSample_Solution6_img1.png"],
+        "Final Sample Problem 7": ["output/problem_images/FinalSample_Solution7_img1.png"],
+    }
+    trusted_sources = {
+        "Final Sample Problem 6": "output/problem_images/FinalSample_Solution1_img1.png",
+        "Final Sample Problem 7": "output/problem_images/FinalSample_Solution1_img2.png",
+    }
+    for source, assets in expected.items():
+        record = records_by_source.get(source)
+        if not record:
+            raise AssertionError(f"Missing required graph problem: {source}")
+        if record.get("solution_images") != assets:
+            raise AssertionError(f"{source} should render exactly the corrected graph asset: {assets}")
+        target_hash = file_hash(PROJECT_DIR / assets[0])
+        trusted_hash = file_hash(PROJECT_DIR / trusted_sources[source])
+        if target_hash != trusted_hash:
+            raise AssertionError(f"{source} graph asset content does not match the corrected reference diagram")
+
+
 def validate_html() -> None:
     study = STUDY_PATH.read_text(encoding="utf-8")
     index = INDEX_PATH.read_text(encoding="utf-8")
@@ -158,6 +182,8 @@ def validate_html() -> None:
         "refreshLearningForFilteredProblems",
         "renderStepList",
         "Worked steps",
+        "Notebook work",
+        "notebook-work",
     ]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")
@@ -195,6 +221,7 @@ def main() -> None:
         validate_solution_asset_alignment(record)
     validate_unique_solution_assets(records)
     validate_unique_diagram_content(records, "solution_images")
+    validate_manual_graph_diagrams(records)
     validate_html()
     print(f"Validated {len(records)} problems, learning metadata, assets, and study UI.")
 

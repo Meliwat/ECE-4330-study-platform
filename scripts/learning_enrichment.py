@@ -403,11 +403,24 @@ def explain_step(step: str, topic: str) -> str:
     return "This step advances the calculation while keeping the result connected to the original problem."
 
 
+def notebook_work(step: str) -> str:
+    text = normalize_spaces(step)
+    if not text:
+        return "Write the next algebra line from the problem or solution scan."
+    return text
+
+
+def add_notebook_work(steps: List[dict]) -> List[dict]:
+    for step in steps:
+        step["notebook"] = notebook_work(step.get("work", ""))
+    return steps
+
+
 def build_steps(problem: dict) -> List[dict]:
     raw_solution = normalize_spaces(problem.get("solution", ""))
     if problem.get("solution_text_bad") and problem.get("solution_scan"):
         target = build_target_step(problem)
-        return [
+        return add_notebook_work([
             target,
             method_step(problem),
             {
@@ -434,10 +447,10 @@ def build_steps(problem: dict) -> List[dict]:
                 "work": check_step(problem).get("work", "Check the final answer against the original problem."),
                 "why": "The final check confirms that the answer satisfies the actual request rather than only the intermediate calculation.",
             },
-        ]
+        ])
     sentences = sentence_split(raw_solution)
     if not sentences:
-        return [
+        return add_notebook_work([
             build_target_step(problem),
             method_step(problem),
             {
@@ -446,7 +459,7 @@ def build_steps(problem: dict) -> List[dict]:
             },
             final_form_step(problem),
             check_step(problem),
-        ]
+        ])
     work_steps = [
         {
             "work": sentence,
@@ -454,7 +467,7 @@ def build_steps(problem: dict) -> List[dict]:
         }
         for sentence in sentences
     ]
-    return build_scaffolded_steps(problem, work_steps)
+    return add_notebook_work(build_scaffolded_steps(problem, work_steps))
 
 
 def build_target_step(problem: dict) -> dict:

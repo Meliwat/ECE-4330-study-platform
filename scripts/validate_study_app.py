@@ -1,6 +1,9 @@
 import json
 import re
+from collections import defaultdict
 from pathlib import Path
+
+from solution_asset_alignment import solution_asset_identity, solution_identity_from_source
 
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -72,6 +75,45 @@ def validate_assets(record: dict) -> None:
             raise AssertionError(f"{record['source']} references missing scan: {value}")
 
 
+def validate_solution_asset_alignment(record: dict) -> None:
+    expected = solution_identity_from_source(record["source"])
+    for value in record.get("solution_images") or []:
+        identity = solution_asset_identity(value)
+        if not identity:
+            raise AssertionError(f"{record['source']} references a non-solution image as a solution diagram: {value}")
+        prefix, number, kind = identity
+        if not expected or (prefix, number) != expected:
+            raise AssertionError(f"{record['source']} references the wrong solution diagram: {value}")
+        if not kind.startswith("img"):
+            raise AssertionError(f"{record['source']} should keep full solution scans out of solution_images: {value}")
+
+    scan = record.get("solution_scan")
+    if scan:
+        identity = solution_asset_identity(scan)
+        if not identity:
+            raise AssertionError(f"{record['source']} references a non-solution scan as a solution scan: {scan}")
+        prefix, number, kind = identity
+        if not expected or (prefix, number) != expected:
+            raise AssertionError(f"{record['source']} references the wrong solution scan: {scan}")
+        if kind not in {"scan", "page"}:
+            raise AssertionError(f"{record['source']} uses an embedded image as solution_scan: {scan}")
+
+
+def validate_unique_solution_assets(records: list) -> None:
+    owners = defaultdict(set)
+    for record in records:
+        for value in record.get("solution_images") or []:
+            owners[value].add(record["source"])
+        scan = record.get("solution_scan")
+        if scan:
+            owners[scan].add(record["source"])
+
+    duplicates = {asset: sorted(sources) for asset, sources in owners.items() if len(sources) > 1}
+    if duplicates:
+        asset, sources = next(iter(sorted(duplicates.items())))
+        raise AssertionError(f"Solution asset is attached to multiple problems: {asset} -> {sources}")
+
+
 def validate_html() -> None:
     study = STUDY_PATH.read_text(encoding="utf-8")
     index = INDEX_PATH.read_text(encoding="utf-8")
@@ -118,6 +160,8 @@ def main() -> None:
     for index, record in enumerate(records):
         validate_problem(record, index, ids)
         validate_assets(record)
+        validate_solution_asset_alignment(record)
+    validate_unique_solution_assets(records)
     validate_html()
     print(f"Validated {len(records)} problems, learning metadata, assets, and study UI.")
 

@@ -10,6 +10,7 @@ from PIL import Image
 
 from insert_solutions import SOLUTIONS as MANUAL_SOLUTIONS
 from learning_enrichment import enrich_records
+from solution_asset_alignment import align_solution_assets
 
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -577,6 +578,8 @@ def extract_assignment_solution_chunks(path: Path) -> List[dict]:
                         "solution_images": images,
                         "solution_scan": save_page_render(page, prefix, number, "Solution"),
                         "solution_text_bad": looks_bad_solution_text(chunk),
+                        "solution_prefix": prefix,
+                        "solution_number": number,
                     }
                 )
             continue
@@ -594,6 +597,8 @@ def extract_assignment_solution_chunks(path: Path) -> List[dict]:
                         "solution_images": images,
                         "solution_scan": save_solution_scan(page, prefix, number, lines, start_idx, end_idx),
                         "solution_text_bad": looks_bad_solution_text(chunk),
+                        "solution_prefix": prefix,
+                        "solution_number": number,
                     }
                 )
             continue
@@ -609,6 +614,8 @@ def extract_assignment_solution_chunks(path: Path) -> List[dict]:
                     "solution_images": images,
                     "solution_scan": save_page_render(page, prefix, number, "Solution"),
                     "solution_text_bad": looks_bad_solution_text(page_text),
+                    "solution_prefix": prefix,
+                    "solution_number": number,
                 }
             )
 
@@ -785,29 +792,22 @@ def attach_solutions(problem_records: List[dict], solution_records: Dict[str, di
 
 def match_assignment_solutions(assignment_label: str, solution_chunks: List[dict], problems: List[dict]) -> Dict[str, dict]:
     matched: Dict[str, dict] = {}
-    used_chunks: set = set()
+    expected_prefix = doc_label_slug(assignment_label)
+    chunks_by_number: Dict[int, dict] = {}
+    for chunk in solution_chunks:
+        if chunk.get("solution_prefix") != expected_prefix:
+            continue
+        number = chunk.get("solution_number")
+        if isinstance(number, int) and number not in chunks_by_number:
+            chunks_by_number[number] = chunk
 
     relevant = [item for item in problems if item["source"].startswith(f"{assignment_label} Problem ")]
     relevant = sorted(relevant, key=lambda item: extract_problem_number(item["source"]))
 
     for problem in relevant:
-        best_score = 0.08
-        best_idx = None
-        for idx, chunk in enumerate(solution_chunks):
-            if idx in used_chunks:
-                continue
-            score = content_similarity(problem["problem"], chunk["solution"])
-            if score > best_score:
-                best_score = score
-                best_idx = idx
-        if best_idx is not None:
-            used_chunks.add(best_idx)
-            matched[canonical_source_key(problem["source"])] = solution_chunks[best_idx]
-
-    remaining_probs = [item for item in relevant if canonical_source_key(item["source"]) not in matched]
-    remaining_chunks = [chunk for idx, chunk in enumerate(solution_chunks) if idx not in used_chunks]
-    for problem, chunk in zip(remaining_probs, remaining_chunks):
-        matched[canonical_source_key(problem["source"])] = chunk
+        chunk = chunks_by_number.get(extract_problem_number(problem["source"]))
+        if chunk:
+            matched[canonical_source_key(problem["source"])] = chunk
 
     return matched
 
@@ -870,6 +870,7 @@ def main() -> None:
     finalize_problem_text_flags(merged)
     finalize_solution_text_flags(merged)
     merged = remove_unusable_records(merged)
+    align_solution_assets(merged)
     merged = enrich_records(merged)
     OUTPUT_PATH.write_text(json.dumps(merged, indent=2, ensure_ascii=False), encoding="utf-8")
     summarize(merged)

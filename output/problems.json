@@ -7,10 +7,9 @@
     "solution": "Let a = e and b = ln(2). Both are irrational, and e^(ln 2) = 2. So an irrational number raised to an irrational power can be rational.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment1_Solution7_img1.png",
-      "output/problem_images/Assignment1_Solution7_img2.png"
+      "output/problem_images/Assignment1_Solution1_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment1_Solution7_page.png",
+    "solution_scan": "output/problem_images/Assignment1_Solution1_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem1_scan.png",
     "problem_text_bad": false,
@@ -55,10 +54,8 @@
     "has_solution": true,
     "solution": "Start with Euler's identity e^(jθ) = cos θ + j sin θ and also e^(-jθ) = cos θ - j sin θ. Add the two equations: e^(jθ) + e^(-jθ) = 2 cos θ, so cos θ = (e^(jθ) + e^(-jθ))/2. Subtract the second from the first: e^(jθ) - e^(-jθ) = 2j sin θ, so sin θ = (e^(jθ) - e^(-jθ))/(2j).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution12_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution12_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution10_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem10_scan.png",
     "problem_text_bad": false,
@@ -104,10 +101,8 @@
     "has_solution": true,
     "solution": "Factor out e^(jx/2). For the first identity, e^(jx) - 1 = e^(jx/2)(e^(jx/2) - e^(-jx/2)). Using e^(jθ) - e^(-jθ) = 2j sin θ with θ = x/2 gives e^(jx) - 1 = 2j sin(x/2) e^(jx/2). For the second identity, e^(jx) + 1 = e^(jx/2)(e^(jx/2) + e^(-jx/2)). Using e^(jθ) + e^(-jθ) = 2 cos θ gives e^(jx) + 1 = 2 cos(x/2) e^(jx/2).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution3_img1.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution3_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution11_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem11_scan.png",
     "problem_text_bad": false,
@@ -162,9 +157,10 @@
     "solution": "Let h(x) = ln(x)/x. Then h'(x) = (1 - ln x)/x^2. The derivative is zero when ln x = 1, so x = e, and h reaches its maximum there. Since π > e, we have h(π) < h(e) = 1/e. Thus ln(π)/π < 1/e. Multiply both sides by πe > 0 to get e ln(π) < π. Exponentiating gives π^e < e^π, so e^π > π^e.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment1_Solution10_page.png"
+      "output/problem_images/Assignment1_Solution12_img1.png",
+      "output/problem_images/Assignment1_Solution12_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment1_Solution10_page.png",
+    "solution_scan": "output/problem_images/Assignment1_Solution12_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem12_scan.png",
     "problem_text_bad": false,
@@ -217,10 +213,8 @@
     "has_solution": true,
     "solution": "Use the standard closed forms. Σ_{k=1}^n k^2 = n(n + 1)(2n + 1)/6. For Σ_{k=1}^n k a^k, start from the finite geometric sum Σ_{k=0}^n a^k = (1 - a^(n+1))/(1 - a), differentiate with respect to a, then multiply by a. The result is Σ_{k=1}^n k a^k = a(1 - (n + 1)a^n + n a^(n + 1)) / (1 - a)^2 for a ≠ 1. If a = 1, the sum becomes Σ_{k=1}^n k = n(n + 1)/2.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution8_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution8_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution13_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem13_scan.png",
     "problem_text_bad": true,
@@ -274,10 +268,8 @@
     "has_solution": true,
     "solution": "For |a| < 1, the geometric series gives Σ_{k=0}^∞ a^k = 1/(1 - a). Subtract the first n terms, or factor out a^n, to get Σ_{k=n}^∞ a^k = a^n Σ_{m=0}^∞ a^m = a^n/(1 - a). Differentiate Σ_{k=0}^∞ a^k = 1/(1 - a) term-by-term: Σ_{k=1}^∞ k a^(k-1) = 1/(1 - a)^2. Multiply by a to obtain Σ_{k=0}^∞ k a^k = a/(1 - a)^2.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution11_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution11_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution14_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment1_Problem14_scan.png",
     "problem_text_bad": true,
@@ -327,10 +319,8 @@
     "has_solution": true,
     "solution": "The cleaned formulas are: Σ_{k=1}^n k^2 = n(n + 1)(2n + 1)/6 = n^3/3 + n^2/2 + n/6. Σ_{k=1}^n k^3 = [n(n + 1)/2]^2 = n^4/4 + n^3/2 + n^2/4. Σ_{k=1}^n k^4 = n(n + 1)(2n + 1)(3n^2 + 3n - 1)/30 = n^5/5 + n^4/2 + n^3/3 - n/30. Those are the identities to verify in Mathcad or Matlab.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution17_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution17_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution15_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem15_scan.png",
     "problem_text_bad": true,
@@ -380,9 +370,7 @@
     "has_solution": true,
     "solution": "Euler's formula gives e^(jπ) = cos π + j sin π = -1. Taking the complex logarithm, ln(-1) = ln(e^(j(π + 2πm))) = j(π + 2πm). The principal value is jπ.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution16_page.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution16_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem16_scan.png",
@@ -426,10 +414,8 @@
     "has_solution": true,
     "solution": "For Σ 1/ln(k), compare with the harmonic series. For k ≥ 3, ln(k) < k, so 1/ln(k) > 1/k. Since Σ 1/k diverges, Σ 1/ln(k) also diverges by comparison. For Σ 1/sqrt(k), this is a p-series with p = 1/2 < 1, so it diverges.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution15_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution15_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution17_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem17_scan.png",
     "problem_text_bad": true,
@@ -482,9 +468,7 @@
       "output/problem_images/Assignment1_Problem18_img1.png",
       "output/problem_images/Assignment1_Problem18_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution18_page.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution18_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem18_scan.png",
@@ -544,9 +528,7 @@
       "output/problem_images/Assignment1_Problem19_img1.png",
       "output/problem_images/Assignment1_Problem19_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution19_page.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution19_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem19_scan.png",
@@ -555,7 +537,7 @@
     "subtopics": [
       "Signals/Math"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "19. Solve the following system of equations (for 𝑎 and 𝑏) by first performing the integration. 2 ∫2[𝑥2 -(𝑎𝑥+ 𝑏)](-𝑥)𝑑𝑥= 0 0 2 ∫2[𝑥2 -(𝑎𝑥+ 𝑏)](-1)𝑑𝑥= 0 0",
       "goal": "Solve the following system of equations (for 𝑎 and 𝑏) by first performing the integration",
@@ -598,7 +580,7 @@
     "solution": "Factor the polynomial by testing simple roots. Since p(1) = 1 - 1 - 2 + 6 - 4 = 0, (x - 1) is a factor. Dividing gives x^3 - 2x + 4. Next, p(-2) = -8 + 4 + 4 = 0, so (x + 2) is a factor. Dividing again gives x^2 - 2x + 2. Solve x^2 - 2x + 2 = 0: x = (2 ± sqrt(4 - 8))/2 = 1 ± j. Therefore the four roots are x = 1, -2, 1 + j, 1 - j.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment1_Solution2_page.png"
+      "output/problem_images/Assignment1_Solution2_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment1_Solution2_page.png",
     "solution_text_bad": false,
@@ -712,9 +694,10 @@
     "solution": "Use angle addition: sin(7π/12) = sin(π/3 + π/4) = sin(π/3)cos(π/4) + cos(π/3)sin(π/4). Substitute the exact values: = (sqrt(3)/2)(sqrt(2)/2) + (1/2)(sqrt(2)/2) = (sqrt(6) + sqrt(2))/4.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment1_Solution6_page.png"
+      "output/problem_images/Assignment1_Solution3_img1.png",
+      "output/problem_images/Assignment1_Solution3_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment1_Solution6_page.png",
+    "solution_scan": "output/problem_images/Assignment1_Solution3_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem3_scan.png",
     "problem_text_bad": true,
@@ -757,9 +740,10 @@
     "solution": "Use power-reduction identities. For cos^5(x): write cos^5(x) = cos(x)(cos^2(x))^2 and use cos^2(x) = (1 + cos(2x))/2. After simplifying, cos^5(x) = (10 cos x + 5 cos 3x + cos 5x)/16. For sin^4(x): sin^2(x) = (1 - cos 2x)/2, so sin^4(x) = ((1 - cos 2x)/2)^2 = (3 - 4 cos 2x + cos 4x)/8.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment1_Solution5_page.png"
+      "output/problem_images/Assignment1_Solution4_img1.png",
+      "output/problem_images/Assignment1_Solution4_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment1_Solution5_page.png",
+    "solution_scan": "output/problem_images/Assignment1_Solution4_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem4_scan.png",
     "problem_text_bad": false,
@@ -809,10 +793,8 @@
     "has_solution": true,
     "solution": "For even n, f(x) = cos^n(x) is nonnegative and has period π. The maxima occur at x = kπ, where f(x) = 1, and the zeros occur at x = π/2 + kπ. For n = 20 the graph has broad peaks near x = kπ and is small elsewhere. For n = 200 the peaks become much narrower and sharper, so the curve is almost zero except very close to x = kπ. That is what the Mathcad/Matlab plot should show.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution4_img1.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution4_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution5_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem5_scan.png",
     "problem_text_bad": false,
@@ -866,9 +848,10 @@
     "solution": "Start from sin(α) - sin(β) + k sin(α + β) = 0 and expand sin(α + β): sin α - sin β + k(sin α cos β + cos α sin β) = 0. Rearranging gives sin α(1 + k cos β) = sin β(1 - k cos α). Square both sides and use sin^2 β = 1 - cos^2 β. After simplifying, ((1 - 2k cos α + k^2) cos β) = (1 + k^2) cos α - 2k. Therefore cos β = (((1 + k^2) cos α) - 2k) / (1 - 2k cos α + k^2), so β = cos^(-1)((((1 + k^2) cos α) - 2k) / (1 - 2k cos α + k^2)).",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment1_Solution9_page.png"
+      "output/problem_images/Assignment1_Solution6_img1.png",
+      "output/problem_images/Assignment1_Solution6_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment1_Solution9_page.png",
+    "solution_scan": "output/problem_images/Assignment1_Solution6_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem6_scan.png",
     "problem_text_bad": true,
@@ -923,9 +906,10 @@
     "solution": "Write each expression as a cos x + b sin x = C cos(x - φ). 1) cos x - sin x = sqrt(2) cos(x + π/4). 2) -cos x + sin x = sqrt(2) cos(x - 3π/4). 3) cos x + sin(x + π/3) = cos x + (1/2)sin x + (sqrt(3)/2)cos x = ((2 + sqrt(3))/2) cos x + (1/2) sin x = sqrt(2 + sqrt(3)) cos(x - π/12).",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment1_Solution14_page.png"
+      "output/problem_images/Assignment1_Solution7_img1.png",
+      "output/problem_images/Assignment1_Solution7_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment1_Solution14_page.png",
+    "solution_scan": "output/problem_images/Assignment1_Solution7_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem7_scan.png",
     "problem_text_bad": false,
@@ -974,10 +958,8 @@
     "has_solution": true,
     "solution": "Use principal complex values unless otherwise stated. ln(-1) = jπ (more generally j(π + 2πm)). Since i = e^(j(π/2 + 2πm)), i^π = e^(jπ(π/2 + 2πm)); the principal value is e^(jπ^2/2). Similarly, i^e = e^(jeπ/2) and i^(sqrt(2)) = e^(jπsqrt(2)/2) on the principal branch. For sin^(-1)(2), let z = sin^(-1)(2). Then sin z = 2 gives z = π/2 - j ln(2 + sqrt(3)) for the principal value.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution1_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution1_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution8_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem8_scan.png",
     "problem_text_bad": false,
@@ -1032,10 +1014,8 @@
     "has_solution": true,
     "solution": "Use Euler's formula: cos x + j sin x = e^(jx). Raise both sides to the nth power: (cos x + j sin x)^n = (e^(jx))^n = e^(jnx). Convert back with Euler again: e^(jnx) = cos(nx) + j sin(nx). Therefore (cos x + j sin x)^n = cos(nx) + j sin(nx).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution13_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment1_Solution13_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment1_Solution9_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem9_scan.png",
     "problem_text_bad": false,
@@ -2217,7 +2197,8 @@
     "solution": "If f(x) is periodic with period T, then f(x + T) = f(x) for all x. Differentiate both sides with respect to x to get f'(x + T) = f'(x). Therefore the derivative has the same period T, so it is periodic as well.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution1_img1.png"
+      "output/problem_images/Assignment2_Solution1_img1.png",
+      "output/problem_images/Assignment2_Solution1_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment2_Solution1_page.png",
     "solution_text_bad": false,
@@ -2640,11 +2621,11 @@
     "solution": "Lecture 5:\n𝐶2\n2  for any (𝑡) = 𝐶cos(𝜔𝑡 + 𝜃), regardless\nIt can be shown that the average power of a sinusoid is\n2𝜋\nof frequency and/or 𝜃. Your Turn: Prove the above fact using Mathcad. Let 𝑇0 =\n𝜔, then\n2. Power of the sum of two complex exponential signals:\n𝑓(𝑡) = 𝐷1𝑒𝑗𝜔1𝑡 + 𝐷2𝑒𝑗𝜔2𝑡\n2 + 𝐷2\n2\nCase1:𝜔1 ≠𝜔2 →𝑃𝑓\n= 𝐷1\n2 + 𝐷2\n2 + 𝐷1\n= |𝐷1\n∗𝐷2 + 𝐷2\n∗𝐷1\nCase 2: 𝜔1 = 𝜔2→ 𝑃𝑓\n[Your turn: Verify these results using Mathcad integration]\n𝜔1 ≠𝜔2\n𝜔1 = 𝜔2 = 𝜔",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution3_img1.png",
-      "output/problem_images/Assignment2_Solution3_img2.png",
-      "output/problem_images/Assignment2_Solution3_img3.png"
+      "output/problem_images/Assignment2_Solution2_img1.png",
+      "output/problem_images/Assignment2_Solution2_img2.png",
+      "output/problem_images/Assignment2_Solution2_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution3_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution2_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem2_scan.png",
     "problem_text_bad": false,
@@ -2696,9 +2677,11 @@
     "solution": "Any real limit y of the iteration y_n = cos(y_{n-1}) must satisfy the fixed-point equation y = cos(y). That equation has the unique real solution y ≈ 0.7390851332, the Dottie number. Starting from y0 = 2, the iteration converges to that value, and in fact it converges to the same real fixed point for any real initial value because cos maps reals into [-1, 1] and is a contraction near the fixed point. For complex initial values the behavior is not universal: the iteration need not converge to the same value for every complex y0, so the real conclusion does not extend unchanged to all complex starting points.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution2_img1.png"
+      "output/problem_images/Assignment2_Solution3_img1.png",
+      "output/problem_images/Assignment2_Solution3_img2.png",
+      "output/problem_images/Assignment2_Solution3_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution2_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution3_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment2_Problem3_scan.png",
     "problem_text_bad": false,
@@ -2750,9 +2733,11 @@
     "solution": "𝑓(𝑡)𝛿̇(𝑡) = 𝑓(0)𝛿̇(𝑡) -𝑓̇(0)𝛿(𝑡)\n𝑓(𝑡) = 𝑡𝑒-𝑡\n𝑓̇(𝑡) = 𝑒-𝑡-𝑡𝑒-𝑡= (1 -𝑡)𝑒-𝑡\n𝑓(0) = 0\n𝑓̇(0) = 1\n𝑡𝑒-𝑡𝛿̇(𝑡) = -𝛿(𝑡)\nShow that 𝑓(𝑡)𝛿̈(𝑡) = 𝑓(0)𝛿̈(𝑡) - 2𝑓̇(0)𝛿̇(𝑡) + 𝑓̈(0)𝛿(𝑡)",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution6_img1.png"
+      "output/problem_images/Assignment2_Solution4_img1.png",
+      "output/problem_images/Assignment2_Solution4_img2.png",
+      "output/problem_images/Assignment2_Solution4_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution6_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem4_scan.png",
     "problem_text_bad": false,
@@ -2760,7 +2745,7 @@
     "subtopics": [
       "Signals/Math"
     ],
-    "difficulty": "Core",
+    "difficulty": "Medium",
     "learning": {
       "given": "4. Show that the average power of 𝑓(𝑡) = 𝐶cos(𝜔𝑡+ 𝜃) is 𝑃𝑓= 2 , and is independent of the frequency and phase.",
       "goal": "Show that the average power of 𝑓(𝑡) = 𝐶cos(𝜔𝑡+ 𝜃) is 𝑃𝑓= 2 , and is independent of the frequency and phase",
@@ -2802,9 +2787,10 @@
     "solution": "+∞\nc. ∫\n𝑑𝑡\n𝛿(sin(𝑡))\n-∞\n𝑔(𝑡) = sin(𝑡), sin(𝑡) = 0 then 𝑡= 𝑘𝜋,  𝑔̇(𝑡) = cos(𝑡)\nIf 𝑘 is even: cos(𝑘𝜋) = 1 and |cos (𝑘𝜋)| = 1\nIf 𝑘 is odd: cos(𝑘𝜋) = -1 and |cos (𝑘𝜋)| = 1\nEmploying these results allow us to write,\n∞\n∞\n+∞\n+∞\n+∞\n+∞\n∑𝛿(𝑡-𝑘𝜋)\n∑𝛿(𝑡-𝑘𝜋)\n𝛿(𝑡-𝜋)𝑑𝑡\n𝛿(𝑡-𝑘𝜋)𝑑𝑡\n∫\n𝑑𝑡= ∫\n𝑑𝑡= ∫\n+ ⋯∫\n1\n-∞\n-∞\n-∞\n-∞\n𝑖=1\n𝑘=1\n= 1 + 1 + 1 + ⋯= ∞\n2 sin(𝜔𝑜𝑡) 𝛿(𝑡) = -𝜔𝑜\n2 sin(0) 𝛿(𝑡) = 0\n-𝜔𝑜\n2 sin(0) 𝛿(𝑡) = 2𝜔𝑜𝛿̇(𝑡)\n2𝜔𝑜cos(𝜔𝑜𝑡) 𝛿̇(𝑡) = 2𝜔𝑜cos(0) 𝛿̇(𝑡) -2𝜔𝑜\n2 sin(0) 𝛿(𝑡) = -2𝜔𝑜𝛿̇(𝑡)\nsin(𝜔𝑜𝑡) 𝛿̈(𝑡) = sin(0) 𝛿̈(𝑡) -2𝜔𝑜cos(0) 𝛿̇(𝑡) -2𝜔𝑜\nAdding the three simplified terms leads to,\n0 + 2𝜔𝑜𝛿̇(𝑡) -2𝜔𝑜𝛿̇(𝑡) = 0",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution9_img1.png"
+      "output/problem_images/Assignment2_Solution5_img1.png",
+      "output/problem_images/Assignment2_Solution5_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution9_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem5_scan.png",
     "problem_text_bad": true,
@@ -2856,10 +2842,9 @@
     "solution": "Lecture 6:\n1\n1\n1\na. 𝑓(𝑡) =\n2 𝑡𝑢(𝑡-2)\n2 𝑡[𝑢(𝑡) -𝑢(𝑡-2)] =\n2 𝑡𝑢(𝑡) -\nLet 𝑡-2 = 𝑚 then 𝑡= 𝑚+ 2; Now we can rewrite 𝑡𝑢(𝑡-2) as:\n(𝑚+ 2)𝑢(𝑚) = 𝑚𝑢(𝑚) + 2𝑢(𝑚) = (𝑡-2)𝑢(𝑡-2) + 2𝑢(𝑡-2)\nThen we will have:\n𝑓(𝑡) = 1\n2 𝑡𝑢(𝑡) -1\n2 ((𝑡-2)𝑢(𝑡-2) + 2𝑢(𝑡-2))\n= 1\n2 𝑡𝑢(𝑡) -1\n2 (𝑡-2)𝑢(𝑡-2) -𝑢(𝑡-2)\nb.  𝑓(𝑡) = 1[𝑢(𝑡+ 1) -𝑢(𝑡)] + 3[𝑢(𝑡) -𝑢(𝑡-1)] + 2[𝑢(𝑡-1) -𝑢(𝑡-2)] +\n1[𝑢(𝑡-2) -𝑢(𝑡-3)]\nOr,\n𝑓(𝑡) = 𝑢(𝑡+ 1) + 2𝑢(𝑡) -𝑢(𝑡-1) -𝑢(𝑡-2) -𝑢(𝑡-3)\n𝑓(𝑡) = -4𝑒-𝑡[𝑢(𝑡) -𝑢(𝑡-1)] + (2𝑡-4)[𝑢(𝑡-2) -𝑢(𝑡-4)]",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution4_img1.png",
-      "output/problem_images/Assignment2_Solution4_img2.png"
+      "output/problem_images/Assignment2_Solution6_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution4_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem6_scan.png",
     "problem_text_bad": true,
@@ -2914,9 +2899,10 @@
       "output/problem_images/Assignment2_Problem7_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution5_img1.png"
+      "output/problem_images/Assignment2_Solution7_img1.png",
+      "output/problem_images/Assignment2_Solution7_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution5_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem7_scan.png",
     "problem_text_bad": true,
@@ -2926,7 +2912,7 @@
       "Series and sums",
       "Delta functions"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Challenge",
     "learning": {
       "given": "7. A real signal 𝑓(𝑡)⁡can always be decomposed into one even signal 𝑓𝑒(𝑡) and one odd signal 𝑓𝑜(𝑡) such that, 𝑓(𝑡) = 𝑓𝑒(𝑡) + 𝑓𝑜(𝑡). Show that the average power of this signal is the sum of the individual average powers of 𝑓𝑒(𝑡) and 𝑓𝑜(𝑡). Hints from calculus: the product 𝑓𝑜(𝑡)𝑓𝑒(𝑡) is an odd function and ∞ = 0. 𝑓𝑜(𝑡)𝑑𝑡 ∫ -∞",
       "goal": "Show that the average power of this signal is the sum of the individual average powers of 𝑓𝑒(𝑡) and 𝑓𝑜(𝑡)",
@@ -2971,10 +2957,10 @@
       "output/problem_images/Assignment2_Problem8_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution7_img1.png",
-      "output/problem_images/Assignment2_Solution7_img2.png"
+      "output/problem_images/Assignment2_Solution8_img1.png",
+      "output/problem_images/Assignment2_Solution8_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution7_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution8_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem8_scan.png",
     "problem_text_bad": false,
@@ -3026,10 +3012,9 @@
       "output/problem_images/Assignment2_Problem9_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution8_img1.png",
-      "output/problem_images/Assignment2_Solution8_img2.png"
+      "output/problem_images/Assignment2_Solution9_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment2_Solution8_page.png",
+    "solution_scan": "output/problem_images/Assignment2_Solution9_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem9_scan.png",
     "problem_text_bad": true,
@@ -3037,7 +3022,7 @@
     "subtopics": [
       "Signals/Math"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "9. Express the signal 𝑓(𝑡) =⁡-4⁡𝑒-𝑡[⁡𝑢(𝑡) -𝑢(𝑡-1)] + (2𝑡-4)[⁡𝑢(𝑡-2) -𝑢(𝑡-4)] as a signal in the form: ∑𝑓𝑖(𝑡-𝑎𝑖)𝑢(𝑡-𝑎𝑖) . 𝑖 4 𝑒𝑒-(𝑡-1)𝑢(𝑡-1) + 2(𝑡-2)𝑢(𝑡-2) -2(𝑡-4)𝑢(𝑡-4) -4𝑢(𝑡-4) Ans. 𝑓(𝑡) = -4𝑒-𝑡𝑢(𝑡) +",
       "goal": "Express the signal 𝑓(𝑡) =⁡-4⁡𝑒-𝑡[⁡𝑢(𝑡) -𝑢(𝑡-1)] + (2𝑡-4)[⁡𝑢(𝑡-2) -𝑢(𝑡-4)] as a signal in the form: ∑𝑓𝑖(𝑡-𝑎𝑖)𝑢(𝑡-𝑎𝑖)",
@@ -3083,10 +3068,10 @@
       "output/problem_images/Assignment3_Problem1_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment3_Solution2_img1.png",
-      "output/problem_images/Assignment3_Solution2_img2.png"
+      "output/problem_images/Assignment3_Solution1_img1.png",
+      "output/problem_images/Assignment3_Solution1_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment3_Solution2_page.png",
+    "solution_scan": "output/problem_images/Assignment3_Solution1_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem1_scan.png",
     "problem_text_bad": false,
@@ -3139,9 +3124,10 @@
       "output/problem_images/Assignment3_Problem2_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment3_Solution4_img1.png"
+      "output/problem_images/Assignment3_Solution2_img1.png",
+      "output/problem_images/Assignment3_Solution2_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment3_Solution4_page.png",
+    "solution_scan": "output/problem_images/Assignment3_Solution2_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem2_scan.png",
     "problem_text_bad": true,
@@ -3196,9 +3182,9 @@
       "output/problem_images/Assignment3_Problem3_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment3_Solution7_page.png"
+      "output/problem_images/Assignment3_Solution3_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment3_Solution7_page.png",
+    "solution_scan": "output/problem_images/Assignment3_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem3_scan.png",
     "problem_text_bad": false,
@@ -3253,9 +3239,9 @@
       "output/problem_images/Assignment3_Problem4_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment3_Solution6_page.png"
+      "output/problem_images/Assignment3_Solution4_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment3_Solution6_page.png",
+    "solution_scan": "output/problem_images/Assignment3_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem4_scan.png",
     "problem_text_bad": false,
@@ -3310,7 +3296,7 @@
       "output/problem_images/Assignment3_Problem5_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment3_Solution5_page.png"
+      "output/problem_images/Assignment3_Solution5_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment3_Solution5_page.png",
     "solution_text_bad": true,
@@ -3366,11 +3352,8 @@
     "images": [
       "output/problem_images/Assignment3_Problem6_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment3_Solution1_img1.png",
-      "output/problem_images/Assignment3_Solution1_img2.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment3_Solution1_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment3_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem6_scan.png",
     "problem_text_bad": false,
@@ -3425,11 +3408,11 @@
       "output/problem_images/Assignment4_Problem1_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment4_Solution4_img1.png",
-      "output/problem_images/Assignment4_Solution4_img2.png",
-      "output/problem_images/Assignment4_Solution4_img3.png"
+      "output/problem_images/Assignment4_Solution1_img1.png",
+      "output/problem_images/Assignment4_Solution1_img2.png",
+      "output/problem_images/Assignment4_Solution1_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment4_Solution4_page.png",
+    "solution_scan": "output/problem_images/Assignment4_Solution1_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment4_Problem1_scan.png",
     "problem_text_bad": true,
@@ -3484,9 +3467,9 @@
       "output/problem_images/Assignment4_Problem10_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment4_Solution7_page.png"
+      "output/problem_images/Assignment4_Solution10_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment4_Solution7_page.png",
+    "solution_scan": "output/problem_images/Assignment4_Solution10_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem10_scan.png",
     "problem_text_bad": false,
@@ -3543,12 +3526,8 @@
       "output/problem_images/Assignment4_Problem2_img1.png",
       "output/problem_images/Assignment4_Problem2_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment4_Solution1_img1.png",
-      "output/problem_images/Assignment4_Solution1_img2.png",
-      "output/problem_images/Assignment4_Solution1_img3.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment4_Solution1_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment4_Solution2_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment4_Problem2_scan.png",
     "problem_text_bad": false,
@@ -3588,9 +3567,7 @@
       "output/problem_images/Assignment4_Problem3_img1.png",
       "output/problem_images/Assignment4_Problem3_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment4_Solution3_page.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment4_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem3_scan.png",
@@ -3645,9 +3622,11 @@
       "output/problem_images/Assignment4_Problem4_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment4_Solution8_img1.png"
+      "output/problem_images/Assignment4_Solution4_img1.png",
+      "output/problem_images/Assignment4_Solution4_img2.png",
+      "output/problem_images/Assignment4_Solution4_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment4_Solution8_page.png",
+    "solution_scan": "output/problem_images/Assignment4_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem4_scan.png",
     "problem_text_bad": false,
@@ -3703,9 +3682,12 @@
       "output/problem_images/Assignment4_Problem5_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment4_Solution2_page.png"
+      "output/problem_images/Assignment4_Solution5_img1.png",
+      "output/problem_images/Assignment4_Solution5_img2.png",
+      "output/problem_images/Assignment4_Solution5_img3.png",
+      "output/problem_images/Assignment4_Solution5_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment4_Solution2_page.png",
+    "solution_scan": "output/problem_images/Assignment4_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem5_scan.png",
     "problem_text_bad": false,
@@ -3762,12 +3744,9 @@
       "output/problem_images/Assignment4_Problem6_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment4_Solution5_img1.png",
-      "output/problem_images/Assignment4_Solution5_img2.png",
-      "output/problem_images/Assignment4_Solution5_img3.png",
-      "output/problem_images/Assignment4_Solution5_img4.png"
+      "output/problem_images/Assignment4_Solution6_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment4_Solution5_page.png",
+    "solution_scan": "output/problem_images/Assignment4_Solution6_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment4_Problem6_scan.png",
     "problem_text_bad": false,
@@ -3815,8 +3794,12 @@
       "output/problem_images/Assignment4_Problem7_img1.png",
       "output/problem_images/Assignment4_Problem7_img2.png"
     ],
-    "solution_images": [],
-    "solution_scan": "",
+    "solution_images": [
+      "output/problem_images/Assignment4_Solution7_img1.png",
+      "output/problem_images/Assignment4_Solution7_img2.png",
+      "output/problem_images/Assignment4_Solution7_img3.png"
+    ],
+    "solution_scan": "output/problem_images/Assignment4_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem7_scan.png",
     "problem_text_bad": false,
@@ -3838,24 +3821,20 @@
       ],
       "steps": [
         {
-          "work": "Since δ_T(t)=Σ_{n=-∞}^{∞} δ(t-nT), convolution with h(t) replicates h at every multiple of T: y(t)=Σ_{n=-∞}^{∞} h(t-nT), where h(t)=1-|t| for |t|≤1 and 0 otherwise.",
-          "why": "The impulse property samples or differentiates a function at the impulse location."
+          "work": "Open the exact solution scan attached below before trusting the extracted text.",
+          "why": "This record is flagged for unreliable OCR, so the scan is the authoritative worked solution."
         },
         {
-          "work": "For T=3 the triangles are isolated and centered at t=3n.",
-          "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for."
+          "work": "Identify the setup line in the scan: definitions, transform pair, equation, or coefficient formula.",
+          "why": "The setup determines which course method applies and prevents using a correct formula on the wrong quantity."
         },
         {
-          "work": "For T=2 the triangles are still isolated; adjacent copies just touch at zero.",
-          "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for."
+          "work": "Follow each algebraic or transform line and compare it with the original problem statement.",
+          "why": "Most mistakes in these problems come from sign, scaling, shift, or indexing errors between adjacent lines."
         },
         {
-          "work": "For T=1.5 adjacent copies overlap by 0.5.",
-          "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for."
-        },
-        {
-          "work": "Over one period 0≤t≤1.5, y(t)=1-t for 0≤t≤0.5, y(t)=0.5 for 0.5≤t≤1, and y(t)=t-0.5 for 1≤t≤1.5, then the pattern repeats every 1.5.",
-          "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for."
+          "work": "Use the final line of the scan as the answer and verify it against units, frequency, region, or initial conditions.",
+          "why": "The final check confirms that the answer satisfies the actual request rather than only the intermediate calculation."
         }
       ],
       "final_answer": "Over one period 0≤t≤1.5, y(t)=1-t for 0≤t≤0.5, y(t)=0.5 for 0.5≤t≤1, and y(t)=t-0.5 for 1≤t≤1.5, then the pattern repeats every 1.5.",
@@ -3874,8 +3853,13 @@
       "output/problem_images/Assignment4_Problem8_img1.png",
       "output/problem_images/Assignment4_Problem8_img2.png"
     ],
-    "solution_images": [],
-    "solution_scan": "",
+    "solution_images": [
+      "output/problem_images/Assignment4_Solution8_img1.png",
+      "output/problem_images/Assignment4_Solution8_img2.png",
+      "output/problem_images/Assignment4_Solution8_img3.png",
+      "output/problem_images/Assignment4_Solution8_img4.png"
+    ],
+    "solution_scan": "output/problem_images/Assignment4_Solution8_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment4_Problem8_scan.png",
     "problem_text_bad": false,
@@ -3935,10 +3919,8 @@
       "output/problem_images/Assignment4_Problem9_img1.png",
       "output/problem_images/Assignment4_Problem9_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment4_Solution6_img1.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment4_Solution6_page.png",
+    "solution_images": [],
+    "solution_scan": "",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem9_scan.png",
     "problem_text_bad": false,
@@ -3960,20 +3942,24 @@
       ],
       "steps": [
         {
-          "work": "Open the exact solution scan attached below before trusting the extracted text.",
-          "why": "This record is flagged for unreliable OCR, so the scan is the authoritative worked solution."
+          "work": "Region 3 (-1 + 𝑡> -2 or 𝑡> -1): The convolution will remain constant [and equal to (1)[(2 + 𝑡) -(-1 + 𝑡)] = 3] over this interval.",
+          "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for."
         },
         {
-          "work": "Identify the setup line in the scan: definitions, transform pair, equation, or coefficient formula.",
-          "why": "The setup determines which course method applies and prevents using a correct formula on the wrong quantity."
+          "work": "Therefore, we may write, R2: 2+𝑡 1𝑑𝜏= 𝑡+ 4, -4 < 𝑡< -1 ∫ -2 R3: 2+𝑡 1𝑑𝜏= 3 , 𝑡> -1 ∫ -1+𝑡 10.",
+          "why": "The integral applies the definition or computes the accumulated response over the valid interval."
         },
         {
-          "work": "Follow each algebraic or transform line and compare it with the original problem statement.",
-          "why": "Most mistakes in these problems come from sign, scaling, shift, or indexing errors between adjacent lines."
+          "work": "Nodal analysis for determining the differential equation that governs 𝑖𝐿(𝑡).",
+          "why": "This applies the core signals/math idea before moving to the next calculation."
         },
         {
-          "work": "Use the final line of the scan as the answer and verify it against units, frequency, region, or initial conditions.",
-          "why": "The final check confirms that the answer satisfies the actual request rather than only the intermediate calculation."
+          "work": "Let say 𝑓(𝑡) is the input signal and 𝑖𝐿(𝑡) is the output signal.",
+          "why": "This introduces variables or a target form so the rest of the work can be organized."
+        },
+        {
+          "work": "Performing nodal analysis at the top node in the circuit, leads to: 𝑣𝐶(𝑡) -𝑓(𝑡) 𝑑𝑣𝐶(𝑡) + 𝑖𝐿(𝑡) + 2 = 0 (1) 4 10 𝑑𝑡 Also, KVL around the RHS mesh gives, 𝑣𝐶(𝑡) -2 𝑑𝑖𝐿(𝑡) -12𝑖𝐿(𝑡) = 0 (2) 𝑑𝑡",
+          "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for."
         }
       ],
       "final_answer": "Performing nodal analysis at the top node in the circuit, leads to: 𝑣𝐶(𝑡) -𝑓(𝑡) 𝑑𝑣𝐶(𝑡) + 𝑖𝐿(𝑡) + 2 = 0 (1) 4 10 𝑑𝑡 Also, KVL around the RHS mesh gives, 𝑣𝐶(𝑡) -2 𝑑𝑖𝐿(𝑡) -12𝑖𝐿(𝑡) = 0 (2) 𝑑𝑡",
@@ -4107,7 +4093,11 @@
       "output/problem_images/Assignment5_Problem1_img2.png",
       "output/problem_images/Assignment5_Problem1_img3.png"
     ],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/Assignment5_Solution1_img1.png",
+      "output/problem_images/Assignment5_Solution1_img2.png",
+      "output/problem_images/Assignment5_Solution1_img3.png"
+    ],
     "solution_scan": "output/problem_images/Assignment5_Solution1_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem1_scan.png",
@@ -4163,7 +4153,8 @@
       "output/problem_images/Assignment5_Problem10_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution10_img1.png"
+      "output/problem_images/Assignment5_Solution10_img1.png",
+      "output/problem_images/Assignment5_Solution10_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment5_Solution10_page.png",
     "solution_text_bad": true,
@@ -4219,9 +4210,9 @@
       "output/problem_images/Assignment5_Problem11_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution2_page.png"
+      "output/problem_images/Assignment5_Solution11_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution2_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution11_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem11_scan.png",
     "problem_text_bad": false,
@@ -4278,12 +4269,9 @@
       "output/problem_images/Assignment5_Problem12_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution13_img1.png",
-      "output/problem_images/Assignment5_Solution13_img2.png",
-      "output/problem_images/Assignment5_Solution13_img3.png",
-      "output/problem_images/Assignment5_Solution13_img4.png"
+      "output/problem_images/Assignment5_Solution12_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution13_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution12_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem12_scan.png",
     "problem_text_bad": false,
@@ -4337,9 +4325,12 @@
       "output/problem_images/Assignment5_Problem13_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution15_img1.png"
+      "output/problem_images/Assignment5_Solution13_img1.png",
+      "output/problem_images/Assignment5_Solution13_img2.png",
+      "output/problem_images/Assignment5_Solution13_img3.png",
+      "output/problem_images/Assignment5_Solution13_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution15_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution13_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem13_scan.png",
     "problem_text_bad": false,
@@ -4392,10 +4383,11 @@
       "output/problem_images/Assignment5_Problem14_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution9_img1.png",
-      "output/problem_images/Assignment5_Solution9_img2.png"
+      "output/problem_images/Assignment5_Solution14_img1.png",
+      "output/problem_images/Assignment5_Solution14_img2.png",
+      "output/problem_images/Assignment5_Solution14_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution9_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution14_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem14_scan.png",
     "problem_text_bad": false,
@@ -4448,9 +4440,12 @@
       "output/problem_images/Assignment5_Problem15_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution16_page.png"
+      "output/problem_images/Assignment5_Solution15_img1.png",
+      "output/problem_images/Assignment5_Solution15_img2.png",
+      "output/problem_images/Assignment5_Solution15_img3.png",
+      "output/problem_images/Assignment5_Solution15_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution16_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution15_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem15_scan.png",
     "problem_text_bad": false,
@@ -4503,9 +4498,11 @@
       "output/problem_images/Assignment5_Problem16_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution3_page.png"
+      "output/problem_images/Assignment5_Solution16_img1.png",
+      "output/problem_images/Assignment5_Solution16_img2.png",
+      "output/problem_images/Assignment5_Solution16_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution3_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution16_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem16_scan.png",
     "problem_text_bad": false,
@@ -4560,9 +4557,9 @@
       "output/problem_images/Assignment5_Problem17_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution7_page.png"
+      "output/problem_images/Assignment5_Solution17_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution7_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution17_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem17_scan.png",
     "problem_text_bad": true,
@@ -4619,12 +4616,8 @@
       "output/problem_images/Assignment5_Problem2_img2.png",
       "output/problem_images/Assignment5_Problem2_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution14_img1.png",
-      "output/problem_images/Assignment5_Solution14_img2.png",
-      "output/problem_images/Assignment5_Solution14_img3.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment5_Solution14_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment5_Solution2_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment5_Problem2_scan.png",
     "problem_text_bad": true,
@@ -4667,9 +4660,9 @@
       "output/problem_images/Assignment5_Problem3_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution17_img1.png"
+      "output/problem_images/Assignment5_Solution3_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution17_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem3_scan.png",
     "problem_text_bad": false,
@@ -4723,9 +4716,9 @@
       "output/problem_images/Assignment5_Problem4_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution11_page.png"
+      "output/problem_images/Assignment5_Solution4_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution11_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem4_scan.png",
     "problem_text_bad": true,
@@ -4782,9 +4775,9 @@
       "output/problem_images/Assignment5_Problem5_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution4_img1.png"
+      "output/problem_images/Assignment5_Solution5_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution4_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem5_scan.png",
     "problem_text_bad": false,
@@ -4839,7 +4832,7 @@
       "output/problem_images/Assignment5_Problem6_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution6_page.png"
+      "output/problem_images/Assignment5_Solution6_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment5_Solution6_page.png",
     "solution_text_bad": true,
@@ -4896,9 +4889,9 @@
       "output/problem_images/Assignment5_Problem7_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution5_img1.png"
+      "output/problem_images/Assignment5_Solution7_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution5_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem7_scan.png",
     "problem_text_bad": true,
@@ -4953,9 +4946,7 @@
       "output/problem_images/Assignment5_Problem8_img2.png",
       "output/problem_images/Assignment5_Problem8_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution8_page.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution8_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem8_scan.png",
@@ -5010,9 +5001,10 @@
       "output/problem_images/Assignment5_Problem9_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution12_img1.png"
+      "output/problem_images/Assignment5_Solution9_img1.png",
+      "output/problem_images/Assignment5_Solution9_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment5_Solution12_page.png",
+    "solution_scan": "output/problem_images/Assignment5_Solution9_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem9_scan.png",
     "problem_text_bad": false,
@@ -5067,11 +5059,12 @@
       "output/problem_images/Assignment6_Problem1_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment6_Solution10_img1.png",
-      "output/problem_images/Assignment6_Solution10_img2.png",
-      "output/problem_images/Assignment6_Solution10_img3.png"
+      "output/problem_images/Assignment6_Solution1_img1.png",
+      "output/problem_images/Assignment6_Solution1_img2.png",
+      "output/problem_images/Assignment6_Solution1_img3.png",
+      "output/problem_images/Assignment6_Solution1_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment6_Solution10_page.png",
+    "solution_scan": "output/problem_images/Assignment6_Solution1_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem1_scan.png",
     "problem_text_bad": true,
@@ -5125,9 +5118,7 @@
     "images": [
       "output/problem_images/Assignment6_Problem2_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment6_Solution2_page.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment6_Solution2_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem2_scan.png",
@@ -5182,11 +5173,8 @@
     "images": [
       "output/problem_images/Assignment6_Problem3_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment6_Solution7_img1.png",
-      "output/problem_images/Assignment6_Solution7_img2.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment6_Solution7_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment6_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem3_scan.png",
     "problem_text_bad": true,
@@ -5239,9 +5227,10 @@
     "solution": "For 𝑛 odd, the cos terms will drop out leaving\n3𝜋\n𝜋\n2 𝑛)) = 0, since when one sin term is 1 the other sin term is -1.\n𝑎𝑛= -𝑛𝜋(sin (\n2 𝑛) + sin (\n3.\nThe 𝑓(𝑡) has no jump discontinuity. But, the first derivative has a jump discontinuity. So, the\n1\norder of convergence is 𝐶𝑛= 𝑂(\n𝑛2).\nFunction has even symmetry, so there are no 𝑏𝑛terms\n𝑇= 2𝜋     and   𝜔= 1\n𝜋\n2𝜋∫𝑡2𝑑𝑡= 𝜋3\n𝑎0 = 1\n3\n-𝜋\n𝜋\n𝑎𝑛= 1\n𝜋∫𝑡2cos (𝑛𝑡)\n𝑑𝑡\n-𝜋\nUsing a Table of Integration gives\n𝑛3 (2𝑛𝑡cos(𝑛𝑡) -2 sin(𝑛𝑡) + 𝑛2𝑡2 sin(𝑛𝑡) |-𝜋\n1\n1\n4\n𝜋] =\n𝑛2 cos(𝜋𝑛)\n𝑎𝑛=\n𝜋[\nLooking at the cosine term, we can tell that the series is alternating in signs\n𝑎𝑛= 4\n𝑛2 cos(𝜋𝑛) = 4\n𝑛2 (-1)𝑛\n∞\n𝑓(𝑡) = 𝜋2\n(-1)𝑛\n3 + 4 ∑\ncos (𝑛𝑡)\n𝑛2\n𝑛=1\nExact average power vs. power in the first five harmonics\n𝜋4\n𝜋\n1\n𝑡4𝑑𝑡=\nExact:\n5 = 19.4818\n2𝜋∫\n-𝜋\n𝜋4\n1\nDC plus first two harmonics:\n16] = 19.3232\n9 + 8 [1 +\nRelative error is = 0.74%\n𝜋4\n1\n1\n1\n1\nDC plus first five harmonics:\n625] = 19.4660\n9 + 8 [1 +\n16 +\n81 +\n256 +\nRelative error is = 0.08%",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment6_Solution3_page.png"
+      "output/problem_images/Assignment6_Solution4_img1.png",
+      "output/problem_images/Assignment6_Solution4_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment6_Solution3_page.png",
+    "solution_scan": "output/problem_images/Assignment6_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem4_scan.png",
     "problem_text_bad": true,
@@ -5350,9 +5339,12 @@
     "solution": "9.\nThe steady-state response is given by,\n∞\n2 |𝐻(0)| + ∑|𝐻(2𝑛𝜋)|\n𝑦𝑠𝑠(𝑡) = 1\ncos [2𝑛𝜋𝑡+ 𝜋\n2 + 𝑎𝑟𝑔(𝐻(2𝑛𝜋))]\n𝑛𝜋\n𝑛=1\n2-𝜔2\n√𝜔4-3𝜔2+4  and 𝑎𝑟𝑔(𝐻(𝜔)) = tan-1 (\n𝜔\nwhere |𝐻(𝜔)| =\n𝜔 ). Therefore (using 𝜔= 2𝑛𝜋),\n∞\n2 + tan-1 (2 -(2𝑛𝜋)2\n1\ncos [2𝑛𝜋𝑡+ 𝜋\n)]\n𝑦𝑠𝑠(𝑡) = ∑\n√4𝜋4𝑛4 -3𝜋2𝑛2 + 1\n2𝑛𝜋\n𝑛=1\nThe following is a plot of the steady-state response (using the first 200 harmonics),",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment6_Solution11_img1.png"
+      "output/problem_images/Assignment6_Solution6_img1.png",
+      "output/problem_images/Assignment6_Solution6_img2.png",
+      "output/problem_images/Assignment6_Solution6_img3.png",
+      "output/problem_images/Assignment6_Solution6_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment6_Solution11_page.png",
+    "solution_scan": "output/problem_images/Assignment6_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem6_scan.png",
     "problem_text_bad": true,
@@ -5404,9 +5396,10 @@
     "solution": "7.\na. The signal has even symmetry.\n1\nb. There is a jump discontinuity in the first derivative, so 𝑂(\n𝑛2).\nc. Start with the direct integral to solve for 𝐷𝑛.\n1\n𝐷𝑛= 1\n1 ∫sin(𝜋𝑡) 𝑒-𝑗2𝜋𝑛𝑡\n𝑑𝑡\n0\nUsing a table of integral we obtain:\n1\n𝑒-𝑗2𝜋𝑛𝑡\n-4𝜋2𝑛2 + 𝜋2 (-𝑗2𝜋𝑛sin(𝜋𝑡) -𝜋cos(𝜋𝑡)) |\n𝐷𝑛=\n0\nNext, evaluate at the limits:\n𝑒-𝑗2𝜋𝑛(1)\n𝑒-𝑗2𝜋𝑛(0)\n𝐷𝑛= (\n-4𝜋2𝑛2+𝜋2 (-𝑗2𝜋𝑛sin(0) -𝜋cos(0)) )\n-4𝜋2𝑛2+𝜋2 (-𝑗2𝜋𝑛sin(𝜋) -𝜋cos(𝜋)) ) -(\nSimplify the exponential using Euler's identity:\n𝑒-𝑗𝑛2𝜋= cos(2𝑛𝜋) -𝑗sin(2𝑛𝜋)\nFor all 𝑛,  𝑒-𝑗2𝑛𝜋= 1.\n1\n1\n-4𝜋2𝑛2 + 𝜋2 (-𝜋))\n𝐷𝑛= (\n-4𝜋2𝑛2 + 𝜋2 (𝜋)) -(\nCombine like terms:\n2𝜋\n2\n-4𝜋𝑛2 + 𝜋\n𝐷𝑛=\n-4𝜋2𝑛2 + 𝜋2 =\nSimplifying one step further:\n𝐷𝑛= -2\n1\n4𝑛2 -1)\n𝜋(\n2\nThere is no need to find 𝐷0 separately because at 𝑛= 0 we get\n𝜋 directly from 𝐷0.\nFinally, we may express the exponential Fourier series:\n∞\n𝑓(𝑡) = -2\n1\n𝑒𝑗𝑛2𝜋𝑡\n𝜋∑(\n4𝑛2 -1)\n𝑛=-∞",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment6_Solution6_page.png"
+      "output/problem_images/Assignment6_Solution7_img1.png",
+      "output/problem_images/Assignment6_Solution7_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment6_Solution6_page.png",
+    "solution_scan": "output/problem_images/Assignment6_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem7_scan.png",
     "problem_text_bad": true,
@@ -5464,9 +5457,11 @@
       "output/problem_images/Assignment6_Problem8_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment6_Solution9_img1.png"
+      "output/problem_images/Assignment6_Solution8_img1.png",
+      "output/problem_images/Assignment6_Solution8_img2.png",
+      "output/problem_images/Assignment6_Solution8_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment6_Solution9_page.png",
+    "solution_scan": "output/problem_images/Assignment6_Solution8_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem8_scan.png",
     "problem_text_bad": true,
@@ -5523,10 +5518,11 @@
       "output/problem_images/Assignment6_Problem9_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment6_Solution4_img1.png",
-      "output/problem_images/Assignment6_Solution4_img2.png"
+      "output/problem_images/Assignment6_Solution9_img1.png",
+      "output/problem_images/Assignment6_Solution9_img2.png",
+      "output/problem_images/Assignment6_Solution9_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment6_Solution4_page.png",
+    "solution_scan": "output/problem_images/Assignment6_Solution9_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem9_scan.png",
     "problem_text_bad": false,
@@ -5582,11 +5578,12 @@
       "output/problem_images/Assignment7_Problem1_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution28_img1.png",
-      "output/problem_images/Assignment7_Solution28_img2.png",
-      "output/problem_images/Assignment7_Solution28_img3.png"
+      "output/problem_images/Assignment7_Solution1_img1.png",
+      "output/problem_images/Assignment7_Solution1_img2.png",
+      "output/problem_images/Assignment7_Solution1_img3.png",
+      "output/problem_images/Assignment7_Solution1_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution28_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution1_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem1_scan.png",
     "problem_text_bad": false,
@@ -5642,11 +5639,12 @@
       "output/problem_images/Assignment7_Problem10_img4.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution9_img1.png",
-      "output/problem_images/Assignment7_Solution9_img2.png",
-      "output/problem_images/Assignment7_Solution9_img3.png"
+      "output/problem_images/Assignment7_Solution10_img1.png",
+      "output/problem_images/Assignment7_Solution10_img2.png",
+      "output/problem_images/Assignment7_Solution10_img3.png",
+      "output/problem_images/Assignment7_Solution10_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution9_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution10_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem10_scan.png",
     "problem_text_bad": true,
@@ -5704,7 +5702,8 @@
     ],
     "solution_images": [
       "output/problem_images/Assignment7_Solution11_img1.png",
-      "output/problem_images/Assignment7_Solution11_img2.png"
+      "output/problem_images/Assignment7_Solution11_img2.png",
+      "output/problem_images/Assignment7_Solution11_img3.png"
     ],
     "solution_scan": "output/problem_images/Assignment7_Solution11_page.png",
     "solution_text_bad": true,
@@ -5760,9 +5759,11 @@
       "output/problem_images/Assignment7_Problem12_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution13_page.png"
+      "output/problem_images/Assignment7_Solution12_img1.png",
+      "output/problem_images/Assignment7_Solution12_img2.png",
+      "output/problem_images/Assignment7_Solution12_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution13_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution12_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem12_scan.png",
     "problem_text_bad": true,
@@ -5820,10 +5821,11 @@
       "output/problem_images/Assignment7_Problem13_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution15_img1.png",
-      "output/problem_images/Assignment7_Solution15_img2.png"
+      "output/problem_images/Assignment7_Solution13_img1.png",
+      "output/problem_images/Assignment7_Solution13_img2.png",
+      "output/problem_images/Assignment7_Solution13_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution15_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution13_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem13_scan.png",
     "problem_text_bad": true,
@@ -5881,9 +5883,9 @@
       "output/problem_images/Assignment7_Problem14_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution17_img1.png"
+      "output/problem_images/Assignment7_Solution14_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution17_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution14_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem14_scan.png",
     "problem_text_bad": true,
@@ -5939,11 +5941,10 @@
       "output/problem_images/Assignment7_Problem15_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution23_img1.png",
-      "output/problem_images/Assignment7_Solution23_img2.png",
-      "output/problem_images/Assignment7_Solution23_img3.png"
+      "output/problem_images/Assignment7_Solution15_img1.png",
+      "output/problem_images/Assignment7_Solution15_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution23_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution15_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment7_Problem15_scan.png",
     "problem_text_bad": false,
@@ -5989,11 +5990,11 @@
       "output/problem_images/Assignment7_Problem16_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution21_img1.png",
-      "output/problem_images/Assignment7_Solution21_img2.png",
-      "output/problem_images/Assignment7_Solution21_img3.png"
+      "output/problem_images/Assignment7_Solution16_img1.png",
+      "output/problem_images/Assignment7_Solution16_img2.png",
+      "output/problem_images/Assignment7_Solution16_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution21_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution16_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment7_Problem16_scan.png",
     "problem_text_bad": true,
@@ -6040,11 +6041,11 @@
       "output/problem_images/Assignment7_Problem17_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution24_img1.png",
-      "output/problem_images/Assignment7_Solution24_img2.png",
-      "output/problem_images/Assignment7_Solution24_img3.png"
+      "output/problem_images/Assignment7_Solution17_img1.png",
+      "output/problem_images/Assignment7_Solution17_img2.png",
+      "output/problem_images/Assignment7_Solution17_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution24_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution17_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem17_scan.png",
     "problem_text_bad": true,
@@ -6100,10 +6101,11 @@
       "output/problem_images/Assignment7_Problem18_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution25_img1.png",
-      "output/problem_images/Assignment7_Solution25_img2.png"
+      "output/problem_images/Assignment7_Solution18_img1.png",
+      "output/problem_images/Assignment7_Solution18_img2.png",
+      "output/problem_images/Assignment7_Solution18_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution25_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution18_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment7_Problem18_scan.png",
     "problem_text_bad": false,
@@ -6176,9 +6178,11 @@
       "output/problem_images/Assignment7_Problem2_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution6_page.png"
+      "output/problem_images/Assignment7_Solution2_img1.png",
+      "output/problem_images/Assignment7_Solution2_img2.png",
+      "output/problem_images/Assignment7_Solution2_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution6_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution2_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem2_scan.png",
     "problem_text_bad": false,
@@ -6188,7 +6192,7 @@
       "Trigonometric identities",
       "Fourier transform"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Challenge",
     "learning": {
       "given": "2. Find the Fourier transform for the following signals. 𝑓(𝑡) = sin(𝜔0𝑡), 𝑓(𝑡) = cos(𝜔0𝑡) 𝑢(𝑡) and 𝑓(𝑡) = sin(𝑡) 𝑠𝑔𝑛(𝑡).",
       "goal": "Find the Fourier transform for the following signals",
@@ -6233,10 +6237,12 @@
       "output/problem_images/Assignment7_Problem20_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution27_img1.png",
-      "output/problem_images/Assignment7_Solution27_img2.png"
+      "output/problem_images/Assignment7_Solution20_img1.png",
+      "output/problem_images/Assignment7_Solution20_img2.png",
+      "output/problem_images/Assignment7_Solution20_img3.png",
+      "output/problem_images/Assignment7_Solution20_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution27_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution20_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment7_Problem20_scan.png",
     "problem_text_bad": true,
@@ -6305,9 +6311,9 @@
       "output/problem_images/Assignment7_Problem3_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution4_img1.png"
+      "output/problem_images/Assignment7_Solution3_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution4_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem3_scan.png",
     "problem_text_bad": true,
@@ -6363,9 +6369,9 @@
       "output/problem_images/Assignment7_Problem4_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution12_page.png"
+      "output/problem_images/Assignment7_Solution4_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution12_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem4_scan.png",
     "problem_text_bad": true,
@@ -6420,10 +6426,9 @@
       "output/problem_images/Assignment7_Problem5_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution19_img1.png",
-      "output/problem_images/Assignment7_Solution19_img2.png"
+      "output/problem_images/Assignment7_Solution5_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution19_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem5_scan.png",
     "problem_text_bad": false,
@@ -6433,7 +6438,7 @@
       "Fourier transform",
       "Filter design"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "5. Given 𝑓(𝑡) ↔𝐹(𝜔). Show that 𝐹(𝑡-𝑇) + 𝐹(𝑡+ 𝑇) ↔4𝜋𝑓(-𝜔)cos⁡(𝑇𝜔) Hint: Start with the modulation theorem and employ the Duality property.",
       "goal": "Show that 𝐹(𝑡-𝑇) + 𝐹(𝑡+ 𝑇) ↔4𝜋𝑓(-𝜔)cos⁡(𝑇𝜔) Hint: Start with the modulation theorem and employ the Duality property",
@@ -6477,9 +6482,9 @@
       "output/problem_images/Assignment7_Problem6_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution5_page.png"
+      "output/problem_images/Assignment7_Solution6_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution5_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem6_scan.png",
     "problem_text_bad": true,
@@ -6533,9 +6538,9 @@
       "output/problem_images/Assignment7_Problem7_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution1_img1.png"
+      "output/problem_images/Assignment7_Solution7_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution1_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem7_scan.png",
     "problem_text_bad": true,
@@ -6593,9 +6598,9 @@
       "output/problem_images/Assignment7_Problem8_img4.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution7_img1.png"
+      "output/problem_images/Assignment7_Solution8_img1.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution7_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution8_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem8_scan.png",
     "problem_text_bad": true,
@@ -6654,9 +6659,11 @@
       "output/problem_images/Assignment7_Problem9_img4.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution8_page.png"
+      "output/problem_images/Assignment7_Solution9_img1.png",
+      "output/problem_images/Assignment7_Solution9_img2.png",
+      "output/problem_images/Assignment7_Solution9_img3.png"
     ],
-    "solution_scan": "output/problem_images/Assignment7_Solution8_page.png",
+    "solution_scan": "output/problem_images/Assignment7_Solution9_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem9_scan.png",
     "problem_text_bad": false,
@@ -6713,10 +6720,12 @@
       "output/problem_images/Assignment8_Problem1_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment8_Solution2_img1.png",
-      "output/problem_images/Assignment8_Solution2_img2.png"
+      "output/problem_images/Assignment8_Solution1_img1.png",
+      "output/problem_images/Assignment8_Solution1_img2.png",
+      "output/problem_images/Assignment8_Solution1_img3.png",
+      "output/problem_images/Assignment8_Solution1_img4.png"
     ],
-    "solution_scan": "output/problem_images/Assignment8_Solution2_page.png",
+    "solution_scan": "output/problem_images/Assignment8_Solution1_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment8_Problem1_scan.png",
     "problem_text_bad": false,
@@ -6770,7 +6779,7 @@
       "output/problem_images/Assignment8_Problem10_img1.png"
     ],
     "solution_images": [],
-    "solution_scan": "",
+    "solution_scan": "output/problem_images/Assignment8_Solution10_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment8_Problem10_scan.png",
     "problem_text_bad": true,
@@ -6816,12 +6825,10 @@
       "output/problem_images/Assignment8_Problem2_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment8_Solution1_img1.png",
-      "output/problem_images/Assignment8_Solution1_img2.png",
-      "output/problem_images/Assignment8_Solution1_img3.png",
-      "output/problem_images/Assignment8_Solution1_img4.png"
+      "output/problem_images/Assignment8_Solution2_img1.png",
+      "output/problem_images/Assignment8_Solution2_img2.png"
     ],
-    "solution_scan": "output/problem_images/Assignment8_Solution1_page.png",
+    "solution_scan": "output/problem_images/Assignment8_Solution2_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment8_Problem2_scan.png",
     "problem_text_bad": true,
@@ -6873,10 +6880,8 @@
     "images": [
       "output/problem_images/Assignment8_Problem3_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment8_Solution1_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment8_Solution1_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment8_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment8_Problem3_scan.png",
     "problem_text_bad": true,
@@ -6929,10 +6934,8 @@
     "images": [
       "output/problem_images/Assignment8_Problem4_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment8_Solution3_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment8_Solution3_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment8_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment8_Problem4_scan.png",
     "problem_text_bad": false,
@@ -7033,10 +7036,8 @@
     "images": [
       "output/problem_images/Assignment8_Problem6_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment8_Solution2_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment8_Solution2_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment8_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment8_Problem6_scan.png",
     "problem_text_bad": true,
@@ -7090,10 +7091,8 @@
     "images": [
       "output/problem_images/Assignment8_Problem7_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment8_Solution4_page.png"
-    ],
-    "solution_scan": "output/problem_images/Assignment8_Solution4_page.png",
+    "solution_images": [],
+    "solution_scan": "output/problem_images/Assignment8_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment8_Problem7_scan.png",
     "problem_text_bad": true,
@@ -7240,7 +7239,8 @@
     "images": [],
     "solution_images": [
       "output/problem_images/Assignment9_Solution1_img1.png",
-      "output/problem_images/Assignment9_Solution1_img2.png"
+      "output/problem_images/Assignment9_Solution1_img2.png",
+      "output/problem_images/Assignment9_Solution1_img3.png"
     ],
     "solution_scan": "output/problem_images/Assignment9_Solution1_page.png",
     "solution_text_bad": false,
@@ -7251,7 +7251,7 @@
       "Trigonometric identities",
       "Z-transform"
     ],
-    "difficulty": "Core",
+    "difficulty": "Medium",
     "learning": {
       "given": "1. Solve numerically for the first 10 terms of the sequence generated by the following recursion formula, 𝑢𝑛+2 = 4𝑢𝑛+1 -8𝑢𝑛. Assume that 𝑢0 = 𝑢1 = 1. Then, employ the Z- transform method to find the expression for the 𝑛th term, 𝑢𝑛. Note: The above recursion formula can also be represented as the second-order homogeneous LTI difference equation 𝑦[𝑛+ 2] -4𝑦[𝑛+ 1] + 8𝑦[𝑛] = 0, with 𝑦[0] = 𝑦[1] = 1. 3𝑛 2 -1 [2cos ( 𝑛𝜋 𝑛𝜋 Ans. 𝑢𝑛= 2 4 )] , 𝑛≥0 4 ) -sin (",
       "goal": "Solve numerically for the first 10 terms of the sequence generated by the following recursion formula, 𝑢𝑛+2 = 4𝑢𝑛+1 -8𝑢𝑛",
@@ -8073,7 +8073,10 @@
     "has_solution": true,
     "solution": "For the zero-state response with input f(t)=u(t), use Yzs(s) = H(s)F(s) = 1/[s(s^2+2)]. Write this as Yzs(s) = (1/2)(1/s) - (1/2)(s/(s^2+2)). Taking the inverse Laplace transform gives yzs(t) = (1/2)[1 - cos(√2 t)]u(t).",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/FinalSample_Solution2_img1.png",
+      "output/problem_images/FinalSample_Solution2_img2.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem2_scan.png",
@@ -8121,7 +8124,10 @@
     "has_solution": true,
     "solution": "Write H(z) in powers of z^(-1): H(z) = z/(z^2 - z/6 - 1/6) = z^(-1) / [1 - (1/6)z^(-1) - (1/6)z^(-2)]. For the unit-sample response, H(z)=Y(z) with input δ[k], so the recursion is h[k] - (1/6)h[k-1] - (1/6)h[k-2] = δ[k-1], with h[-1]=h[0]=0. Now compute sequentially: h[1]=1, h[2]=(1/6)h[1]+(1/6)h[0]=1/6, and h[3]=(1/6)h[2]+(1/6)h[1]=1/36+1/6=7/36. Therefore h[3]=7/36.",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/FinalSample_Solution3_img1.png",
+      "output/problem_images/FinalSample_Solution3_img2.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem3_scan.png",
@@ -8220,7 +8226,10 @@
     "has_solution": true,
     "solution": "For the zero-input response set f[k] = 0, so the recurrence becomes y[k+1] = (1/2)y[k-1]. Using y[-1] = 1 and y[0] = 0 gives y[1] = 1/2, y[2] = 0, y[3] = 1/4, y[4] = 0, y[5] = 1/8, and so on. Thus the even-indexed samples are zero and the odd-indexed samples form a geometric sequence. Equivalently, yzi[2m] = 0 and yzi[2m+1] = (1/2)^(m+1) for m ≥ 0.",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/FinalSample_Solution5_img1.png",
+      "output/problem_images/FinalSample_Solution5_img2.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem5_scan.png",
@@ -8273,7 +8282,10 @@
     "has_solution": true,
     "solution": "Use the bilinear transform with Ts=2, so s = (2/Ts)(1-z^(-1))/(1+z^(-1)) = (1-z^(-1))/(1+z^(-1)). Substitute into H(s)=1/(s^2+s+1): H(z)=1 / [((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1]. Multiply numerator and denominator by (1+z^(-1))^2 to simplify: H(z) = (1 + 2z^(-1) + z^(-2)) / (3 + z^(-2)). Equivalently, H(z) = (z+1)^2 / (3z^2+1). The choice Ts=2 is not very good for accurate analog-to-digital matching, because it is fairly large relative to the analog dynamics and causes noticeable frequency warping. A smaller sampling period would be more appropriate.",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/FinalSample_Solution6_img1.png",
+      "output/problem_images/FinalSample_Solution6_img2.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem6_scan.png",
@@ -8597,7 +8609,9 @@
     "images": [
       "output/problem_images/Test1Sample1_Problem5_img1.png"
     ],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/Test1Sample1_Solution5_img1.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample1_Problem5_scan.png",
@@ -8757,7 +8771,13 @@
     "has_solution": true,
     "solution": "First simplify the complex number: z = 1 - (1-j)/(j√2) + e^(jπ/2). Since e^(jπ/2)=j and (1-j)/j = -1-j, we get -(1-j)/(j√2) = (1+j)/√2. Hence z = 1 + j + (1+j)/√2 = (1 + 1/√2) + j(1 + 1/√2). So the Cartesian form is z = (1 + 1/√2) + j(1 + 1/√2). The magnitude is |z| = √2(1 + 1/√2) = 1 + √2, and the angle is π/4 because the real and imaginary parts are equal and positive. Therefore the exponential form is z = (1 + √2)e^(jπ/4).",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/Test1Sample_Solution1_img1.png",
+      "output/problem_images/Test1Sample_Solution1_img2.png",
+      "output/problem_images/Test1Sample_Solution1_img3.png",
+      "output/problem_images/Test1Sample_Solution1_img4.png",
+      "output/problem_images/Test1Sample_Solution1_img5.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test1Sample_Problem1_scan.png",
@@ -8767,7 +8787,7 @@
       "Euler identity",
       "Complex numbers"
     ],
-    "difficulty": "Core",
+    "difficulty": "Medium",
     "learning": {
       "given": "1. Express the complex number in Cartesian form and in exponential 1 + - = 2 j 2 form. C t f t t t",
       "goal": "Express the complex number in Cartesian form and in exponential 1 + - = 2 j 2 form",
@@ -9012,7 +9032,9 @@
     "has_solution": true,
     "solution": "Interpret the Fourier series as a sum of orthogonal sinusoids with amplitudes 1/3, 1/5, 1/7, 1/9, and so on. By Parseval, the average power is the sum of the average powers of the individual harmonics. Each sinusoid A cos(nt) or A sin(nt) contributes A^2/2, so P = (1/2)[(1/3)^2 + (1/5)^2 + (1/7)^2 + (1/9)^2 + ...] = (1/2)Σ_{n=1}^∞ 1/(2n+1)^2. Using Σ_{m odd≥1} 1/m^2 = π^2/8 and subtracting the m=1 term gives Σ_{n=1}^∞ 1/(2n+1)^2 = π^2/8 - 1. Therefore the exact average power is P = π^2/16 - 1/2.",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/Test1Sample_Solution7_img1.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample_Problem7_scan.png",
@@ -9184,9 +9206,7 @@
     "images": [
       "output/problem_images/Test2Sample2_Problem1_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Test2Sample2_Solution1_page.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test2Sample2_Solution1_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test2Sample2_Problem1_scan.png",
@@ -9685,7 +9705,9 @@
     "has_solution": true,
     "solution": "Take the z-transform with zero initial conditions: Y(z)[1 - (3/4)z^(-1) + (1/8)z^(-2)] = F(z). Hence H(z) = Y(z)/F(z) = 1 / [(1 - (1/2)z^(-1))(1 - (1/4)z^(-1))]. Use partial fractions: H(z) = 2/(1 - (1/2)z^(-1)) - 1/(1 - (1/4)z^(-1)). Taking the inverse z-transform gives h[k] = [2(1/2)^k - (1/4)^k]u[k].",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/Test3Sample3_Solution5_img1.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test3Sample3_Problem5_scan.png",
@@ -9739,7 +9761,9 @@
     "has_solution": true,
     "solution": "The continuous-time transfer function is H(s) = s/(s + 10). With the bilinear transform and T = 1, substitute s = 2(1 - z^(-1))/(1 + z^(-1)). Then H(z) = 2(1 - z^(-1)) / (12 + 8z^(-1)) = (1 - z^(-1)) / (6 + 4z^(-1)). Therefore the difference equation is 6y[k] + 4y[k-1] = f[k] - f[k-1], or y[k] = -(2/3)y[k-1] + (1/6)f[k] - (1/6)f[k-1]. For f(t)=tu(t), the sampled input is f[k]=k u[k]. With zero-state initial conditions, y[0]=0, y[1]=1/6, and y[2]=-(2/3)(1/6) + (1/6)(2) - (1/6)(1) = 1/18. The continuous-time response satisfies ẏ + 10y = u(t), so y(t) = (1 - e^(-10t))/10. At t=2 this is about 0.1, while the discrete result is 1/18 ≈ 0.0556. The absolute relative error is approximately |0.1 - 1/18| / 0.1 × 100% ≈ 44.4%.",
     "images": [],
-    "solution_images": [],
+    "solution_images": [
+      "output/problem_images/Test3Sample3_Solution6_img1.png"
+    ],
     "solution_scan": "",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test3Sample3_Problem6_scan.png",

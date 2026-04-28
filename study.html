@@ -19,7 +19,7 @@
       };
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="./output/problems.js?v=20260428-3"></script>
+    <script src="./output/problems.js?v=20260428-4"></script>
     <style>
       :root {
         color-scheme: light;
@@ -677,7 +677,7 @@
     <script>
       (() => {
         const STORAGE_KEY = "ece4330.studyProgress.v2";
-        const ASSET_VERSION = "20260428-3";
+        const ASSET_VERSION = "20260428-4";
         const STATUS_OPTIONS = [
           ["new", "New"],
           ["tried", "Tried"],
@@ -1119,7 +1119,7 @@
             title.textContent = `Step ${index + 1} of ${steps.length}`;
             const notebookLabel = document.createElement("span");
             notebookLabel.className = "notebook-label";
-            notebookLabel.textContent = "Notebook work";
+            notebookLabel.textContent = "Written work";
             const notebook = textDiv("notebook-work", step.notebook || step.work || "");
             const why = document.createElement("details");
             why.className = "why";
@@ -1132,6 +1132,10 @@
             stepList.appendChild(stepEl);
           });
           return stepList;
+        }
+
+        function solutionDiagramImages(problem) {
+          return (problem.solution_images || []).filter((path) => path !== problem.solution_scan);
         }
 
         function renderLearning(problem, card) {
@@ -1194,6 +1198,10 @@
           if (!progress.solutionVisible) {
             const revealedSteps = renderStepList(steps, progress.stepsRevealed);
             if (revealedSteps) panel.appendChild(revealedSteps);
+            const revealedSolutionImages = solutionDiagramImages(problem);
+            if (progress.stepsRevealed > 0 && revealedSolutionImages.length) {
+              renderImages(revealedSolutionImages, panel, "Solution Diagram");
+            }
           }
 
           if (progress.solutionVisible) {
@@ -1220,7 +1228,7 @@
             } else if (problem.solution) {
               solution.appendChild(textDiv("solution-text", problem.solution));
             }
-            const extraSolutionImages = (problem.solution_images || []).filter((path) => path !== problem.solution_scan);
+            const extraSolutionImages = solutionDiagramImages(problem);
             if (extraSolutionImages.length) {
               renderImages(extraSolutionImages, solution, "Solution Diagram");
             }

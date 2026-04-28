@@ -11691,7 +11691,7 @@
     "topic": "Bilinear Transform",
     "problem": "6. Consider the filter 𝐻(𝑠) =\n𝑠2+𝑠+1. Determine the corresponding 𝐻(𝑧) based on\nthe bilinear transformation. Assume sampling period 𝑇𝑠= 2. Is the value of 𝑇𝑠= 2\nappropriate? Explain.",
     "has_solution": true,
-    "solution": "Use the bilinear transform with Ts=2, so s = (2/Ts)(1-z^(-1))/(1+z^(-1)) = (1-z^(-1))/(1+z^(-1)). Substitute into H(s)=1/(s^2+s+1): H(z)=1 / [((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1]. Multiply numerator and denominator by (1+z^(-1))^2 to simplify: H(z) = (1 + 2z^(-1) + z^(-2)) / (3 + z^(-2)). Equivalently, H(z) = (z+1)^2 / (3z^2+1). The choice Ts=2 is not very good for accurate analog-to-digital matching, because it is fairly large relative to the analog dynamics and causes noticeable frequency warping. A smaller sampling period would be more appropriate.",
+    "solution": "Use the bilinear transform with Ts=2, so s = (2/Ts)(1-z^(-1))/(1+z^(-1)) = (1-z^(-1))/(1+z^(-1)). Substitute into H(s)=1/(s^2+s+1): H(z)=1 / [((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1]. Multiply numerator and denominator by (1+z^(-1))^2 to simplify: H(z) = (1 + 2z^(-1) + z^(-2)) / (3 + z^(-2)). Equivalently, H(z) = (z+1)^2 / (3z^2+1). The analog impulse response is h(t) = (2sqrt(3)/3)e^(-t/2)sin((sqrt(3)/2)t)u(t). With Ts=2, the discrete samples are h(2k), k=0,1,...,5. Those samples miss too much of the impulse-response shape, so Ts=2 under-samples h(t). A smaller sampling period is more appropriate.",
     "images": [],
     "solution_images": [
       "output/problem_images/FinalSample_Solution6_img1.png"
@@ -11702,75 +11702,81 @@
     "problem_text_bad": false,
     "id": "final-sample-problem-6",
     "subtopics": [
+      "Trigonometric identities",
+      "Delta functions",
+      "Convolution",
       "Laplace transform",
-      "Sampling",
-      "Z-transform",
-      "Bilinear transform",
-      "Filter design"
+      "Zero-state response",
+      "Sampling"
     ],
     "difficulty": "Medium",
     "learning": {
       "given": "6. Consider the filter 𝐻(𝑠) = 𝑠2+𝑠+1. Determine the corresponding 𝐻(𝑧) based on the bilinear transformation. Assume sampling period 𝑇𝑠= 2. Is the value of 𝑇𝑠= 2 appropriate? Explain.",
       "goal": "Determine the corresponding 𝐻(𝑧) based on the bilinear transformation",
-      "concept": "Bilinear Transform with Laplace transform, Sampling, Z-transform, Bilinear transform, Filter design",
+      "concept": "Bilinear Transform with Trigonometric identities, Delta functions, Convolution, Laplace transform, Zero-state response, Sampling",
       "hints": [
-        "Start by recognizing this as a Laplace transform, Sampling problem.",
+        "Start by recognizing this as a Trigonometric identities, Delta functions problem.",
         "Collect powers of z^(-1) to form a digital transfer function.",
         "Convert the transfer function into a difference equation if needed."
       ],
       "steps": [
         {
-          "work": "Target: Determine the corresponding 𝐻(𝑧) based on the bilinear transformation.",
-          "why": "Naming the target first keeps every later line connected to what the problem actually asks for.",
-          "notebook": "Target: Determine the corresponding 𝐻(𝑧) based on the bilinear transformation."
+          "work": "Target: Determine H(z) from the bilinear transform and decide whether Ts=2 is appropriate.",
+          "why": "Naming the target first keeps the work tied to the exact question being asked.",
+          "notebook": "Target: Determine H(z) from the bilinear transform and decide whether Ts=2 is appropriate."
         },
         {
-          "work": "Method: Substitute the bilinear map, collect powers of z^(-1), then read the difference equation.",
-          "why": "Choosing the method before calculating gives the work a clear path and reduces guessing.",
-          "notebook": "Method: Substitute the bilinear map, collect powers of z^(-1), then read the difference equation."
+          "work": "Method: Substitute the bilinear transform, simplify H(z), then compare Ts=2 samples with the analog impulse response.",
+          "why": "Choosing the method up front makes the later algebra feel predictable instead of random.",
+          "notebook": "Method: Substitute the bilinear transform, simplify H(z), then compare Ts=2 samples with the analog impulse response."
         },
         {
-          "work": "Use the bilinear transform with Ts=2.",
-          "why": "The bilinear transform maps a continuous-time design into the z-plane while preserving stability structure.",
-          "notebook": "Use the bilinear transform with Ts=2."
-        },
-        {
-          "work": "So s = (2/Ts)(1-z^(-1))/(1+z^(-1)) = (1-z^(-1))/(1+z^(-1)).",
+          "work": "Use s = (2/Ts)(1-z^(-1))/(1+z^(-1)). With Ts=2, s = (1-z^(-1))/(1+z^(-1)).",
           "why": "The Z-transform turns sequence operations and shifts into algebraic factors.",
-          "notebook": "So s = (2/Ts)(1-z^(-1))/(1+z^(-1)) = (1-z^(-1))/(1+z^(-1))."
+          "notebook": "Use s = (2/Ts)(1-z^(-1))/(1+z^(-1)). With Ts=2, s = (1-z^(-1))/(1+z^(-1))."
         },
         {
-          "work": "Substitute into H(s)=1/(s^2+s+1): H(z)=1 / [((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1].",
+          "work": "Substitute into H(s)=1/(s^2+s+1).",
           "why": "Substitution evaluates the expression using the known condition or transform mapping.",
-          "notebook": "Substitute into H(s)=1/(s^2+s+1): H(z)=1 / [((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1]."
+          "notebook": "Substitute into H(s)=1/(s^2+s+1)."
         },
         {
-          "work": "Multiply numerator and denominator by (1+z^(-1))^2 to simplify: H(z) = (1 + 2z^(-1) + z^(-2)) / (3 + z^(-2)).",
-          "why": "Clearing or scaling terms isolates the unknown while preserving the equation.",
-          "notebook": "Multiply numerator and denominator by (1+z^(-1))^2 to simplify: H(z) = (1 + 2z^(-1) + z^(-2)) / (3 + z^(-2))."
-        },
-        {
-          "work": "Equivalently, H(z) = (z+1)^2 / (3z^2+1).",
+          "work": "H(z)=1/[((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1].",
           "why": "The Z-transform turns sequence operations and shifts into algebraic factors.",
-          "notebook": "Equivalently, H(z) = (z+1)^2 / (3z^2+1)."
+          "notebook": "H(z)=1/[((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1]."
         },
         {
-          "work": "The choice Ts=2 is not very good for accurate analog-to-digital matching, because it is fairly large relative to the analog dynamics and causes noticeable frequency warping.",
+          "work": "Multiply numerator and denominator by (1+z^(-1))^2.",
+          "why": "Clearing or scaling terms isolates the unknown while preserving the equation.",
+          "notebook": "Multiply numerator and denominator by (1+z^(-1))^2."
+        },
+        {
+          "work": "H(z) = (1 + 2z^(-1) + z^(-2))/(3 + z^(-2)) = (z+1)^2/(3z^2+1).",
+          "why": "The Z-transform turns sequence operations and shifts into algebraic factors.",
+          "notebook": "H(z) = (1 + 2z^(-1) + z^(-2))/(3 + z^(-2)) = (z+1)^2/(3z^2+1)."
+        },
+        {
+          "work": "The analog impulse response is h(t)=(2sqrt(3)/3)e^(-t/2)sin((sqrt(3)/2)t)u(t).",
+          "why": "The impulse property samples or differentiates a function at the impulse location.",
+          "notebook": "The analog impulse response is h(t)=(2sqrt(3)/3)e^(-t/2)sin((sqrt(3)/2)t)u(t)."
+        },
+        {
+          "work": "For Ts=2, the plotted samples are h(2k), k=0,1,...,5.",
           "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for.",
-          "notebook": "The choice Ts=2 is not very good for accurate analog-to-digital matching, because it is fairly large relative to the analog dynamics and causes noticeable frequency warping."
+          "notebook": "For Ts=2, the plotted samples are h(2k), k=0,1,...,5."
         },
         {
-          "work": "A smaller sampling period would be more appropriate.",
-          "why": "Sampling decisions depend on the highest frequency that must be reconstructed without aliasing.",
-          "notebook": "A smaller sampling period would be more appropriate."
+          "work": "Those samples under-sample the impulse response, so Ts=2 is not appropriate.",
+          "why": "The impulse property samples or differentiates a function at the impulse location.",
+          "notebook": "Those samples under-sample the impulse response, so Ts=2 is not appropriate."
         },
         {
-          "work": "Check: Check that the final expression is written in powers of z^(-1) before forming the recursion.",
-          "why": "The check is where small algebra, sign, unit, or indexing mistakes usually reveal themselves.",
-          "notebook": "Check: Check that the final expression is written in powers of z^(-1) before forming the recursion."
+          "work": "Check: The graph should be the red h(t) curve with blue samples at t=2k.",
+          "why": "A final check catches sign, scale, unit, and indexing errors before you move on.",
+          "notebook": "Check: The graph should be the red h(t) curve with blue samples at t=2k."
         }
       ],
-      "final_answer": "A smaller sampling period would be more appropriate.",
+      "final_answer": "A smaller sampling period is more appropriate.",
       "check": "Verify the result against the original problem statement, units/indexing, and the provided solution scan when available.",
       "common_mistake": "Do not forget to collect terms in z^(-1) before reading the difference equation.",
       "needs_review": false
@@ -11778,10 +11784,10 @@
   },
   {
     "source": "Final Sample Problem 7",
-    "topic": "Signals/Math",
+    "topic": "Sampling/Nyquist",
     "problem": "7. Consider the following system. Sketch the spectrum at the indicated nodes. 𝛿𝑠(𝑡) is\nan everlasting train of unit-impulses with period 𝑇𝑠.\n(Bonus, 10 points)\nConsider the following system. Assume max[𝑚(𝑡)] = 𝐵 and 𝐴≫𝐵.\na. Sketch the spectrum at node 1.\nb. Determine 𝑦(𝑡) assuming steady-state operation.",
     "has_solution": true,
-    "solution": "7.\nBonus:\n𝑓(𝑡) ≅𝐴2\n2 + 𝐴𝑚(𝑡)\n𝑦(𝑡) = 𝑚(𝑡)\n𝐹1(𝜔) = 𝜋𝐴2𝛿(𝜔) + 𝐴𝑀(𝜔)",
+    "solution": "For the spectrum sketch, draw F1(w), F2(w), F3(w), and F4(w) exactly as the solution diagram shows. F1(w) has triangular spectral pieces over [-2wB,0] and [0,2wB], with the midpoint at w=0. F2(w) is the baseband-limited part over [-wB,wB]. Sampling by the impulse train repeats that baseband spectrum periodically, so F3(w) is the repeated triangular pattern spaced by ws=2wB, equivalently fs/2=wB/(2pi). After the final filtering/selection, F4(w) keeps the indicated triangle over the displayed baseband interval. For the bonus square-law system with A much larger than m(t), f(t) approximately equals A^2/2 + A m(t). Thus F1(w) = pi A^2 delta(w) + A M(w). The dc blocker removes the constant term and the gain 1/A restores the message, so y(t)=m(t).",
     "images": [
       "output/problem_images/FinalSample_Problem7_img1.png"
     ],
@@ -11794,63 +11800,85 @@
     "problem_text_bad": false,
     "id": "final-sample-problem-7",
     "subtopics": [
-      "Steady-state response"
+      "Delta functions",
+      "Steady-state response",
+      "Sampling"
     ],
-    "difficulty": "Core",
+    "difficulty": "Medium",
     "learning": {
       "given": "7. Consider the following system. Sketch the spectrum at the indicated nodes. 𝛿𝑠(𝑡) is an everlasting train of unit-impulses with period 𝑇𝑠. (Bonus, 10 points) Consider the following system. Assume max[𝑚(𝑡)] = 𝐵 and 𝐴≫𝐵. a. Sketch the spectrum at node 1. b. Determine 𝑦(𝑡) assuming steady-state operation.",
       "goal": "Determine 𝑦(𝑡) assuming steady-state operation",
-      "concept": "Signals/Math with Steady-state response",
+      "concept": "Sampling/Nyquist with Delta functions, Steady-state response, Sampling",
       "hints": [
-        "Start by recognizing this as a Steady-state response problem.",
-        "Rewrite the expression in a form where a standard identity applies.",
-        "Check the final result by substituting it back into the original statement."
+        "Start by recognizing this as a Delta functions, Steady-state response problem.",
+        "Use the Nyquist rate as twice the highest frequency.",
+        "Check for frequency shifts or products that create new components."
       ],
       "steps": [
         {
-          "work": "Target: Determine 𝑦(𝑡) assuming steady-state operation.",
-          "why": "Naming the target first keeps every later line connected to what the problem actually asks for.",
-          "notebook": "Target: Determine 𝑦(𝑡) assuming steady-state operation."
+          "work": "Target: Sketch F1(w), F2(w), F3(w), and F4(w), then find y(t) for the bonus system.",
+          "why": "Naming the target first keeps the work tied to the exact question being asked.",
+          "notebook": "Target: Sketch F1(w), F2(w), F3(w), and F4(w), then find y(t) for the bonus system."
         },
         {
-          "work": "Method: Choose the algebra rule, identity, or calculus test that matches the expression before calculating.",
-          "why": "Choosing the method before calculating gives the work a clear path and reduces guessing.",
-          "notebook": "Method: Choose the algebra rule, identity, or calculus test that matches the expression before calculating."
+          "work": "Method: Match each node to the corresponding spectrum sketch, then use the square-law approximation for the bonus output.",
+          "why": "Choosing the method up front makes the later algebra feel predictable instead of random.",
+          "notebook": "Method: Match each node to the corresponding spectrum sketch, then use the square-law approximation for the bonus output."
         },
         {
-          "work": "Confirm the attached solution scan belongs to this exact problem number.",
-          "why": "The scan is the source of the worked math, so matching it to the problem prevents studying the wrong diagram.",
-          "notebook": "Confirm the attached solution scan belongs to this exact problem number."
+          "work": "Draw F1(w) as the two triangular spectral pieces over [-2wB,0] and [0,2wB].",
+          "why": "This applies the core sampling/nyquist idea before moving to the next calculation.",
+          "notebook": "Draw F1(w) as the two triangular spectral pieces over [-2wB,0] and [0,2wB]."
         },
         {
-          "work": "Copy the givens from the problem statement before reading the solution line.",
-          "why": "Writing the givens makes it easier to notice which symbols, inputs, frequencies, or initial conditions must appear later.",
-          "notebook": "Copy the givens from the problem statement before reading the solution line."
+          "work": "Draw F2(w) as the baseband-limited spectrum over [-wB,wB].",
+          "why": "This applies the core sampling/nyquist idea before moving to the next calculation.",
+          "notebook": "Draw F2(w) as the baseband-limited spectrum over [-wB,wB]."
         },
         {
-          "work": "Identify the first setup line in the solution scan: definition, transform pair, equation, or coefficient formula.",
-          "why": "The setup line tells you which course method is being used before the calculation starts.",
-          "notebook": "Identify the first setup line in the solution scan: definition, transform pair, equation, or coefficient formula."
+          "work": "Sampling by the impulse train repeats the spectrum periodically.",
+          "why": "Sampling decisions depend on the highest frequency that must be reconstructed without aliasing.",
+          "notebook": "Sampling by the impulse train repeats the spectrum periodically."
         },
         {
-          "work": "Reproduce the algebra one line at a time instead of jumping to the final line.",
-          "why": "Line-by-line copying exposes sign, scale, shift, and indexing changes that are easy to miss.",
-          "notebook": "Reproduce the algebra one line at a time instead of jumping to the final line."
+          "work": "Use fs/2 = wB/(2pi), so ws = 2wB.",
+          "why": "This follows from the previous algebra and states the conclusion in the requested form.",
+          "notebook": "Use fs/2 = wB/(2pi), so ws = 2wB."
         },
         {
-          "work": "Pause at each equals sign and ask what rule changed the previous line into the next one.",
-          "why": "This keeps the solution active: you are identifying the reason for each move, not just reading it.",
-          "notebook": "Pause at each equals sign and ask what rule changed the previous line into the next one."
+          "work": "Draw F3(w) as repeated triangular copies spaced by ws=2wB.",
+          "why": "This algebraic relation keeps the solution tied to the quantities the problem asks for.",
+          "notebook": "Draw F3(w) as repeated triangular copies spaced by ws=2wB."
         },
         {
-          "work": "Check: Substitute the result back into the original statement and check units, signs, and requested form.",
-          "why": "The final check confirms that the answer satisfies the actual request rather than only the intermediate calculation.",
-          "notebook": "Check: Substitute the result back into the original statement and check units, signs, and requested form."
+          "work": "Draw F4(w) as the selected output triangle shown after the final filtering/selection.",
+          "why": "This applies the core sampling/nyquist idea before moving to the next calculation.",
+          "notebook": "Draw F4(w) as the selected output triangle shown after the final filtering/selection."
+        },
+        {
+          "work": "For the bonus square-law part, f(t) ≈ A^2/2 + A m(t) because A is much larger than m(t).",
+          "why": "This applies the core sampling/nyquist idea before moving to the next calculation.",
+          "notebook": "For the bonus square-law part, f(t) ≈ A^2/2 + A m(t) because A is much larger than m(t)."
+        },
+        {
+          "work": "Therefore F1(w) = pi A^2 delta(w) + A M(w).",
+          "why": "The impulse property samples or differentiates a function at the impulse location.",
+          "notebook": "Therefore F1(w) = pi A^2 delta(w) + A M(w)."
+        },
+        {
+          "work": "The dc blocker removes the constant term and the 1/A gain restores the message, so y(t)=m(t).",
+          "why": "This follows from the previous algebra and states the conclusion in the requested form.",
+          "notebook": "The dc blocker removes the constant term and the 1/A gain restores the message, so y(t)=m(t)."
+        },
+        {
+          "work": "Check: The solution diagram should be the four-spectrum sketch with F1, F2, F3, and F4.",
+          "why": "A final check catches sign, scale, unit, and indexing errors before you move on.",
+          "notebook": "Check: The solution diagram should be the four-spectrum sketch with F1, F2, F3, and F4."
         }
       ],
-      "final_answer": "Bonus: 𝑓(𝑡) ≅𝐴2 2 + 𝐴𝑚(𝑡) 𝑦(𝑡) = 𝑚(𝑡) 𝐹1(𝜔) = 𝜋𝐴2𝛿(𝜔) + 𝐴𝑀(𝜔)",
+      "final_answer": "The dc blocker removes the constant term and the gain 1/A restores the message. So y(t)=m(t).",
       "check": "Verify the result against the original problem statement, units/indexing, and the provided solution scan when available.",
-      "common_mistake": "Do not skip the identity or domain condition that makes the algebra valid.",
+      "common_mistake": "Do not use the original frequencies before simplifying products or modulation.",
       "needs_review": true
     }
   },

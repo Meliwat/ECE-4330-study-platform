@@ -314,8 +314,18 @@ SOLUTIONS.update(
             "H(z)=1 / [((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1]. "
             "Multiply numerator and denominator by (1+z^(-1))^2 to simplify: "
             "H(z) = (1 + 2z^(-1) + z^(-2)) / (3 + z^(-2)). "
-            "Equivalently, H(z) = (z+1)^2 / (3z^2+1). The choice Ts=2 is not very good for accurate analog-to-digital matching, "
-            "because it is fairly large relative to the analog dynamics and causes noticeable frequency warping. A smaller sampling period would be more appropriate."
+            "Equivalently, H(z) = (z+1)^2 / (3z^2+1). The analog impulse response is "
+            "h(t) = (2sqrt(3)/3)e^(-t/2)sin((sqrt(3)/2)t)u(t). With Ts=2, the discrete samples are h(2k), k=0,1,...,5. "
+            "Those samples miss too much of the impulse-response shape, so Ts=2 under-samples h(t). A smaller sampling period is more appropriate."
+        ),
+        "Final Sample Problem 7": (
+            "For the spectrum sketch, draw F1(w), F2(w), F3(w), and F4(w) exactly as the solution diagram shows. "
+            "F1(w) has triangular spectral pieces over [-2wB,0] and [0,2wB], with the midpoint at w=0. "
+            "F2(w) is the baseband-limited part over [-wB,wB]. Sampling by the impulse train repeats that baseband spectrum periodically, "
+            "so F3(w) is the repeated triangular pattern spaced by ws=2wB, equivalently fs/2=wB/(2pi). "
+            "After the final filtering/selection, F4(w) keeps the indicated triangle over the displayed baseband interval. "
+            "For the bonus square-law system with A much larger than m(t), f(t) approximately equals A^2/2 + A m(t). "
+            "Thus F1(w) = pi A^2 delta(w) + A M(w). The dc blocker removes the constant term and the gain 1/A restores the message, so y(t)=m(t)."
         ),
         "Test 1 Sample 1 Problem 5": (
             "Let the linear LSE approximation be p(x)=ax+b. Orthogonality to the basis {1,x} gives "

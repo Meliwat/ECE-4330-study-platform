@@ -182,8 +182,10 @@ def validate_html() -> None:
         "refreshLearningForFilteredProblems",
         "renderStepList",
         "Worked steps",
-        "Notebook work",
+        "Written work",
         "notebook-work",
+        "solutionDiagramImages",
+        "output/problems.js?v=20260428-4",
     ]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")

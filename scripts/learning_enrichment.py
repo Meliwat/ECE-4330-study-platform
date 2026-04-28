@@ -153,6 +153,37 @@ CHECK_CUES = {
 }
 
 
+MANUAL_STEP_OVERRIDES = {
+    "Final Sample Problem 6": [
+        "Target: Determine H(z) from the bilinear transform and decide whether Ts=2 is appropriate.",
+        "Method: Substitute the bilinear transform, simplify H(z), then compare Ts=2 samples with the analog impulse response.",
+        "Use s = (2/Ts)(1-z^(-1))/(1+z^(-1)). With Ts=2, s = (1-z^(-1))/(1+z^(-1)).",
+        "Substitute into H(s)=1/(s^2+s+1).",
+        "H(z)=1/[((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1].",
+        "Multiply numerator and denominator by (1+z^(-1))^2.",
+        "H(z) = (1 + 2z^(-1) + z^(-2))/(3 + z^(-2)) = (z+1)^2/(3z^2+1).",
+        "The analog impulse response is h(t)=(2sqrt(3)/3)e^(-t/2)sin((sqrt(3)/2)t)u(t).",
+        "For Ts=2, the plotted samples are h(2k), k=0,1,...,5.",
+        "Those samples under-sample the impulse response, so Ts=2 is not appropriate.",
+        "Check: The graph should be the red h(t) curve with blue samples at t=2k.",
+    ],
+    "Final Sample Problem 7": [
+        "Target: Sketch F1(w), F2(w), F3(w), and F4(w), then find y(t) for the bonus system.",
+        "Method: Match each node to the corresponding spectrum sketch, then use the square-law approximation for the bonus output.",
+        "Draw F1(w) as the two triangular spectral pieces over [-2wB,0] and [0,2wB].",
+        "Draw F2(w) as the baseband-limited spectrum over [-wB,wB].",
+        "Sampling by the impulse train repeats the spectrum periodically.",
+        "Use fs/2 = wB/(2pi), so ws = 2wB.",
+        "Draw F3(w) as repeated triangular copies spaced by ws=2wB.",
+        "Draw F4(w) as the selected output triangle shown after the final filtering/selection.",
+        "For the bonus square-law part, f(t) ≈ A^2/2 + A m(t) because A is much larger than m(t).",
+        "Therefore F1(w) = pi A^2 delta(w) + A M(w).",
+        "The dc blocker removes the constant term and the 1/A gain restores the message, so y(t)=m(t).",
+        "Check: The solution diagram should be the four-spectrum sketch with F1, F2, F3, and F4.",
+    ],
+}
+
+
 SETUP_STEPS = {
     "Signals/Math": [
         "Write the identity, definition, or algebra rule that matches the expression.",
@@ -417,6 +448,15 @@ def add_notebook_work(steps: List[dict]) -> List[dict]:
 
 
 def build_steps(problem: dict) -> List[dict]:
+    manual_steps = MANUAL_STEP_OVERRIDES.get(problem.get("source", ""))
+    if manual_steps:
+        return add_notebook_work([
+            {
+                "work": step,
+                "why": explain_step(step, problem.get("topic", "")),
+            }
+            for step in manual_steps
+        ])
     raw_solution = normalize_spaces(problem.get("solution", ""))
     if problem.get("solution_text_bad") and problem.get("solution_scan"):
         target = build_target_step(problem)

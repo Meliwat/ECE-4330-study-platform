@@ -35,6 +35,20 @@ SUBTOPIC_RULES = [
 ]
 
 
+TOPIC_PRIORITY_RULES = [
+    ("Butterworth", ["butterworth", "passband", "stopband", "low-pass", "high-pass"]),
+    ("Bilinear Transform", ["bilinear", "tustin", "s = 2"]),
+    ("Sampling/Nyquist", ["nyquist", "sampling", "alias", "sampled", "ts"]),
+    ("Convolution", ["convolution"]),
+    ("Fourier Series", ["fourier series", "coefficients", "parseval"]),
+    ("Fourier Transform", ["fourier transform", "f(ω)", "h(ω)", "bandwidth"]),
+    ("Difference Equations", ["difference equation", "y[k]", "f[k]", "y[n]", "x[n]"]),
+    ("Z-Transform", ["z-transform", "z transform", "f(z)", "h(z)", "z^"]),
+    ("ZIR/ZSR", ["zero-input", "zero state", "zero-state", "yzi", "yzs", "initial condition"]),
+    ("PFE", ["partial fraction", "inverse laplace", "residue"]),
+]
+
+
 TOPIC_HINTS = {
     "Signals/Math": [
         "Identify the algebra, calculus, or complex-number identity the problem is testing.",
@@ -109,11 +123,95 @@ COMMON_MISTAKES = {
 }
 
 
+METHOD_CUES = {
+    "Signals/Math": "Choose the algebra rule, identity, or calculus test that matches the expression before calculating.",
+    "Fourier Series": "Find the period and symmetry first, then compute only the Fourier coefficients that are needed.",
+    "Fourier Transform": "Match the signal to a transform pair or property, then track shifts, scaling, and bandwidth.",
+    "PFE": "Factor the denominator, build the partial fractions, and invert each term separately.",
+    "ZIR/ZSR": "Separate the natural response from the input-driven response before adding the valid parts.",
+    "Z-Transform": "Rewrite the sequence using steps, shifts, or known pairs before taking the Z-transform.",
+    "Butterworth": "Translate the magnitude specifications into filter order and cutoff conditions before solving.",
+    "Convolution": "Find the overlap interval first; the integral or sum is only valid on that interval.",
+    "Difference Equations": "Line up the sample indices carefully before solving recursively or by transform methods.",
+    "Sampling/Nyquist": "Simplify the signal first, then identify the highest frequency that must be preserved.",
+    "Bilinear Transform": "Substitute the bilinear map, collect powers of z^(-1), then read the difference equation.",
+}
+
+
+CHECK_CUES = {
+    "Fourier Series": "Check the period, symmetry, and coefficient scaling against the original signal.",
+    "Fourier Transform": "Check frequency shifts, bandwidth, and constants in radians per second.",
+    "PFE": "Check by recombining the partial fractions to recover the original rational expression.",
+    "ZIR/ZSR": "Check that initial conditions only affect the zero-input part and the input only drives the zero-state part.",
+    "Z-Transform": "Check the time shifts and any region-of-convergence or causality assumptions.",
+    "Butterworth": "Check the final filter against both passband and stopband requirements.",
+    "Convolution": "Check the breakpoints where the overlap interval changes.",
+    "Difference Equations": "Check the first few samples directly in the difference equation.",
+    "Sampling/Nyquist": "Check that the chosen sampling rate is above twice the highest frequency after simplification.",
+    "Bilinear Transform": "Check that the final expression is written in powers of z^(-1) before forming the recursion.",
+}
+
+
+SETUP_STEPS = {
+    "Signals/Math": [
+        "Write the identity, definition, or algebra rule that matches the expression.",
+        "Substitute the specific values from the problem into that rule before simplifying.",
+    ],
+    "Fourier Series": [
+        "Write the period and fundamental frequency before choosing coefficients.",
+        "Use symmetry to decide which coefficient integrals are actually needed.",
+    ],
+    "Fourier Transform": [
+        "Write the base transform pair or property that matches the signal.",
+        "Mark every time shift, frequency shift, scaling factor, or multiplication before simplifying.",
+    ],
+    "PFE": [
+        "Factor the denominator and write the unknown partial-fraction constants.",
+        "Solve the constants before taking any inverse Laplace transforms.",
+    ],
+    "ZIR/ZSR": [
+        "Write the homogeneous response for the zero-input part using the initial conditions.",
+        "Write the forced or transfer-function setup for the zero-state part using the input.",
+    ],
+    "Z-Transform": [
+        "Rewrite the sequence with unit steps, shifts, or known Z-transform pairs.",
+        "Apply each shift or scaling property before simplifying the final expression.",
+    ],
+    "Butterworth": [
+        "Convert the passband and stopband requirements into magnitude inequalities.",
+        "Solve for the filter order and cutoff before writing the final transfer function.",
+    ],
+    "Convolution": [
+        "Write the convolution definition and identify where the two signals overlap.",
+        "Set the integration or summation limits from that overlap before evaluating.",
+    ],
+    "Difference Equations": [
+        "Align every input and output sample index before substituting values.",
+        "Compute the next sample from known earlier samples, then repeat the recursion.",
+    ],
+    "Sampling/Nyquist": [
+        "Simplify products or modulation first so the true highest frequency is visible.",
+        "Apply the Nyquist rule to that highest frequency, not to the unsimplified signal.",
+    ],
+    "Bilinear Transform": [
+        "Write the substitution s = 2(1 - z^(-1)) / (T(1 + z^(-1))).",
+        "Collect the result in powers of z^(-1) before reading off the recursion.",
+    ],
+}
+
+
 WHY_RULES = [
+    (["target:"], "Naming the target first keeps the work tied to the exact question being asked."),
+    (["method:"], "Choosing the method up front makes the later algebra feel predictable instead of random."),
+    (["check:"], "A final check catches sign, scale, unit, and indexing errors before you move on."),
+    (["setup:"], "The setup step gives the calculation a concrete starting point before symbols start moving."),
     (["let ", "define", "set "], "This introduces variables or a target form so the rest of the work can be organized."),
     (["start", "begin"], "Starting from a known identity anchors the solution in a rule that is already valid."),
+    (["write ", "rewrite"], "Rewriting puts the expression into a form where the next rule can be applied cleanly."),
     (["euler"], "Euler's identity connects complex exponentials with sine and cosine, which is why it unlocks this step."),
     (["add ", "subtract"], "Combining equations cancels unwanted terms and isolates the expression the problem asks for."),
+    (["multiply", "divide"], "Clearing or scaling terms isolates the unknown while preserving the equation."),
+    (["expand"], "Expanding exposes like terms so they can be combined or compared directly."),
     (["differentiate", "derivative"], "Differentiating exposes extrema, rates of change, or transform properties needed by the problem."),
     (["integrate", "integral", "∫"], "The integral applies the definition or computes the accumulated response over the valid interval."),
     (["factor"], "Factoring reveals standard pieces that can be simplified or matched to known transform pairs."),
@@ -154,7 +252,6 @@ def infer_subtopics(problem: dict) -> List[str]:
     text = " ".join(
         [
             problem.get("source", ""),
-            problem.get("topic", ""),
             problem.get("problem", ""),
             problem.get("solution", ""),
         ]
@@ -166,6 +263,25 @@ def infer_subtopics(problem: dict) -> List[str]:
     if not found and problem.get("topic"):
         found.append(problem["topic"])
     return found[:6]
+
+
+def refine_topic(problem: dict) -> str:
+    text = " ".join(
+        [
+            problem.get("source", ""),
+            problem.get("problem", ""),
+            problem.get("solution", ""),
+        ]
+    ).lower()
+    if "convolution" in text or re.search(
+        r"[\w𝑎-𝑧ℎ]\s*[\(\[]\s*[tk]\s*[\)\]]\s*∗|∗\s*[\w𝑎-𝑧ℎ]\s*[\(\[]\s*[tk]\s*[\)\]]",
+        text,
+    ):
+        return "Convolution"
+    for topic, keywords in TOPIC_PRIORITY_RULES:
+        if any(keyword_matches(text, keyword.lower()) for keyword in keywords):
+            return topic
+    return "Signals/Math"
 
 
 def infer_difficulty(problem: dict, subtopics: Iterable[str]) -> str:
@@ -202,31 +318,76 @@ def infer_goal(problem_text: str) -> str:
     return "Work through the requested calculation and state the final result."
 
 
+def split_by_pattern(parts: List[str], pattern: str) -> List[str]:
+    result: List[str] = []
+    for part in parts:
+        result.extend(piece.strip() for piece in re.split(pattern, part) if piece.strip())
+    return result
+
+
+def split_dense_chunk(chunk: str) -> List[str]:
+    parts = [chunk.strip()]
+    parts = split_by_pattern(parts, r";\s+")
+    parts = split_by_pattern(parts, r"(?<=[.;:])\s+(?=(?:\d+|[a-c])\)\s)")
+    parts = split_by_pattern(parts, r"(?<=[.;:])\s+(?=[abc]\.\)\s)")
+    parts = split_by_pattern(parts, r"\s+(?=For\s+K\s*=)")
+    parts = split_by_pattern(parts, r"\s+(?=For\s+[a-z]\(t\)\s*=)")
+
+    refined: List[str] = []
+    for part in parts:
+        if len(part) <= 260:
+            refined.append(part)
+            continue
+        smaller = re.split(r",\s+(?=so\b|which gives\b|giving\b|hence\b|therefore\b)", part)
+        if len(smaller) > 1:
+            refined.extend(piece.strip() for piece in smaller if piece.strip())
+        else:
+            refined.append(part)
+    return refined
+
+
 def sentence_split(text: str) -> List[str]:
     cleaned = normalize_spaces(text)
     if not cleaned:
         return []
+    cleaned = re.sub(r"(?<=[.;:])\s+([abc]\.\))\s+", r". \1 ", cleaned)
+    cleaned = re.sub(r"(?<=[.;:])\s+(\d+\))\s+", r". \1 ", cleaned)
     cleaned = re.sub(r"(?<![.!?])\s+(Then|Therefore|Thus|Hence|Since|For the|With|Using)\b", r". \1", cleaned)
+    cleaned = re.sub(
+        r",\s+(so|which gives|giving|hence|therefore)\b",
+        lambda match: f". {match.group(1).capitalize()}",
+        cleaned,
+    )
     chunks = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9Σ∫π√𝑎-𝑧])", cleaned)
     steps = []
-    buffer = ""
     for chunk in chunks:
         chunk = chunk.strip()
         if not chunk:
             continue
-        if len(chunk) < 34 and buffer:
-            buffer = f"{buffer} {chunk}"
+        steps.extend(split_dense_chunk(chunk))
+    return merge_tiny_steps(dedupe_steps(steps))[:14]
+
+
+def dedupe_steps(steps: List[str]) -> List[str]:
+    cleaned: List[str] = []
+    seen = set()
+    for step in steps:
+        normalized = re.sub(r"[^a-z0-9]+", " ", step.lower()).strip()
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        cleaned.append(step)
+    return cleaned
+
+
+def merge_tiny_steps(steps: List[str]) -> List[str]:
+    merged: List[str] = []
+    for step in steps:
+        if len(step) < 28 and merged:
+            merged[-1] = f"{merged[-1]} {step}"
         else:
-            if buffer:
-                steps.append(buffer)
-            buffer = chunk
-    if buffer:
-        steps.append(buffer)
-    if len(steps) > 8:
-        head = steps[:6]
-        tail = " ".join(steps[6:])
-        steps = head + [tail]
-    return steps
+            merged.append(step)
+    return merged
 
 
 def explain_step(step: str, topic: str) -> str:
@@ -244,39 +405,109 @@ def explain_step(step: str, topic: str) -> str:
 def build_steps(problem: dict) -> List[dict]:
     raw_solution = normalize_spaces(problem.get("solution", ""))
     if problem.get("solution_text_bad") and problem.get("solution_scan"):
+        target = build_target_step(problem)
         return [
+            target,
+            method_step(problem),
             {
-                "work": "Open the exact solution scan attached below before trusting the extracted text.",
-                "why": "This record is flagged for unreliable OCR, so the scan is the authoritative worked solution.",
+                "work": "Confirm the attached solution scan belongs to this exact problem number.",
+                "why": "The scan is the source of the worked math, so matching it to the problem prevents studying the wrong diagram.",
             },
             {
-                "work": "Identify the setup line in the scan: definitions, transform pair, equation, or coefficient formula.",
-                "why": "The setup determines which course method applies and prevents using a correct formula on the wrong quantity.",
+                "work": "Copy the givens from the problem statement before reading the solution line.",
+                "why": "Writing the givens makes it easier to notice which symbols, inputs, frequencies, or initial conditions must appear later.",
             },
             {
-                "work": "Follow each algebraic or transform line and compare it with the original problem statement.",
-                "why": "Most mistakes in these problems come from sign, scaling, shift, or indexing errors between adjacent lines.",
+                "work": "Identify the first setup line in the solution scan: definition, transform pair, equation, or coefficient formula.",
+                "why": "The setup line tells you which course method is being used before the calculation starts.",
             },
             {
-                "work": "Use the final line of the scan as the answer and verify it against units, frequency, region, or initial conditions.",
+                "work": "Reproduce the algebra one line at a time instead of jumping to the final line.",
+                "why": "Line-by-line copying exposes sign, scale, shift, and indexing changes that are easy to miss.",
+            },
+            {
+                "work": "Pause at each equals sign and ask what rule changed the previous line into the next one.",
+                "why": "This keeps the solution active: you are identifying the reason for each move, not just reading it.",
+            },
+            {
+                "work": check_step(problem).get("work", "Check the final answer against the original problem."),
                 "why": "The final check confirms that the answer satisfies the actual request rather than only the intermediate calculation.",
             },
         ]
     sentences = sentence_split(raw_solution)
     if not sentences:
         return [
+            build_target_step(problem),
+            method_step(problem),
             {
                 "work": "Use the exact solution scan attached to this problem.",
                 "why": "The text extraction did not produce a reliable worked solution, so the original scan is the accurate source.",
-            }
+            },
+            final_form_step(problem),
+            check_step(problem),
         ]
-    return [
+    work_steps = [
         {
             "work": sentence,
             "why": explain_step(sentence, problem.get("topic", "")),
         }
         for sentence in sentences
     ]
+    return build_scaffolded_steps(problem, work_steps)
+
+
+def build_target_step(problem: dict) -> dict:
+    goal = infer_goal(problem.get("problem", ""))
+    return {
+        "work": f"Target: {goal}.",
+        "why": "Naming the target first keeps every later line connected to what the problem actually asks for.",
+    }
+
+
+def method_step(problem: dict) -> dict:
+    topic = problem.get("topic", "Signals/Math")
+    return {
+        "work": f"Method: {METHOD_CUES.get(topic, METHOD_CUES['Signals/Math'])}",
+        "why": "Choosing the method before calculating gives the work a clear path and reduces guessing.",
+    }
+
+
+def setup_steps(problem: dict) -> List[dict]:
+    topic = problem.get("topic", "Signals/Math")
+    cues = SETUP_STEPS.get(topic, SETUP_STEPS["Signals/Math"])
+    return [
+        {
+            "work": f"Setup: {cue}",
+            "why": "This turns the problem statement into the exact calculation you are about to perform.",
+        }
+        for cue in cues
+    ]
+
+
+def check_step(problem: dict) -> dict:
+    topic = problem.get("topic", "Signals/Math")
+    return {
+        "work": f"Check: {CHECK_CUES.get(topic, 'Substitute the result back into the original statement and check units, signs, and requested form.')}",
+        "why": "The check is where small algebra, sign, unit, or indexing mistakes usually reveal themselves.",
+    }
+
+
+def final_form_step(problem: dict) -> dict:
+    return {
+        "work": "State the answer in the same notation, variables, and units used by the problem.",
+        "why": "Putting the result back into the problem's language makes it easier to tell whether the question was fully answered.",
+    }
+
+
+def build_scaffolded_steps(problem: dict, work_steps: List[dict]) -> List[dict]:
+    result = [build_target_step(problem), method_step(problem)]
+    if len(work_steps) <= 2:
+        result.extend(setup_steps(problem))
+    result.extend(work_steps)
+    if len(work_steps) == 1:
+        result.append(final_form_step(problem))
+    result.append(check_step(problem))
+    return result
 
 
 def build_hints(problem: dict, subtopics: List[str]) -> List[str]:
@@ -301,6 +532,7 @@ def final_answer(problem: dict, steps: List[dict]) -> str:
 
 def enrich_record(problem: dict, index: int, seen: dict) -> dict:
     problem["id"] = problem.get("id") or stable_id(problem.get("source", ""), index, seen)
+    problem["topic"] = refine_topic(problem)
     subtopics = infer_subtopics(problem)
     steps = build_steps(problem)
     problem["subtopics"] = subtopics

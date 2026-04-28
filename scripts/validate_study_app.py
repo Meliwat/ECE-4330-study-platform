@@ -58,6 +58,14 @@ def validate_problem(record: dict, index: int, ids: set) -> None:
         raise AssertionError(f"{record['source']} has no hints")
     if not learning["steps"]:
         raise AssertionError(f"{record['source']} has no worked steps")
+    if len(learning["steps"]) < 5:
+        raise AssertionError(f"{record['source']} should have at least five worked study steps")
+    if not learning["steps"][0].get("work", "").startswith("Target:"):
+        raise AssertionError(f"{record['source']} should start worked steps with a target")
+    if not any(step.get("work", "").startswith("Method:") for step in learning["steps"][:3]):
+        raise AssertionError(f"{record['source']} should show a method cue near the start")
+    if not learning["steps"][-1].get("work", "").startswith("Check:"):
+        raise AssertionError(f"{record['source']} should end worked steps with a check")
     for step in learning["steps"]:
         if not step.get("work") or not step.get("why"):
             raise AssertionError(f"{record['source']} has an incomplete step")
@@ -126,6 +134,7 @@ def validate_html() -> None:
         "Review weak",
         "problem-number-badge",
         "problemSourceParts",
+        "Step ${index + 1} of ${steps.length}",
     ]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")

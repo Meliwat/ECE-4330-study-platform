@@ -265,6 +265,60 @@
         align-items: start;
       }
 
+      .problem-identity {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        min-width: 0;
+      }
+
+      .problem-number-badge {
+        display: grid;
+        place-items: center;
+        min-width: 86px;
+        min-height: 58px;
+        padding: 8px 12px;
+        border: 1px solid var(--accent-strong);
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(36, 87, 214, 0.18);
+      }
+
+      .problem-number-label {
+        display: block;
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        opacity: 0.86;
+        text-transform: uppercase;
+      }
+
+      .problem-number-value {
+        display: block;
+        margin-top: 3px;
+        font-size: 1.65rem;
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+
+      .problem-source-block {
+        min-width: 0;
+      }
+
+      .problem-source {
+        color: var(--ink);
+        font-size: 1.08rem;
+        font-weight: 850;
+        line-height: 1.2;
+      }
+
+      .problem-source-full {
+        margin-top: 3px;
+      }
+
       .meta {
         color: var(--muted);
         font-size: 0.9rem;
@@ -490,6 +544,20 @@
         .controls,
         .study-brief {
           grid-template-columns: 1fr;
+        }
+
+        .problem-identity {
+          gap: 10px;
+        }
+
+        .problem-number-badge {
+          min-width: 74px;
+          min-height: 52px;
+          padding: 7px 9px;
+        }
+
+        .problem-number-value {
+          font-size: 1.42rem;
         }
 
         .rating-row {
@@ -867,6 +935,54 @@
           });
         }
 
+        function problemSourceParts(source) {
+          const full = String(source || "Untitled problem").trim();
+          const match = full.match(/^(.*?)\s+Problem\s+([0-9]+[A-Za-z]?)$/i);
+          if (!match) {
+            return {
+              context: full,
+              number: "",
+              full,
+            };
+          }
+          return {
+            context: match[1].trim() || full,
+            number: match[2].trim(),
+            full,
+          };
+        }
+
+        function renderProblemIdentity(problem) {
+          const parts = problemSourceParts(problem.source);
+          const identity = document.createElement("div");
+          identity.className = "problem-identity";
+
+          const badge = document.createElement("div");
+          badge.className = "problem-number-badge";
+          badge.setAttribute("aria-label", parts.number ? `Problem ${parts.number}` : "Problem");
+          const badgeLabel = document.createElement("span");
+          badgeLabel.className = "problem-number-label";
+          badgeLabel.textContent = "Problem";
+          const badgeValue = document.createElement("span");
+          badgeValue.className = "problem-number-value";
+          badgeValue.textContent = parts.number || "#";
+          badge.append(badgeLabel, badgeValue);
+
+          const sourceBlock = document.createElement("div");
+          sourceBlock.className = "problem-source-block";
+          const source = document.createElement("div");
+          source.className = "problem-source";
+          source.textContent = parts.context;
+          const fullSource = textDiv("meta problem-source-full", parts.full);
+
+          const tags = document.createElement("div");
+          tags.className = "tag-row";
+          renderTags(problem, tags);
+          sourceBlock.append(source, fullSource, tags);
+          identity.append(badge, sourceBlock);
+          return identity;
+        }
+
         function renderBrief(problem, card) {
           if (state.mode === "exam") return;
           const learning = problem.learning || {};
@@ -1042,16 +1158,10 @@
 
           const header = document.createElement("div");
           header.className = "card-header";
-          const titleBlock = document.createElement("div");
-          titleBlock.appendChild(textDiv("meta", problem.source || "Untitled problem"));
-          const tags = document.createElement("div");
-          tags.className = "tag-row";
-          renderTags(problem, tags);
-          titleBlock.appendChild(tags);
           const quickActions = document.createElement("div");
           quickActions.className = "card-actions";
           quickActions.appendChild(button("Copy link", "btn", false, () => copyProblemLink(problem)));
-          header.append(titleBlock, quickActions);
+          header.append(renderProblemIdentity(problem), quickActions);
           card.appendChild(header);
 
           const rawProblem = String(problem.problem || "").trim();

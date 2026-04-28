@@ -82,6 +82,8 @@ def validate_html() -> None:
         "localStorage",
         "Reveal next step",
         "Review weak",
+        "problem-number-badge",
+        "problemSourceParts",
     ]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")

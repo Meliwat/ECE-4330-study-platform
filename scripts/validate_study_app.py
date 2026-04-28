@@ -176,6 +176,7 @@ def validate_html() -> None:
         "output/problems.json",
         "localStorage",
         "Reveal next step",
+        "Hide steps",
         "Review weak",
         "problem-number-badge",
         "problemSourceParts",
@@ -202,7 +203,7 @@ def validate_html() -> None:
             raise AssertionError(f"study.html should not include user work input: {removed}")
     if re.search(r"return `/\\$\\{cleaned\\}", study):
         raise AssertionError("study.html still appears to use root-relative image URLs")
-    if "./study-graphs-fixed.html?cache=230acd5" not in index:
+    if "./study-graphs-fixed.html?cache=hide-steps-v1" not in index:
         raise AssertionError("index.html should redirect to the cache-busted fixed study page")
 
 

@@ -1172,15 +1172,25 @@
               })
             )
           );
+          if (!progress.solutionVisible && progress.stepsRevealed > 0) {
+            actions.appendChild(
+              button("Hide steps", "btn", examLocked, () =>
+                updateProgress(problem, {
+                  stepsRevealed: 0,
+                })
+              )
+            );
+          }
           actions.appendChild(
-            button(progress.solutionVisible ? "Hide full solution" : "Show full solution", "btn", examLocked, () =>
+            button(progress.solutionVisible ? "Hide full solution" : "Show full solution", "btn", examLocked, () => {
+              const opening = !progress.solutionVisible;
               updateProgress(problem, {
-                solutionVisible: !progress.solutionVisible,
-                hintsRevealed: !progress.solutionVisible ? hints.length : progress.hintsRevealed,
-                stepsRevealed: !progress.solutionVisible ? steps.length : progress.stepsRevealed,
+                solutionVisible: opening,
+                hintsRevealed: opening ? hints.length : progress.hintsRevealed,
+                stepsRevealed: opening ? steps.length : 0,
                 status: progress.status === "new" ? "tried" : progress.status,
-              })
-            )
+              });
+            })
           );
           panel.appendChild(actions);
 

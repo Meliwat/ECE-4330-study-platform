@@ -5,6 +5,7 @@ from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 PROBLEMS_PATH = PROJECT_DIR / "output" / "problems.json"
+PROBLEMS_JS_PATH = PROJECT_DIR / "output" / "problems.js"
 STUDY_PATH = PROJECT_DIR / "study.html"
 INDEX_PATH = PROJECT_DIR / "index.html"
 
@@ -74,7 +75,7 @@ def validate_assets(record: dict) -> None:
 def validate_html() -> None:
     study = STUDY_PATH.read_text(encoding="utf-8")
     index = INDEX_PATH.read_text(encoding="utf-8")
-    for needle in ["output/problems.json", "localStorage", "Reveal next step", "Review weak"]:
+    for needle in ["output/problems.js", "window.ECE4330_PROBLEMS", "output/problems.json", "localStorage", "Reveal next step", "Review weak"]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")
     if re.search(r"return `/\\$\\{cleaned\\}", study):
@@ -85,9 +86,16 @@ def validate_html() -> None:
 
 def main() -> None:
     assert_file(PROBLEMS_PATH)
+    assert_file(PROBLEMS_JS_PATH)
     assert_file(STUDY_PATH)
     assert_file(INDEX_PATH)
     records = json.loads(PROBLEMS_PATH.read_text(encoding="utf-8"))
+    problems_js = PROBLEMS_JS_PATH.read_text(encoding="utf-8")
+    if not problems_js.startswith("window.ECE4330_PROBLEMS = "):
+        raise AssertionError("output/problems.js does not define window.ECE4330_PROBLEMS")
+    embedded = json.loads(problems_js.removeprefix("window.ECE4330_PROBLEMS = ").removesuffix(";\n"))
+    if embedded != records:
+        raise AssertionError("output/problems.js is not in sync with output/problems.json")
     if len(records) < 150:
         raise AssertionError(f"Expected at least 150 problems, found {len(records)}")
     ids = set()

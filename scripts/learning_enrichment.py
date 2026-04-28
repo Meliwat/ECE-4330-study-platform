@@ -6,6 +6,7 @@ from typing import Iterable, List
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 PROBLEMS_PATH = PROJECT_DIR / "output" / "problems.json"
+PROBLEMS_JS_PATH = PROJECT_DIR / "output" / "problems.js"
 
 
 SUBTOPIC_RULES = [
@@ -329,6 +330,12 @@ def main() -> None:
     records = json.loads(PROBLEMS_PATH.read_text(encoding="utf-8"))
     enriched = enrich_records(records)
     PROBLEMS_PATH.write_text(json.dumps(enriched, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    PROBLEMS_JS_PATH.write_text(
+        "window.ECE4330_PROBLEMS = "
+        + json.dumps(enriched, ensure_ascii=False, separators=(",", ":"))
+        + ";\n",
+        encoding="utf-8",
+    )
     print(f"Enriched {len(enriched)} problems with learning metadata.")
 
 

@@ -19,6 +19,7 @@
       };
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./output/problems.js"></script>
     <style>
       :root {
         color-scheme: light;
@@ -1264,6 +1265,12 @@
 
         async function loadProblems() {
           try {
+            if (Array.isArray(window.ECE4330_PROBLEMS) && window.ECE4330_PROBLEMS.length) {
+              state.problems = window.ECE4330_PROBLEMS;
+              wireEvents();
+              render();
+              return;
+            }
             const response = await fetch("./output/problems.json", { cache: "no-store" });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             state.problems = await response.json();

@@ -6,7 +6,7 @@ A static study app for ECE 4330 problems, diagrams, scans, hints, worked steps, 
 
 GitHub Pages URL:
 
-https://trale-77.github.io/ECE-4330-problem-drill/
+https://meliwat.github.io/ECE-4330-study-platform/
 
 ## Run Locally
 
@@ -20,7 +20,7 @@ Then open:
 http://localhost:8000/study.html
 ```
 
-Opening `study.html` directly from Finder will not load `output/problems.json` because browsers block local `fetch()` calls.
+Opening `study.html` directly from Finder also works because the shared problem set is bundled in `output/problems.js`.
 
 ## Study Features
 
@@ -35,13 +35,13 @@ Opening `study.html` directly from Finder will not load `output/problems.json` b
 
 ## Data Notes
 
-`output/problems.json` is the live dataset. Every record has generated `learning` metadata, including hints, worked steps, why explanations, checks, common mistakes, difficulty, and subtopics.
+`output/problems.json` is the canonical dataset. `output/problems.js` is the same dataset bundled as `window.ECE4330_PROBLEMS` so the app launches with the shared problem set even when a browser blocks JSON fetches or someone opens the downloaded folder directly.
 
 Some source solution text is marked scan-backed because OCR extraction is unreliable. In those cases the app keeps the exact scan visible and uses a conservative guided workflow instead of pretending the OCR text is perfect.
 
 ## Maintenance
 
-Regenerate learning metadata after dataset changes:
+Regenerate learning metadata and the bundled launch data after dataset changes:
 
 ```bash
 python3 scripts/learning_enrichment.py

@@ -11,6 +11,7 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 PROBLEMS_PATH = PROJECT_DIR / "output" / "problems.json"
 PROBLEMS_JS_PATH = PROJECT_DIR / "output" / "problems.js"
 STUDY_PATH = PROJECT_DIR / "study.html"
+FIXED_STUDY_PATH = PROJECT_DIR / "study-graphs-fixed.html"
 INDEX_PATH = PROJECT_DIR / "index.html"
 
 
@@ -167,6 +168,7 @@ def validate_manual_graph_diagrams(records: list) -> None:
 
 def validate_html() -> None:
     study = STUDY_PATH.read_text(encoding="utf-8")
+    fixed_study = FIXED_STUDY_PATH.read_text(encoding="utf-8")
     index = INDEX_PATH.read_text(encoding="utf-8")
     for needle in [
         "output/problems.js",
@@ -189,6 +191,8 @@ def validate_html() -> None:
     ]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")
+        if needle not in fixed_study:
+            raise AssertionError(f"study-graphs-fixed.html missing expected text: {needle}")
     if "scan-backed" in study:
         raise AssertionError("study.html should not render the scan-backed pill")
     if "Felt like" in study:
@@ -198,14 +202,15 @@ def validate_html() -> None:
             raise AssertionError(f"study.html should not include user work input: {removed}")
     if re.search(r"return `/\\$\\{cleaned\\}", study):
         raise AssertionError("study.html still appears to use root-relative image URLs")
-    if "./study.html" not in index:
-        raise AssertionError("index.html should redirect to study.html")
+    if "./study-graphs-fixed.html?cache=230acd5" not in index:
+        raise AssertionError("index.html should redirect to the cache-busted fixed study page")
 
 
 def main() -> None:
     assert_file(PROBLEMS_PATH)
     assert_file(PROBLEMS_JS_PATH)
     assert_file(STUDY_PATH)
+    assert_file(FIXED_STUDY_PATH)
     assert_file(INDEX_PATH)
     records = json.loads(PROBLEMS_PATH.read_text(encoding="utf-8"))
     problems_js = PROBLEMS_JS_PATH.read_text(encoding="utf-8")

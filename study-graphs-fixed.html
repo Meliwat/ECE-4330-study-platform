@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECE 4330 Study Platform</title>
+    <link rel="icon" href="data:," />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+        },
+        startup: {
+          typeset: false,
+        },
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./output/problems.js?v=20260428-4"></script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7fb;
+        --surface: #ffffff;
+        --surface-soft: #eef2f7;
+        --surface-blue: #eaf2ff;
+        --surface-green: #e9f7ef;
+        --surface-amber: #fff4dc;
+        --ink: #20242c;
+        --muted: #677083;
+        --border: #d8dee8;
+        --accent: #2457d6;
+        --accent-strong: #173e9c;
+        --success: #13795b;
+        --warning: #9a5b00;
+        --danger: #b42318;
+        --shadow: 0 12px 36px rgba(25, 33, 52, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.45;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        min-height: 36px;
+      }
+
+      .page {
+        width: min(1280px, calc(100% - 32px));
+        margin: 28px auto 64px;
+      }
+
+      .hero,
+      .panel,
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        padding: 22px;
+      }
+
+      .hero-top {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: start;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: clamp(1.8rem, 1.1rem + 2vw, 3rem);
+        letter-spacing: 0;
+      }
+
+      .subhead {
+        max-width: 780px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(86px, 1fr));
+        gap: 8px;
+        min-width: 390px;
+      }
+
+      .stat {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px;
+        background: var(--surface-soft);
+      }
+
+      .stat-value {
+        display: block;
+        font-size: 1.35rem;
+        font-weight: 750;
+      }
+
+      .stat-label {
+        display: block;
+        color: var(--muted);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: minmax(240px, 1.4fr) repeat(4, minmax(150px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .field input,
+      .field select {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .field input,
+      .field select {
+        min-height: 42px;
+        padding: 9px 11px;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
+      }
+
+      .status {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .button-row,
+      .solution-actions,
+      .rating-row,
+      .card-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .btn {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--surface-soft);
+        color: var(--ink);
+        padding: 7px 11px;
+        cursor: pointer;
+      }
+
+      .btn:hover:not(:disabled) {
+        border-color: #aeb8c8;
+        background: #e6ebf3;
+      }
+
+      .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .btn.primary:hover:not(:disabled) {
+        background: var(--accent-strong);
+      }
+
+      .btn.active {
+        border-color: var(--accent);
+        background: var(--surface-blue);
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+
+      .btn.success.active {
+        border-color: var(--success);
+        background: var(--surface-green);
+        color: var(--success);
+      }
+
+      .btn.warning.active {
+        border-color: var(--warning);
+        background: var(--surface-amber);
+        color: var(--warning);
+      }
+
+      .progress-track {
+        height: 8px;
+        margin-top: 14px;
+        border-radius: 999px;
+        background: var(--surface-soft);
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--success));
+        transition: width 0.2s ease;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        margin-top: 20px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .card-header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .problem-identity {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        min-width: 0;
+      }
+
+      .problem-number-badge {
+        display: grid;
+        place-items: center;
+        min-width: 86px;
+        min-height: 58px;
+        padding: 8px 12px;
+        border: 1px solid var(--accent-strong);
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(36, 87, 214, 0.18);
+      }
+
+      .problem-number-label {
+        display: block;
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        opacity: 0.86;
+        text-transform: uppercase;
+      }
+
+      .problem-number-value {
+        display: block;
+        margin-top: 3px;
+        font-size: 1.65rem;
+        font-weight: 900;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+
+      .problem-source-block {
+        min-width: 0;
+      }
+
+      .problem-source {
+        color: var(--ink);
+        font-size: 1.08rem;
+        font-weight: 850;
+        line-height: 1.2;
+      }
+
+      .problem-source-full {
+        margin-top: 3px;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 3px 8px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--surface-soft);
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .tag.review {
+        border-color: #f0c36a;
+        background: var(--surface-amber);
+        color: var(--warning);
+      }
+
+      .problem-text,
+      .solution-text,
+      .step-work,
+      .notebook-work,
+      .hint-list,
+      .brief-value {
+        font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+        text-rendering: optimizeLegibility;
+      }
+
+      .problem-text {
+        margin: 16px 0;
+        white-space: pre-wrap;
+        font-size: 1.05rem;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .study-brief {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin: 12px 0;
+      }
+
+      .brief-item {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 10px;
+      }
+
+      .brief-label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 750;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .rating-block {
+        display: grid;
+        gap: 8px;
+        margin: 12px 0;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+      }
+
+      .rating-label {
+        width: 92px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 750;
+      }
+
+      .learning-panel {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .hint-list {
+        margin: 0;
+        padding-left: 22px;
+      }
+
+      .hint-list li {
+        margin: 5px 0;
+      }
+
+      .step-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .step {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 12px;
+      }
+
+      .step-title {
+        margin: 0 0 6px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .step-work {
+        white-space: pre-wrap;
+      }
+
+      .notebook-label {
+        display: block;
+        margin: 8px 0 4px;
+        color: var(--muted);
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .notebook-work {
+        white-space: pre-wrap;
+        border-left: 3px solid var(--accent);
+        padding: 8px 10px;
+        background: #fff;
+      }
+
+      details.why {
+        margin-top: 8px;
+      }
+
+      details.why summary {
+        cursor: pointer;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .solution {
+        border: 1px dashed #aeb8c8;
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 12px;
+      }
+
+      .solution h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+
+      .solution h4 {
+        margin: 12px 0 8px;
+        font-size: 0.92rem;
+      }
+
+      .solution-text {
+        white-space: pre-wrap;
+      }
+
+      .scan-note,
+      .diagram-label {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 750;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .diagram-label {
+        margin: 12px 0 6px;
+      }
+
+      .diagram {
+        display: block;
+        width: min(100%, 760px);
+        max-height: 620px;
+        margin-bottom: 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fff;
+        object-fit: contain;
+      }
+
+      .empty,
+      .exam-lock {
+        border: 1px dashed var(--border);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--muted);
+        padding: 18px;
+      }
+
+      .exam-lock {
+        background: var(--surface-amber);
+        color: var(--warning);
+      }
+
+      @media (max-width: 980px) {
+        .hero-top,
+        .card-header {
+          grid-template-columns: 1fr;
+        }
+
+        .stats,
+        .controls,
+        .study-brief {
+          grid-template-columns: 1fr 1fr;
+          min-width: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(100% - 20px, 1280px);
+          margin-top: 10px;
+        }
+
+        .hero,
+        .card {
+          padding: 14px;
+        }
+
+        .stats,
+        .controls,
+        .study-brief {
+          grid-template-columns: 1fr;
+        }
+
+        .problem-identity {
+          gap: 10px;
+        }
+
+        .problem-number-badge {
+          min-width: 74px;
+          min-height: 52px;
+          padding: 7px 9px;
+        }
+
+        .problem-number-value {
+          font-size: 1.42rem;
+        }
+
+        .rating-row {
+          align-items: stretch;
+        }
+
+        .rating-label {
+          width: 100%;
+        }
+
+        .btn {
+          flex: 1 1 auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="hero-top">
+          <div>
+            <h1>ECE 4330 Study Platform</h1>
+            <p class="subhead">
+              Attempt problems first, reveal hints and worked steps gradually, expand why each step is done, and review the problems that need another pass.
+            </p>
+          </div>
+          <div class="stats" aria-label="Study progress">
+            <div class="stat">
+              <span class="stat-value" id="shownCount">0</span>
+              <span class="stat-label">Shown</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="attemptedCount">0</span>
+              <span class="stat-label">Tried</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="correctCount">0</span>
+              <span class="stat-label">Correct</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="reviewCount">0</span>
+              <span class="stat-label">Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="field">
+            <label for="searchInput">Search</label>
+            <input id="searchInput" type="search" placeholder="topic, source, equation, keyword" />
+          </div>
+          <div class="field">
+            <label for="modeSelect">Mode</label>
+            <select id="modeSelect">
+              <option value="practice">Practice</option>
+              <option value="learn">Learn</option>
+              <option value="exam">Exam</option>
+              <option value="review">Review weak</option>
+              <option value="browse">Browse</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="topicSelect">Problem Type</label>
+            <select id="topicSelect"></select>
+          </div>
+          <div class="field">
+            <label for="categorySelect">Source</label>
+            <select id="categorySelect"></select>
+          </div>
+          <div class="field">
+            <label for="sourceItemSelect">Exam / Assignment</label>
+            <select id="sourceItemSelect"></select>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="status" id="status">Loading problems...</div>
+          <div class="button-row">
+            <button class="btn" id="shuffleButton" type="button">Shuffle shown</button>
+            <button class="btn" id="resetFiltersButton" type="button">Reset filters</button>
+            <button class="btn" id="exportButton" type="button">Export progress</button>
+            <button class="btn" id="resetProgressButton" type="button">Reset progress</button>
+          </div>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </section>
+
+      <section class="grid" id="problemList"></section>
+    </main>
+
+    <script>
+      (() => {
+        const STORAGE_KEY = "ece4330.studyProgress.v2";
+        const ASSET_VERSION = "20260428-4";
+        const STATUS_OPTIONS = [
+          ["new", "New"],
+          ["tried", "Tried"],
+          ["correct", "Correct"],
+          ["stuck", "Stuck"],
+          ["review", "Review again"],
+        ];
+        const CONFIDENCE_OPTIONS = [
+          ["", "Confidence"],
+          ["low", "Low"],
+          ["medium", "Medium"],
+          ["high", "High"],
+        ];
+        const SOURCE_ITEM_ORDER = [
+          "Assignment 1",
+          "Assignment 2",
+          "Assignment 3",
+          "Assignment 4",
+          "Assignment 5",
+          "Assignment 6",
+          "Assignment 7",
+          "Assignment 8",
+          "Assignment 9",
+          "Assignment 10",
+          "Exam 1",
+          "Exam 2",
+          "Exam 3",
+          "Final",
+        ];
+        const EMPTY_PROGRESS = {
+          status: "new",
+          confidence: "",
+          hintsRevealed: 0,
+          stepsRevealed: 0,
+          solutionVisible: false,
+          updatedAt: "",
+        };
+
+        const state = {
+          problems: [],
+          progress: loadProgress(),
+          currentTopic: "All",
+          currentCategory: "All",
+          currentSourceItem: "All",
+          mode: "practice",
+          search: "",
+          shuffled: false,
+        };
+
+        const els = {
+          list: document.getElementById("problemList"),
+          status: document.getElementById("status"),
+          shownCount: document.getElementById("shownCount"),
+          attemptedCount: document.getElementById("attemptedCount"),
+          correctCount: document.getElementById("correctCount"),
+          reviewCount: document.getElementById("reviewCount"),
+          progressFill: document.getElementById("progressFill"),
+          searchInput: document.getElementById("searchInput"),
+          modeSelect: document.getElementById("modeSelect"),
+          topicSelect: document.getElementById("topicSelect"),
+          categorySelect: document.getElementById("categorySelect"),
+          sourceItemSelect: document.getElementById("sourceItemSelect"),
+          shuffleButton: document.getElementById("shuffleButton"),
+          resetFiltersButton: document.getElementById("resetFiltersButton"),
+          exportButton: document.getElementById("exportButton"),
+          resetProgressButton: document.getElementById("resetProgressButton"),
+        };
+
+        function loadProgress() {
+          try {
+            const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+            Object.values(parsed).forEach((item) => {
+              if (item && typeof item === "object") {
+                delete item["no" + "tes"];
+                delete item["user" + "Difficulty"];
+              }
+            });
+            return parsed;
+          } catch {
+            return {};
+          }
+        }
+
+        function saveProgress() {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
+        }
+
+        function problemId(problem) {
+          return problem.id || slugify(problem.source || "problem");
+        }
+
+        function slugify(value) {
+          return String(value || "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+        }
+
+        function progressFor(problem) {
+          const id = problemId(problem);
+          if (!state.progress[id]) {
+            state.progress[id] = { ...EMPTY_PROGRESS };
+          }
+          return state.progress[id];
+        }
+
+        function readProgress(problem) {
+          return state.progress[problemId(problem)] || EMPTY_PROGRESS;
+        }
+
+        function updateProgress(problem, changes) {
+          const progress = progressFor(problem);
+          Object.assign(progress, changes, { updatedAt: new Date().toISOString() });
+          saveProgress();
+          render();
+        }
+
+        function resetLearningRevealState(problem) {
+          const progress = state.progress[problemId(problem)];
+          if (!progress) return false;
+          const shouldReset =
+            progress.hintsRevealed ||
+            progress.stepsRevealed ||
+            progress.solutionVisible;
+          if (!shouldReset) return false;
+          progress.hintsRevealed = 0;
+          progress.stepsRevealed = 0;
+          progress.solutionVisible = false;
+          return true;
+        }
+
+        function refreshLearningForFilteredProblems() {
+          let changed = false;
+          getFilteredProblems().forEach((problem) => {
+            changed = resetLearningRevealState(problem) || changed;
+          });
+          if (changed) saveProgress();
+        }
+
+        function applyFilterChange(updateState) {
+          updateState();
+          refreshLearningForFilteredProblems();
+          render();
+        }
+
+        function getCategory(source) {
+          const normalized = String(source || "").toLowerCase();
+          if (normalized.includes("assignment")) return "Assignments";
+          if (normalized.includes("exam") || normalized.includes("test")) return "Exams";
+          if (normalized.includes("lecture")) return "Lectures";
+          return "Other";
+        }
+
+        function getSourceItem(source) {
+          const text = String(source || "").trim();
+          const assignmentMatch = text.match(/^Assignment\s+(\d+)/i);
+          if (assignmentMatch) return `Assignment ${assignmentMatch[1]}`;
+          if (/^Assignment 5 Extra/i.test(text)) return "Assignment 5";
+          if (/^Linear Exam 1 Review/i.test(text) || /^Test 1 Sample/i.test(text)) return "Exam 1";
+          if (/^Exam 2\b/i.test(text) || /^Test 2 Sample/i.test(text)) return "Exam 2";
+          if (/^Exam 3\b/i.test(text) || /^Test 3 Sample/i.test(text)) return "Exam 3";
+          if (/^Final Sample/i.test(text)) return "Final";
+          return "Other";
+        }
+
+        function uniqueSorted(values) {
+          return ["All", ...Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b))];
+        }
+
+        function populateSelect(select, values, current) {
+          select.innerHTML = "";
+          values.forEach((value) => {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = value;
+            if (value === current) option.selected = true;
+            select.appendChild(option);
+          });
+        }
+
+        function buildFilterOptions() {
+          populateSelect(els.topicSelect, uniqueSorted(state.problems.map((problem) => problem.topic)), state.currentTopic);
+          populateSelect(
+            els.categorySelect,
+            uniqueSorted(state.problems.map((problem) => getCategory(problem.source))),
+            state.currentCategory
+          );
+          const sourceItems = state.problems
+            .filter((problem) => state.currentCategory === "All" || getCategory(problem.source) === state.currentCategory)
+            .map((problem) => getSourceItem(problem.source));
+          const ordered = Array.from(new Set(sourceItems)).sort((a, b) => {
+            const ai = SOURCE_ITEM_ORDER.indexOf(a);
+            const bi = SOURCE_ITEM_ORDER.indexOf(b);
+            if (ai === -1 && bi === -1) return a.localeCompare(b);
+            if (ai === -1) return 1;
+            if (bi === -1) return -1;
+            return ai - bi;
+          });
+          const values = ["All", ...ordered];
+          if (!values.includes(state.currentSourceItem)) state.currentSourceItem = "All";
+          populateSelect(els.sourceItemSelect, values, state.currentSourceItem);
+        }
+
+        function searchableText(problem) {
+          const learning = problem.learning || {};
+          const steps = (learning.steps || []).map((step) => `${step.work} ${step.why}`).join(" ");
+          return [
+            problem.source,
+            problem.topic,
+            problem.problem,
+            problem.solution,
+            problem.difficulty,
+            ...(problem.subtopics || []),
+            learning.goal,
+            learning.concept,
+            learning.final_answer,
+            steps,
+          ]
+            .join(" ")
+            .toLowerCase();
+        }
+
+        function isWeak(problem) {
+          const progress = readProgress(problem);
+          return (
+            progress.status === "stuck" ||
+            progress.status === "review" ||
+            progress.confidence === "low"
+          );
+        }
+
+        function getFilteredProblems() {
+          const query = state.search.trim().toLowerCase();
+          let filtered = state.problems.filter((problem) => {
+            const topicMatch = state.currentTopic === "All" || problem.topic === state.currentTopic;
+            const categoryMatch = state.currentCategory === "All" || getCategory(problem.source) === state.currentCategory;
+            const sourceMatch = state.currentSourceItem === "All" || getSourceItem(problem.source) === state.currentSourceItem;
+            const searchMatch = !query || searchableText(problem).includes(query);
+            const reviewMatch = state.mode !== "review" || isWeak(problem);
+            return topicMatch && categoryMatch && sourceMatch && searchMatch && reviewMatch;
+          });
+          if (state.shuffled) {
+            filtered = filtered
+              .map((problem) => [Math.sin(problemId(problem).split("").reduce((sum, char) => sum + char.charCodeAt(0), 0)) % 1, problem])
+              .sort((a, b) => a[0] - b[0])
+              .map(([, problem]) => problem);
+          }
+          return filtered;
+        }
+
+        function textDiv(className, text) {
+          const div = document.createElement("div");
+          div.className = className;
+          div.textContent = text || "";
+          return div;
+        }
+
+        function button(label, className, disabled, onClick) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = className || "btn";
+          btn.textContent = label;
+          btn.disabled = Boolean(disabled);
+          btn.addEventListener("click", onClick);
+          return btn;
+        }
+
+        function normalizeImagePath(path) {
+          const trimmed = String(path || "").trim();
+          if (!trimmed) return "";
+          if (/^https?:\/\//i.test(trimmed)) return trimmed;
+          const cleaned = trimmed.replace(/^\.?\//, "");
+          const url = new URL(cleaned, window.location.href);
+          url.searchParams.set("v", ASSET_VERSION);
+          return url.href;
+        }
+
+        function renderImages(images, container, labelText) {
+          if (!images || images.length === 0) return;
+          const label = document.createElement("div");
+          label.className = "diagram-label";
+          label.textContent = labelText || "Diagram";
+          container.appendChild(label);
+          images.forEach((path) => {
+            const resolvedPath = normalizeImagePath(path);
+            const img = document.createElement("img");
+            img.className = "diagram";
+            img.loading = labelText === "Solution Diagram" ? "eager" : "lazy";
+            img.src = resolvedPath;
+            img.alt = labelText || "Problem diagram";
+            img.addEventListener("error", () => {
+              const error = textDiv("meta", `Image failed to load: ${resolvedPath}`);
+              container.appendChild(error);
+              img.remove();
+            });
+            container.appendChild(img);
+          });
+        }
+
+        function renderTags(problem, container) {
+          const tags = [problem.topic || "Uncategorized", problem.difficulty || "Core", ...(problem.subtopics || []).slice(0, 4)];
+          tags.forEach((tagText) => {
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.textContent = tagText;
+            container.appendChild(tag);
+          });
+        }
+
+        function problemSourceParts(source) {
+          const full = String(source || "Untitled problem").trim();
+          const match = full.match(/^(.*?)\s+Problem\s+([0-9]+[A-Za-z]?)$/i);
+          if (!match) {
+            return {
+              context: full,
+              number: "",
+              full,
+            };
+          }
+          return {
+            context: match[1].trim() || full,
+            number: match[2].trim(),
+            full,
+          };
+        }
+
+        function renderProblemIdentity(problem) {
+          const parts = problemSourceParts(problem.source);
+          const identity = document.createElement("div");
+          identity.className = "problem-identity";
+
+          const badge = document.createElement("div");
+          badge.className = "problem-number-badge";
+          badge.setAttribute("aria-label", parts.number ? `Problem ${parts.number}` : "Problem");
+          const badgeLabel = document.createElement("span");
+          badgeLabel.className = "problem-number-label";
+          badgeLabel.textContent = "Problem";
+          const badgeValue = document.createElement("span");
+          badgeValue.className = "problem-number-value";
+          badgeValue.textContent = parts.number || "#";
+          badge.append(badgeLabel, badgeValue);
+
+          const sourceBlock = document.createElement("div");
+          sourceBlock.className = "problem-source-block";
+          const source = document.createElement("div");
+          source.className = "problem-source";
+          source.textContent = parts.context;
+          const fullSource = textDiv("meta problem-source-full", parts.full);
+
+          const tags = document.createElement("div");
+          tags.className = "tag-row";
+          renderTags(problem, tags);
+          sourceBlock.append(source, fullSource, tags);
+          identity.append(badge, sourceBlock);
+          return identity;
+        }
+
+        function renderBrief(problem, card) {
+          if (state.mode === "exam") return;
+          const learning = problem.learning || {};
+          const brief = document.createElement("div");
+          brief.className = "study-brief";
+          [
+            ["Goal", learning.goal || "Solve the requested problem."],
+            ["Concept", learning.concept || problem.topic || "Course method"],
+            ["Check", learning.check || "Verify against the original statement."],
+          ].forEach(([label, value]) => {
+            const item = document.createElement("div");
+            item.className = "brief-item";
+            const labelEl = document.createElement("span");
+            labelEl.className = "brief-label";
+            labelEl.textContent = label;
+            const valueEl = document.createElement("div");
+            valueEl.className = "brief-value";
+            valueEl.textContent = value;
+            item.append(labelEl, valueEl);
+            brief.appendChild(item);
+          });
+          card.appendChild(brief);
+        }
+
+        function renderRatings(problem, card) {
+          const progress = readProgress(problem);
+          const block = document.createElement("div");
+          block.className = "rating-block";
+
+          const statusRow = document.createElement("div");
+          statusRow.className = "rating-row";
+          const statusLabel = document.createElement("span");
+          statusLabel.className = "rating-label";
+          statusLabel.textContent = "Status";
+          statusRow.appendChild(statusLabel);
+          STATUS_OPTIONS.forEach(([value, label]) => {
+            const cls = [
+              "btn",
+              progress.status === value ? "active" : "",
+              value === "correct" ? "success" : "",
+              value === "stuck" || value === "review" ? "warning" : "",
+            ]
+              .filter(Boolean)
+              .join(" ");
+            statusRow.appendChild(
+              button(label, cls, false, () =>
+                updateProgress(
+                  problem,
+                  value === "new"
+                    ? { status: value, hintsRevealed: 0, stepsRevealed: 0, solutionVisible: false }
+                    : { status: value }
+                )
+              )
+            );
+          });
+
+          const confidenceRow = document.createElement("div");
+          confidenceRow.className = "rating-row";
+          const confidenceLabel = document.createElement("span");
+          confidenceLabel.className = "rating-label";
+          confidenceLabel.textContent = "Confidence";
+          confidenceRow.appendChild(confidenceLabel);
+          CONFIDENCE_OPTIONS.forEach(([value, label]) => {
+            const cls = ["btn", progress.confidence === value ? "active" : ""].filter(Boolean).join(" ");
+            confidenceRow.appendChild(button(label, cls, false, () => updateProgress(problem, { confidence: value })));
+          });
+
+          block.append(statusRow, confidenceRow);
+          card.appendChild(block);
+        }
+
+        function renderStepList(steps, visibleCount, expandWhy = false) {
+          const count = Math.min(visibleCount || 0, steps.length);
+          if (count <= 0) return null;
+          const stepList = document.createElement("div");
+          stepList.className = "step-list";
+          steps.slice(0, count).forEach((step, index) => {
+            const stepEl = document.createElement("div");
+            stepEl.className = "step";
+            const title = document.createElement("p");
+            title.className = "step-title";
+            title.textContent = `Step ${index + 1} of ${steps.length}`;
+            const notebookLabel = document.createElement("span");
+            notebookLabel.className = "notebook-label";
+            notebookLabel.textContent = "Written work";
+            const notebook = textDiv("notebook-work", step.notebook || step.work || "");
+            const why = document.createElement("details");
+            why.className = "why";
+            why.open = expandWhy;
+            const summary = document.createElement("summary");
+            summary.textContent = "Why this step";
+            const whyText = textDiv("meta", step.why || "This step moves the solution toward the requested result.");
+            why.append(summary, whyText);
+            stepEl.append(title, notebookLabel, notebook, why);
+            stepList.appendChild(stepEl);
+          });
+          return stepList;
+        }
+
+        function solutionDiagramImages(problem) {
+          return (problem.solution_images || []).filter((path) => path !== problem.solution_scan);
+        }
+
+        function renderLearning(problem, card) {
+          const learning = problem.learning || {};
+          const progress = readProgress(problem);
+          const panel = document.createElement("div");
+          panel.className = "learning-panel";
+          const steps = learning.steps || [];
+          const hints = learning.hints || [];
+          const examLocked = state.mode === "exam" && progress.status === "new";
+
+          if (examLocked) {
+            const lock = document.createElement("div");
+            lock.className = "exam-lock";
+            lock.textContent = "Exam mode hides hints and worked steps until you mark the problem as tried.";
+            panel.appendChild(lock);
+          }
+
+          const actions = document.createElement("div");
+          actions.className = "solution-actions";
+          actions.appendChild(
+            button("Reveal hint", "btn", examLocked || progress.hintsRevealed >= hints.length, () =>
+              updateProgress(problem, {
+                hintsRevealed: Math.min((progress.hintsRevealed || 0) + 1, hints.length),
+                status: progress.status === "new" ? "tried" : progress.status,
+              })
+            )
+          );
+          actions.appendChild(
+            button("Reveal next step", "btn primary", examLocked || progress.stepsRevealed >= steps.length, () =>
+              updateProgress(problem, {
+                stepsRevealed: Math.min((progress.stepsRevealed || 0) + 1, steps.length),
+                status: progress.status === "new" ? "tried" : progress.status,
+              })
+            )
+          );
+          actions.appendChild(
+            button(progress.solutionVisible ? "Hide full solution" : "Show full solution", "btn", examLocked, () =>
+              updateProgress(problem, {
+                solutionVisible: !progress.solutionVisible,
+                hintsRevealed: !progress.solutionVisible ? hints.length : progress.hintsRevealed,
+                stepsRevealed: !progress.solutionVisible ? steps.length : progress.stepsRevealed,
+                status: progress.status === "new" ? "tried" : progress.status,
+              })
+            )
+          );
+          panel.appendChild(actions);
+
+          if (progress.hintsRevealed > 0) {
+            const hintList = document.createElement("ol");
+            hintList.className = "hint-list";
+            hints.slice(0, progress.hintsRevealed).forEach((hint) => {
+              const item = document.createElement("li");
+              item.textContent = hint;
+              hintList.appendChild(item);
+            });
+            panel.appendChild(hintList);
+          }
+
+          if (!progress.solutionVisible) {
+            const revealedSteps = renderStepList(steps, progress.stepsRevealed);
+            if (revealedSteps) panel.appendChild(revealedSteps);
+            const revealedSolutionImages = solutionDiagramImages(problem);
+            if (progress.stepsRevealed > 0 && revealedSolutionImages.length) {
+              renderImages(revealedSolutionImages, panel, "Solution Diagram");
+            }
+          }
+
+          if (progress.solutionVisible) {
+            const solution = document.createElement("div");
+            solution.className = "solution";
+            const heading = document.createElement("h3");
+            heading.textContent = "Full solution and checks";
+            solution.appendChild(heading);
+            const stepsHeading = document.createElement("h4");
+            stepsHeading.textContent = "Worked steps";
+            const fullStepList = renderStepList(steps, steps.length, true);
+            if (fullStepList) {
+              solution.append(stepsHeading, fullStepList);
+            }
+            if (learning.final_answer) {
+              solution.appendChild(textDiv("solution-text", `Final answer: ${learning.final_answer}`));
+            }
+            if (learning.common_mistake) {
+              solution.appendChild(textDiv("meta", `Common mistake: ${learning.common_mistake}`));
+            }
+            if (problem.solution_text_bad && problem.solution_scan) {
+              solution.appendChild(textDiv("scan-note", "Exact solution scan"));
+              renderImages([problem.solution_scan], solution, "Solution Scan");
+            } else if (problem.solution) {
+              solution.appendChild(textDiv("solution-text", problem.solution));
+            }
+            const extraSolutionImages = solutionDiagramImages(problem);
+            if (extraSolutionImages.length) {
+              renderImages(extraSolutionImages, solution, "Solution Diagram");
+            }
+            panel.appendChild(solution);
+          }
+
+          card.appendChild(panel);
+        }
+
+        function renderProblemCard(problem) {
+          const card = document.createElement("article");
+          card.className = "card";
+
+          const header = document.createElement("div");
+          header.className = "card-header";
+          const quickActions = document.createElement("div");
+          quickActions.className = "card-actions";
+          quickActions.appendChild(button("Copy link", "btn", false, () => copyProblemLink(problem)));
+          header.append(renderProblemIdentity(problem), quickActions);
+          card.appendChild(header);
+
+          const rawProblem = String(problem.problem || "").trim();
+          const problemText = document.createElement("div");
+          problemText.className = "problem-text";
+          if (problem.problem_text_bad && problem.problem_scan) {
+            problemText.classList.add("muted");
+            problemText.textContent = "Formatted math is shown in the exact problem scan below.";
+          } else if (!rawProblem) {
+            problemText.classList.add("muted");
+            problemText.textContent = (problem.images || []).length ? "Problem statement is shown in the diagram." : "Problem statement not found.";
+          } else {
+            problemText.textContent = rawProblem;
+          }
+          card.appendChild(problemText);
+
+          if (problem.problem_text_bad && problem.problem_scan) {
+            renderImages([problem.problem_scan], card, "Problem Scan");
+          }
+          renderImages(problem.images || [], card, "Diagram");
+          renderBrief(problem, card);
+          renderRatings(problem, card);
+          renderLearning(problem, card);
+
+          return card;
+        }
+
+        function copyProblemLink(problem) {
+          const url = new URL(window.location.href);
+          url.hash = problemId(problem);
+          navigator.clipboard
+            ?.writeText(url.href)
+            .then(() => {
+              els.status.textContent = `Copied link for ${problem.source}.`;
+            })
+            .catch(() => {
+              window.location.hash = problemId(problem);
+            });
+        }
+
+        function updateStats(filtered) {
+          const allProgress = state.problems.map((problem) => readProgress(problem));
+          const attempted = allProgress.filter((item) => item.status !== "new").length;
+          const correct = allProgress.filter((item) => item.status === "correct").length;
+          const review = state.problems.filter(isWeak).length;
+          els.shownCount.textContent = filtered.length;
+          els.attemptedCount.textContent = attempted;
+          els.correctCount.textContent = correct;
+          els.reviewCount.textContent = review;
+          const total = state.problems.length || 1;
+          els.progressFill.style.width = `${Math.round((correct / total) * 100)}%`;
+        }
+
+        function render() {
+          buildFilterOptions();
+          const filtered = getFilteredProblems();
+          updateStats(filtered);
+          els.list.innerHTML = "";
+          els.status.textContent = `${filtered.length} of ${state.problems.length} problems shown. Progress is saved in this browser.`;
+          if (!filtered.length) {
+            const empty = document.createElement("div");
+            empty.className = "empty";
+            empty.textContent =
+              state.mode === "review"
+                ? "No weak problems yet. Mark problems as stuck, review again, or low confidence to build this queue."
+                : "No problems match the current filters.";
+            els.list.appendChild(empty);
+            return;
+          }
+          filtered.forEach((problem) => els.list.appendChild(renderProblemCard(problem)));
+          typesetMath();
+          scrollToHash();
+        }
+
+        function typesetMath() {
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([els.list]).catch(() => {});
+          }
+        }
+
+        function scrollToHash() {
+          const id = window.location.hash.replace("#", "");
+          if (!id) return;
+          const problem = state.problems.find((item) => problemId(item) === id);
+          if (!problem) return;
+          const cards = Array.from(els.list.querySelectorAll(".card"));
+          const filtered = getFilteredProblems();
+          const index = filtered.findIndex((item) => problemId(item) === id);
+          if (index >= 0 && cards[index]) {
+            cards[index].scrollIntoView({ block: "start" });
+          }
+        }
+
+        function exportProgress() {
+          const payload = {
+            exportedAt: new Date().toISOString(),
+            app: "ECE 4330 Study Platform",
+            progress: state.progress,
+          };
+          const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = "ece-4330-study-progress.json";
+          link.click();
+          URL.revokeObjectURL(url);
+        }
+
+        function wireEvents() {
+          els.searchInput.addEventListener("input", () => {
+            applyFilterChange(() => {
+              state.search = els.searchInput.value;
+            });
+          });
+          els.modeSelect.addEventListener("change", () => {
+            applyFilterChange(() => {
+              state.mode = els.modeSelect.value;
+            });
+          });
+          els.topicSelect.addEventListener("change", () => {
+            applyFilterChange(() => {
+              state.currentTopic = els.topicSelect.value;
+            });
+          });
+          els.categorySelect.addEventListener("change", () => {
+            applyFilterChange(() => {
+              state.currentCategory = els.categorySelect.value;
+              state.currentSourceItem = "All";
+            });
+          });
+          els.sourceItemSelect.addEventListener("change", () => {
+            applyFilterChange(() => {
+              state.currentSourceItem = els.sourceItemSelect.value;
+            });
+          });
+          els.shuffleButton.addEventListener("click", () => {
+            applyFilterChange(() => {
+              state.shuffled = !state.shuffled;
+              els.shuffleButton.classList.toggle("active", state.shuffled);
+            });
+          });
+          els.resetFiltersButton.addEventListener("click", () => {
+            applyFilterChange(() => {
+              state.search = "";
+              state.mode = "practice";
+              state.currentTopic = "All";
+              state.currentCategory = "All";
+              state.currentSourceItem = "All";
+              state.shuffled = false;
+              els.searchInput.value = "";
+              els.modeSelect.value = "practice";
+              els.shuffleButton.classList.remove("active");
+            });
+          });
+          els.exportButton.addEventListener("click", exportProgress);
+          els.resetProgressButton.addEventListener("click", () => {
+            if (!confirm("Reset all saved progress in this browser?")) return;
+            state.progress = {};
+            saveProgress();
+            render();
+          });
+        }
+
+        async function loadProblems() {
+          try {
+            if (Array.isArray(window.ECE4330_PROBLEMS) && window.ECE4330_PROBLEMS.length) {
+              state.problems = window.ECE4330_PROBLEMS;
+              wireEvents();
+              render();
+              return;
+            }
+            const response = await fetch("./output/problems.json", { cache: "no-store" });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            state.problems = await response.json();
+            wireEvents();
+            render();
+          } catch (error) {
+            console.error("Failed to load problems.json", error);
+            els.status.textContent = "Failed to load problems.json. Run a local server and reload.";
+            const empty = document.createElement("div");
+            empty.className = "empty";
+            empty.textContent =
+              "Could not load problems.json. Run `python3 -m http.server 8000` and open http://localhost:8000/study.html.";
+            els.list.appendChild(empty);
+          }
+        }
+
+        loadProblems();
+      })();
+    </script>
+  </body>
+</html>

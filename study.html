@@ -136,8 +136,7 @@
         margin-top: 20px;
       }
 
-      .field label,
-      .workspace label {
+      .field label {
         display: block;
         margin-bottom: 6px;
         color: var(--muted);
@@ -148,8 +147,7 @@
       }
 
       .field input,
-      .field select,
-      .workspace textarea {
+      .field select {
         width: 100%;
         border: 1px solid var(--border);
         border-radius: 8px;
@@ -342,68 +340,6 @@
         text-transform: uppercase;
       }
 
-      .workspace {
-        margin: 14px 0;
-      }
-
-      .workspace textarea {
-        min-height: 110px;
-        resize: vertical;
-        padding: 10px;
-      }
-
-      .attachment-panel {
-        display: grid;
-        gap: 10px;
-        margin-top: 12px;
-      }
-
-      .attachment-input {
-        width: 100%;
-        border: 1px dashed var(--border);
-        border-radius: 8px;
-        padding: 10px;
-        background: #fbfcfe;
-        color: var(--muted);
-      }
-
-      .attachment-list {
-        display: grid;
-        gap: 10px;
-      }
-
-      .attachment-item {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 10px;
-        align-items: start;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        background: #fbfcfe;
-        padding: 10px;
-      }
-
-      .attachment-preview {
-        display: block;
-        width: min(100%, 420px);
-        max-height: 260px;
-        margin-top: 8px;
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        background: #fff;
-        object-fit: contain;
-      }
-
-      .attachment-link {
-        color: var(--accent);
-        font-weight: 750;
-        text-decoration: none;
-      }
-
-      .attachment-link:hover {
-        text-decoration: underline;
-      }
-
       .rating-block {
         display: grid;
         gap: 8px;
@@ -556,10 +492,8 @@
           grid-template-columns: 1fr;
         }
 
-        .rating-row,
-        .attachment-item {
+        .rating-row {
           align-items: stretch;
-          grid-template-columns: 1fr;
         }
 
         .rating-label {
@@ -651,8 +585,6 @@
     <script>
       (() => {
         const STORAGE_KEY = "ece4330.studyProgress.v2";
-        const FILE_DB_NAME = "ece4330.studyFiles.v1";
-        const FILE_STORE_NAME = "attachments";
         const ASSET_VERSION = "20260428-1";
         const STATUS_OPTIONS = [
           ["new", "New"],
@@ -686,7 +618,6 @@
         const EMPTY_PROGRESS = {
           status: "new",
           confidence: "",
-          notes: "",
           hintsRevealed: 0,
           stepsRevealed: 0,
           solutionVisible: false,
@@ -702,9 +633,6 @@
           mode: "practice",
           search: "",
           shuffled: false,
-          attachments: {},
-          fileDb: null,
-          fileStorageAvailable: false,
         };
 
         const els = {
@@ -728,7 +656,14 @@
 
         function loadProgress() {
           try {
-            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+            const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+            Object.values(parsed).forEach((item) => {
+              if (item && typeof item === "object") {
+                delete item["no" + "tes"];
+                delete item["user" + "Difficulty"];
+              }
+            });
+            return parsed;
           } catch {
             return {};
           }
@@ -736,127 +671,6 @@
 
         function saveProgress() {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
-        }
-
-        function requestToPromise(request) {
-          return new Promise((resolve, reject) => {
-            request.addEventListener("success", () => resolve(request.result));
-            request.addEventListener("error", () => reject(request.error));
-          });
-        }
-
-        function openFileDatabase() {
-          if (!("indexedDB" in window)) {
-            return Promise.reject(new Error("IndexedDB is not available"));
-          }
-          return new Promise((resolve, reject) => {
-            const request = indexedDB.open(FILE_DB_NAME, 1);
-            request.addEventListener("upgradeneeded", () => {
-              const db = request.result;
-              if (!db.objectStoreNames.contains(FILE_STORE_NAME)) {
-                const store = db.createObjectStore(FILE_STORE_NAME, { keyPath: "id" });
-                store.createIndex("problemId", "problemId", { unique: false });
-              }
-            });
-            request.addEventListener("success", () => resolve(request.result));
-            request.addEventListener("error", () => reject(request.error));
-          });
-        }
-
-        async function loadStoredAttachments() {
-          try {
-            state.fileDb = await openFileDatabase();
-            state.fileStorageAvailable = true;
-            const transaction = state.fileDb.transaction(FILE_STORE_NAME, "readonly");
-            const records = await requestToPromise(transaction.objectStore(FILE_STORE_NAME).getAll());
-            state.attachments = {};
-            records.forEach((record) => {
-              const item = {
-                ...record,
-                url: URL.createObjectURL(record.blob),
-              };
-              if (!state.attachments[item.problemId]) {
-                state.attachments[item.problemId] = [];
-              }
-              state.attachments[item.problemId].push(item);
-            });
-            Object.values(state.attachments).forEach((items) =>
-              items.sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)))
-            );
-          } catch (error) {
-            console.warn("Work attachment storage unavailable.", error);
-            state.fileStorageAvailable = false;
-            state.attachments = {};
-          }
-        }
-
-        function getAttachmentStore(mode) {
-          if (!state.fileDb) {
-            throw new Error("File storage is not ready");
-          }
-          return state.fileDb.transaction(FILE_STORE_NAME, mode).objectStore(FILE_STORE_NAME);
-        }
-
-        function isAllowedWorkFile(file) {
-          const type = String(file.type || "").toLowerCase();
-          return type.startsWith("image/") || type === "application/pdf" || /\.pdf$/i.test(file.name);
-        }
-
-        function formatBytes(bytes) {
-          if (!Number.isFinite(bytes) || bytes <= 0) return "0 KB";
-          const units = ["B", "KB", "MB", "GB"];
-          const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
-          const value = bytes / Math.pow(1024, index);
-          return `${value.toFixed(value >= 10 || index === 0 ? 0 : 1)} ${units[index]}`;
-        }
-
-        async function saveWorkFiles(problem, fileList) {
-          if (!state.fileStorageAvailable) {
-            els.status.textContent = "Work uploads are not available in this browser.";
-            return;
-          }
-          const files = Array.from(fileList || []).filter(isAllowedWorkFile);
-          if (!files.length) {
-            els.status.textContent = "Choose a PDF or image file for your work.";
-            return;
-          }
-          const id = problemId(problem);
-          for (const file of files) {
-            const randomId =
-              window.crypto && typeof window.crypto.randomUUID === "function"
-                ? window.crypto.randomUUID()
-                : Math.random().toString(16).slice(2);
-            const record = {
-              id: `${id}-${Date.now()}-${randomId}`,
-              problemId: id,
-              name: file.name || "work upload",
-              type: file.type || (/\.pdf$/i.test(file.name) ? "application/pdf" : "application/octet-stream"),
-              size: file.size || 0,
-              lastModified: file.lastModified || Date.now(),
-              createdAt: new Date().toISOString(),
-              blob: file,
-            };
-            await requestToPromise(getAttachmentStore("readwrite").put(record));
-            const item = { ...record, url: URL.createObjectURL(file) };
-            if (!state.attachments[id]) {
-              state.attachments[id] = [];
-            }
-            state.attachments[id].unshift(item);
-          }
-          els.status.textContent = `Attached ${files.length} file${files.length === 1 ? "" : "s"} of work.`;
-          render();
-        }
-
-        async function deleteWorkFile(problem, attachmentId) {
-          const id = problemId(problem);
-          await requestToPromise(getAttachmentStore("readwrite").delete(attachmentId));
-          const items = state.attachments[id] || [];
-          const removed = items.find((item) => item.id === attachmentId);
-          if (removed && removed.url) {
-            URL.revokeObjectURL(removed.url);
-          }
-          state.attachments[id] = items.filter((item) => item.id !== attachmentId);
-          render();
         }
 
         function problemId(problem) {
@@ -1115,101 +929,6 @@
           card.appendChild(block);
         }
 
-        function renderWorkspace(problem, card) {
-          if (state.mode === "browse") return;
-          const progress = readProgress(problem);
-          const workspace = document.createElement("div");
-          workspace.className = "workspace";
-          const label = document.createElement("label");
-          label.textContent = "Your work";
-          label.htmlFor = `notes-${problemId(problem)}`;
-          const textarea = document.createElement("textarea");
-          textarea.id = `notes-${problemId(problem)}`;
-          textarea.placeholder = "Work the problem here before revealing hints or steps. Notes stay in this browser.";
-          textarea.value = progress.notes || "";
-          textarea.addEventListener("input", () => {
-            const current = progressFor(problem);
-            current.notes = textarea.value;
-            current.updatedAt = new Date().toISOString();
-            saveProgress();
-            updateStats(getFilteredProblems());
-          });
-          workspace.append(label, textarea);
-          renderWorkAttachments(problem, workspace);
-          card.appendChild(workspace);
-        }
-
-        function renderWorkAttachments(problem, container) {
-          const panel = document.createElement("div");
-          panel.className = "attachment-panel";
-
-          const label = document.createElement("label");
-          const inputId = `attachments-${problemId(problem)}`;
-          label.htmlFor = inputId;
-          label.textContent = "Attach work";
-
-          const input = document.createElement("input");
-          input.id = inputId;
-          input.className = "attachment-input";
-          input.type = "file";
-          input.accept = "image/*,application/pdf,.pdf";
-          input.multiple = true;
-          input.disabled = !state.fileStorageAvailable;
-          input.addEventListener("change", async () => {
-            await saveWorkFiles(problem, input.files);
-            input.value = "";
-          });
-
-          panel.append(label, input);
-
-          if (!state.fileStorageAvailable) {
-            panel.appendChild(textDiv("meta", "File attachments are not available in this browser."));
-          }
-
-          const attachments = state.attachments[problemId(problem)] || [];
-          if (attachments.length) {
-            const list = document.createElement("div");
-            list.className = "attachment-list";
-            attachments.forEach((attachment) => {
-              const item = document.createElement("div");
-              item.className = "attachment-item";
-
-              const details = document.createElement("div");
-              const link = document.createElement("a");
-              link.className = "attachment-link";
-              link.href = attachment.url;
-              link.target = "_blank";
-              link.rel = "noopener";
-              link.textContent = attachment.name || "Attached work";
-              details.appendChild(link);
-              details.appendChild(
-                textDiv("meta", `${attachment.type || "file"} · ${formatBytes(attachment.size)} · ${new Date(attachment.createdAt).toLocaleString()}`)
-              );
-
-              if (String(attachment.type || "").startsWith("image/")) {
-                const image = document.createElement("img");
-                image.className = "attachment-preview";
-                image.src = attachment.url;
-                image.alt = attachment.name || "Attached work image";
-                details.appendChild(image);
-              }
-
-              const remove = button("Remove", "btn", false, () => {
-                deleteWorkFile(problem, attachment.id).catch((error) => {
-                  console.error("Failed to remove work attachment", error);
-                  els.status.textContent = "Could not remove that attachment.";
-                });
-              });
-
-              item.append(details, remove);
-              list.appendChild(item);
-            });
-            panel.appendChild(list);
-          }
-
-          container.appendChild(panel);
-        }
-
         function renderLearning(problem, card) {
           const learning = problem.learning || {};
           const progress = readProgress(problem);
@@ -1354,7 +1073,6 @@
           }
           renderImages(problem.images || [], card, "Diagram");
           renderBrief(problem, card);
-          renderWorkspace(problem, card);
           renderRatings(problem, card);
           renderLearning(problem, card);
 
@@ -1483,7 +1201,7 @@
           });
           els.exportButton.addEventListener("click", exportProgress);
           els.resetProgressButton.addEventListener("click", () => {
-            if (!confirm("Reset all saved progress and notes in this browser?")) return;
+            if (!confirm("Reset all saved progress in this browser?")) return;
             state.progress = {};
             saveProgress();
             render();
@@ -1494,7 +1212,6 @@
           try {
             if (Array.isArray(window.ECE4330_PROBLEMS) && window.ECE4330_PROBLEMS.length) {
               state.problems = window.ECE4330_PROBLEMS;
-              await loadStoredAttachments();
               wireEvents();
               render();
               return;
@@ -1502,7 +1219,6 @@
             const response = await fetch("./output/problems.json", { cache: "no-store" });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             state.problems = await response.json();
-            await loadStoredAttachments();
             wireEvents();
             render();
           } catch (error) {

@@ -29,8 +29,7 @@ Opening `study.html` directly from Finder also works because the shared problem 
 - Progressive hints and "reveal next step" workflow.
 - "Why this step" explanations for every worked step.
 - Full solution reveal with exact scans when OCR text is unreliable.
-- Local notes, confidence, and mastery status.
-- Local PDF/image uploads for attaching your worked solution to each problem.
+- Local confidence and mastery status.
 - Review queue built from stuck, review-again, and low-confidence problems.
 - Progress export as JSON.
 
@@ -39,8 +38,6 @@ Opening `study.html` directly from Finder also works because the shared problem 
 `output/problems.json` is the canonical dataset. `output/problems.js` is the same dataset bundled as `window.ECE4330_PROBLEMS` so the app launches with the shared problem set even when a browser blocks JSON fetches or someone opens the downloaded folder directly.
 
 Some source solution text has unreliable OCR. In those cases the app keeps the exact scan visible and uses a conservative guided workflow instead of pretending the OCR text is perfect.
-
-Work uploads are stored in the student's browser with IndexedDB. They are not uploaded to GitHub and are not visible to classmates.
 
 ## Maintenance
 

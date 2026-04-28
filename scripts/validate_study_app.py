@@ -80,8 +80,6 @@ def validate_html() -> None:
         "window.ECE4330_PROBLEMS",
         "output/problems.json",
         "localStorage",
-        "indexedDB",
-        "Attach work",
         "Reveal next step",
         "Review weak",
     ]:
@@ -91,6 +89,9 @@ def validate_html() -> None:
         raise AssertionError("study.html should not render the scan-backed pill")
     if "Felt like" in study:
         raise AssertionError("study.html should not render the removed Felt like rating")
+    for removed in ["Your work", "Attach work", "indexedDB", "notes", "attachment"]:
+        if removed in study:
+            raise AssertionError(f"study.html should not include user work input: {removed}")
     if re.search(r"return `/\\$\\{cleaned\\}", study):
         raise AssertionError("study.html still appears to use root-relative image URLs")
     if "./study.html" not in index:

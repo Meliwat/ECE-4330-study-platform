@@ -19,6 +19,7 @@
       };
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./output/formulas.js?v=20260428-formulas-v1"></script>
     <script src="./output/problems.js?v=20260428-4"></script>
     <style>
       :root {
@@ -534,6 +535,222 @@
         padding: 18px;
       }
 
+      .formula-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+
+      .formula-row-label {
+        flex-basis: 100%;
+        margin: 4px 0 2px;
+        color: var(--muted);
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .formula-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border: 1px solid #c7d6f3;
+        border-radius: 999px;
+        background: var(--surface-blue);
+        color: var(--accent-strong);
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .formula-chip:hover {
+        background: #d9e6fb;
+        border-color: var(--accent);
+      }
+
+      .formula-chip-page {
+        font-size: 0.66rem;
+        font-weight: 700;
+        color: var(--muted);
+        background: #fff;
+        padding: 1px 6px;
+        border-radius: 999px;
+      }
+
+      .formula-card {
+        margin: 8px 0;
+        padding: 10px 12px;
+        border-left: 3px solid var(--accent);
+        border-radius: 6px;
+        background: #f3f7ff;
+      }
+
+      .formula-card-name {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 0.82rem;
+        font-weight: 800;
+        color: var(--accent-strong);
+      }
+
+      .formula-card-meta {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .formula-card-tex {
+        margin-top: 6px;
+        font-size: 1rem;
+      }
+
+      .formula-summary {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+      }
+
+      .formula-summary h4 {
+        margin: 0 0 8px;
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 0.92rem;
+      }
+
+      .formula-summary p.meta {
+        margin: 0 0 10px;
+      }
+
+      .reference-fab {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 30;
+        padding: 12px 18px;
+        border: 1px solid var(--accent-strong);
+        border-radius: 999px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        box-shadow: 0 16px 40px rgba(36, 87, 214, 0.32);
+      }
+
+      .reference-fab:hover {
+        background: var(--accent-strong);
+      }
+
+      .reference-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 30, 56, 0.42);
+        z-index: 40;
+        display: none;
+      }
+
+      .reference-overlay.open {
+        display: block;
+      }
+
+      .reference-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(560px, 100%);
+        background: var(--surface);
+        z-index: 50;
+        box-shadow: -16px 0 48px rgba(20, 30, 56, 0.18);
+        transform: translateX(100%);
+        transition: transform 0.22s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .reference-drawer.open {
+        transform: translateX(0);
+      }
+
+      .reference-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .reference-header h2 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .reference-search {
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .reference-search input {
+        width: 100%;
+        padding: 9px 11px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .reference-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px 18px 32px;
+      }
+
+      .reference-category {
+        margin-top: 16px;
+      }
+
+      .reference-category h3 {
+        margin: 0 0 6px;
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .reference-entry {
+        margin: 6px 0;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fbfcfe;
+      }
+
+      .reference-entry-name {
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 0.86rem;
+        font-weight: 800;
+        color: var(--ink);
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .reference-entry-tex {
+        margin-top: 6px;
+        font-size: 0.96rem;
+      }
+
       .exam-lock {
         background: var(--surface-amber);
         color: var(--warning);
@@ -674,10 +891,25 @@
       <section class="grid" id="problemList"></section>
     </main>
 
+    <button class="reference-fab" id="referenceFab" type="button" aria-haspopup="dialog" aria-expanded="false">
+      Formula sheet
+    </button>
+    <div class="reference-overlay" id="referenceOverlay"></div>
+    <aside class="reference-drawer" id="referenceDrawer" role="dialog" aria-label="ECE 4330 formula reference">
+      <header class="reference-header">
+        <h2>ECE 4330 Formula Sheet</h2>
+        <button class="btn" id="referenceCloseButton" type="button">Close</button>
+      </header>
+      <div class="reference-search">
+        <input id="referenceSearch" type="search" placeholder="Search formulas (e.g. Laplace, Euler, convolution)" />
+      </div>
+      <div class="reference-body" id="referenceBody"></div>
+    </aside>
+
     <script>
       (() => {
         const STORAGE_KEY = "ece4330.studyProgress.v2";
-        const ASSET_VERSION = "20260428-4";
+        const ASSET_VERSION = "20260428-formulas-v1";
         const STATUS_OPTIONS = [
           ["new", "New"],
           ["tried", "Tried"],
@@ -744,7 +976,123 @@
           resetFiltersButton: document.getElementById("resetFiltersButton"),
           exportButton: document.getElementById("exportButton"),
           resetProgressButton: document.getElementById("resetProgressButton"),
+          referenceFab: document.getElementById("referenceFab"),
+          referenceOverlay: document.getElementById("referenceOverlay"),
+          referenceDrawer: document.getElementById("referenceDrawer"),
+          referenceClose: document.getElementById("referenceCloseButton"),
+          referenceSearch: document.getElementById("referenceSearch"),
+          referenceBody: document.getElementById("referenceBody"),
         };
+
+        const FORMULAS = Array.isArray(window.ECE4330_FORMULAS) ? window.ECE4330_FORMULAS : [];
+        const FORMULA_INDEX = window.ECE4330_FORMULA_INDEX || {};
+        const matchFormulas = window.ECE4330_MATCH_FORMULAS || (() => []);
+        const formulaCache = new WeakMap();
+
+        function formulasForStep(step) {
+          if (!step) return [];
+          if (formulaCache.has(step)) return formulaCache.get(step);
+          const text = `${step.work || ""} ${step.notebook || ""} ${step.why || ""}`;
+          const ids = matchFormulas(text);
+          const resolved = ids.map((id) => FORMULA_INDEX[id]).filter(Boolean);
+          formulaCache.set(step, resolved);
+          return resolved;
+        }
+
+        function formulasForProblem(problem) {
+          const seen = new Map();
+          const learning = (problem && problem.learning) || {};
+          const sources = [];
+          (learning.steps || []).forEach((step) => sources.push(formulasForStep(step)));
+          // Bias against false positives by also matching the goal/concept summary.
+          const summary = `${learning.goal || ""} ${learning.concept || ""} ${learning.final_answer || ""} ${(problem.subtopics || []).join(" ")}`;
+          if (summary.trim()) {
+            sources.push(matchFormulas(summary).map((id) => FORMULA_INDEX[id]).filter(Boolean));
+          }
+          sources.flat().forEach((f) => {
+            if (f && !seen.has(f.id)) seen.set(f.id, f);
+          });
+          return Array.from(seen.values());
+        }
+
+        function renderFormulaChips(formulas, container, label) {
+          if (!formulas || !formulas.length) return null;
+          const row = document.createElement("div");
+          row.className = "formula-row";
+          if (label) {
+            const lbl = document.createElement("span");
+            lbl.className = "formula-row-label";
+            lbl.textContent = label;
+            row.appendChild(lbl);
+          }
+          formulas.forEach((f) => {
+            const chip = document.createElement("button");
+            chip.type = "button";
+            chip.className = "formula-chip";
+            chip.setAttribute("aria-expanded", "false");
+            const name = document.createElement("span");
+            name.textContent = f.name;
+            chip.appendChild(name);
+            const page = document.createElement("span");
+            page.className = "formula-chip-page";
+            page.textContent = `p. ${f.page}`;
+            chip.appendChild(page);
+            chip.addEventListener("click", () => {
+              const next = chip.parentElement && chip.parentElement.nextElementSibling;
+              const expanded = next && next.dataset && next.dataset.formulaCardFor === f.id;
+              if (expanded) {
+                next.remove();
+                chip.setAttribute("aria-expanded", "false");
+                return;
+              }
+              const card = renderFormulaCard(f);
+              row.parentElement.insertBefore(card, row.nextSibling);
+              chip.setAttribute("aria-expanded", "true");
+              if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([card]).catch(() => {});
+              }
+            });
+            row.appendChild(chip);
+          });
+          if (container) container.appendChild(row);
+          return row;
+        }
+
+        function renderFormulaCard(formula) {
+          const card = document.createElement("div");
+          card.className = "formula-card";
+          card.dataset.formulaCardFor = formula.id;
+          const head = document.createElement("div");
+          head.className = "formula-card-name";
+          const name = document.createElement("span");
+          name.textContent = formula.name;
+          const meta = document.createElement("span");
+          meta.className = "formula-card-meta";
+          meta.textContent = `${formula.category} · All Formulas p. ${formula.page}`;
+          head.append(name, meta);
+          const tex = document.createElement("div");
+          tex.className = "formula-card-tex";
+          tex.textContent = `\\[${formula.tex}\\]`;
+          card.append(head, tex);
+          return card;
+        }
+
+        function renderFormulaSummary(problem, container) {
+          const formulas = formulasForProblem(problem);
+          if (!formulas.length) return;
+          const block = document.createElement("div");
+          block.className = "formula-summary";
+          const heading = document.createElement("h4");
+          heading.textContent = "Formulas referenced in this problem";
+          block.appendChild(heading);
+          const note = document.createElement("p");
+          note.className = "meta";
+          note.textContent =
+            "Each entry shows the standard form and the page number on Prof. Hassoun's All Formulas sheet — use these to memorize which transform pair, identity, or property fires for this kind of problem.";
+          block.appendChild(note);
+          formulas.forEach((f) => block.appendChild(renderFormulaCard(f)));
+          container.appendChild(block);
+        }
 
         function loadProgress() {
           try {
@@ -1129,6 +1477,8 @@
             const whyText = textDiv("meta", step.why || "This step moves the solution toward the requested result.");
             why.append(summary, whyText);
             stepEl.append(title, notebookLabel, notebook, why);
+            const stepFormulas = formulasForStep(step);
+            renderFormulaChips(stepFormulas, stepEl, "Formula(s) used");
             stepList.appendChild(stepEl);
           });
           return stepList;
@@ -1242,6 +1592,7 @@
             if (extraSolutionImages.length) {
               renderImages(extraSolutionImages, solution, "Solution Diagram");
             }
+            renderFormulaSummary(problem, solution);
             panel.appendChild(solution);
           }
 
@@ -1419,6 +1770,79 @@
             saveProgress();
             render();
           });
+          if (els.referenceFab) {
+            els.referenceFab.addEventListener("click", () => openReferenceDrawer());
+            els.referenceClose.addEventListener("click", () => closeReferenceDrawer());
+            els.referenceOverlay.addEventListener("click", () => closeReferenceDrawer());
+            els.referenceSearch.addEventListener("input", () => renderReferenceList(els.referenceSearch.value));
+            document.addEventListener("keydown", (event) => {
+              if (event.key === "Escape" && els.referenceDrawer.classList.contains("open")) {
+                closeReferenceDrawer();
+              }
+            });
+          }
+        }
+
+        function openReferenceDrawer() {
+          if (!els.referenceDrawer) return;
+          els.referenceDrawer.classList.add("open");
+          els.referenceOverlay.classList.add("open");
+          els.referenceFab.setAttribute("aria-expanded", "true");
+          renderReferenceList(els.referenceSearch.value || "");
+          setTimeout(() => els.referenceSearch.focus(), 60);
+        }
+
+        function closeReferenceDrawer() {
+          if (!els.referenceDrawer) return;
+          els.referenceDrawer.classList.remove("open");
+          els.referenceOverlay.classList.remove("open");
+          els.referenceFab.setAttribute("aria-expanded", "false");
+        }
+
+        function renderReferenceList(query) {
+          if (!els.referenceBody) return;
+          const q = String(query || "").trim().toLowerCase();
+          els.referenceBody.innerHTML = "";
+          const grouped = {};
+          FORMULAS.forEach((f) => {
+            const haystack = `${f.name} ${f.category} ${f.tex} ${(f.triggers || []).join(" ")}`.toLowerCase();
+            if (q && !haystack.includes(q)) return;
+            if (!grouped[f.category]) grouped[f.category] = [];
+            grouped[f.category].push(f);
+          });
+          const categories = Object.keys(grouped).sort((a, b) => a.localeCompare(b));
+          if (!categories.length) {
+            els.referenceBody.appendChild(textDiv("meta", "No formulas match that search."));
+            return;
+          }
+          categories.forEach((cat) => {
+            const section = document.createElement("section");
+            section.className = "reference-category";
+            const heading = document.createElement("h3");
+            heading.textContent = cat;
+            section.appendChild(heading);
+            grouped[cat].forEach((f) => {
+              const entry = document.createElement("div");
+              entry.className = "reference-entry";
+              const head = document.createElement("div");
+              head.className = "reference-entry-name";
+              const name = document.createElement("span");
+              name.textContent = f.name;
+              const meta = document.createElement("span");
+              meta.className = "formula-card-meta";
+              meta.textContent = `p. ${f.page}`;
+              head.append(name, meta);
+              const tex = document.createElement("div");
+              tex.className = "reference-entry-tex";
+              tex.textContent = `\\[${f.tex}\\]`;
+              entry.append(head, tex);
+              section.appendChild(entry);
+            });
+            els.referenceBody.appendChild(section);
+          });
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([els.referenceBody]).catch(() => {});
+          }
         }
 
         async function loadProblems() {

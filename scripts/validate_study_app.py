@@ -1,5 +1,6 @@
 import json
 import re
+import hashlib
 from collections import defaultdict
 from pathlib import Path
 
@@ -122,6 +123,24 @@ def validate_unique_solution_assets(records: list) -> None:
         raise AssertionError(f"Solution asset is attached to multiple problems: {asset} -> {sources}")
 
 
+def file_hash(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def validate_unique_diagram_content(records: list, key: str) -> None:
+    owners = defaultdict(set)
+    for record in records:
+        for value in record.get(key) or []:
+            path = PROJECT_DIR / value
+            if path.exists():
+                owners[file_hash(path)].add(record["source"])
+
+    duplicates = {asset_hash: sorted(sources) for asset_hash, sources in owners.items() if len(sources) > 1}
+    if duplicates:
+        asset_hash, sources = next(iter(sorted(duplicates.items())))
+        raise AssertionError(f"{key} has identical diagram content on multiple problems: {asset_hash[:12]} -> {sources}")
+
+
 def validate_html() -> None:
     study = STUDY_PATH.read_text(encoding="utf-8")
     index = INDEX_PATH.read_text(encoding="utf-8")
@@ -175,6 +194,7 @@ def main() -> None:
         validate_assets(record)
         validate_solution_asset_alignment(record)
     validate_unique_solution_assets(records)
+    validate_unique_diagram_content(records, "solution_images")
     validate_html()
     print(f"Validated {len(records)} problems, learning metadata, assets, and study UI.")
 

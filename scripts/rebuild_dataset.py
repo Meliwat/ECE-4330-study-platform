@@ -8,6 +8,7 @@ import fitz
 import pytesseract
 from PIL import Image
 
+from diagram_alignment import align_diagram_assets
 from insert_solutions import SOLUTIONS as MANUAL_SOLUTIONS
 from learning_enrichment import enrich_records
 from solution_asset_alignment import align_solution_assets
@@ -304,11 +305,37 @@ def make_source(label: str, number: int) -> str:
     return f"{label} Problem {number}"
 
 
-def save_embedded_images(doc: fitz.Document, page: fitz.Page, prefix: str, number: int, kind: str) -> List[str]:
+def image_belongs_to_clip(image_info: dict, clip: Optional[fitz.Rect]) -> bool:
+    if clip is None:
+        return True
+    bbox = fitz.Rect(image_info["bbox"])
+    if not bbox.intersects(clip):
+        return False
+    center_y = (bbox.y0 + bbox.y1) / 2
+    return clip.y0 <= center_y <= clip.y1
+
+
+def segment_region(page: fitz.Page, lines: List[dict], start: int, end: int) -> fitz.Rect:
+    top = max(0, lines[start]["y0"] - 12)
+    if end < len(lines):
+        bottom = max(top + 8, lines[end]["y0"] - 8)
+    else:
+        bottom = page.rect.height
+    return fitz.Rect(0, top, page.rect.width, bottom)
+
+
+def save_embedded_images(
+    doc: fitz.Document, page: fitz.Page, prefix: str, number: int, kind: str, clip: Optional[fitz.Rect] = None
+) -> List[str]:
     images: List[str] = []
     index = 0
-    for img in page.get_images(full=True):
-        xref = img[0]
+    seen_xrefs = set()
+    image_infos = page.get_image_info(xrefs=True)
+    for image_info in image_infos:
+        xref = image_info.get("xref")
+        if not xref or xref in seen_xrefs or not image_belongs_to_clip(image_info, clip):
+            continue
+        seen_xrefs.add(xref)
         pix = fitz.Pixmap(doc, xref)
         if pix.width < 50 or pix.height < 50:
             pix = None
@@ -463,7 +490,8 @@ def extract_problem_records(path: Path) -> List[dict]:
             else:
                 current["problem"] = clean_text(f"{current['problem']}\n{chunk}")
 
-            images = save_embedded_images(doc, page, prefix, number, "Problem")
+            clip = segment_region(page, lines, start_idx, end_idx)
+            images = save_embedded_images(doc, page, prefix, number, "Problem", clip)
             if not current.get("problem_scan"):
                 current["problem_scan"] = save_problem_scan(page, prefix, number, lines, start_idx, end_idx)
             current["images"].extend(images)
@@ -526,7 +554,8 @@ def extract_solution_segments(path: Path) -> Dict[str, dict]:
                     "solution_text_bad": False,
                 }
             result[key]["solution"] = clean_text(f"{result[key]['solution']}\n{chunk}") if result[key]["solution"] else chunk
-            images = save_embedded_images(doc, page, prefix, number, "Solution")
+            clip = segment_region(page, lines, start_idx, end_idx)
+            images = save_embedded_images(doc, page, prefix, number, "Solution", clip)
             if not images and page_has_visuals(page):
                 images = [save_page_render(page, prefix, number, "Solution")]
             result[key]["solution_images"].extend(images)
@@ -588,7 +617,8 @@ def extract_assignment_solution_chunks(path: Path) -> List[dict]:
         if segments:
             for number, start_idx, end_idx in segments:
                 chunk = lines_to_text(lines, start_idx, end_idx)
-                images = save_embedded_images(doc, page, prefix, number, "Solution")
+                clip = segment_region(page, lines, start_idx, end_idx)
+                images = save_embedded_images(doc, page, prefix, number, "Solution", clip)
                 if not images and page_has_visuals(page):
                     images = [save_page_render(page, prefix, number, "Solution")]
                 chunks.append(
@@ -871,6 +901,7 @@ def main() -> None:
     finalize_solution_text_flags(merged)
     merged = remove_unusable_records(merged)
     align_solution_assets(merged)
+    align_diagram_assets(merged)
     merged = enrich_records(merged)
     OUTPUT_PATH.write_text(json.dumps(merged, indent=2, ensure_ascii=False), encoding="utf-8")
     summarize(merged)

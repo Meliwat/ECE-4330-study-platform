@@ -3,6 +3,7 @@ import re
 from pathlib import Path
 from typing import Iterable, List
 
+from diagram_alignment import align_diagram_assets
 from solution_asset_alignment import align_solution_assets
 
 
@@ -563,6 +564,7 @@ def enrich_records(records: List[dict]) -> List[dict]:
 def main() -> None:
     records = json.loads(PROBLEMS_PATH.read_text(encoding="utf-8"))
     align_solution_assets(records)
+    align_diagram_assets(records)
     enriched = enrich_records(records)
     PROBLEMS_PATH.write_text(json.dumps(enriched, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     PROBLEMS_JS_PATH.write_text(

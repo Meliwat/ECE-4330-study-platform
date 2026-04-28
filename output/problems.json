@@ -6,9 +6,7 @@
     "has_solution": true,
     "solution": "Let a = e and b = ln(2). Both are irrational, and e^(ln 2) = 2. So an irrational number raised to an irrational power can be rational.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution1_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution1_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem1_scan.png",
@@ -200,10 +198,7 @@
     "has_solution": true,
     "solution": "Let h(x) = ln(x)/x. Then h'(x) = (1 - ln x)/x^2. The derivative is zero when ln x = 1, so x = e, and h reaches its maximum there. Since π > e, we have h(π) < h(e) = 1/e. Thus ln(π)/π < 1/e. Multiply both sides by πe > 0 to get e ln(π) < π. Exponentiating gives π^e < e^π, so e^π > π^e.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution12_img1.png",
-      "output/problem_images/Assignment1_Solution12_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution12_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem12_scan.png",
@@ -727,9 +722,7 @@
     "has_solution": true,
     "solution": "Factor the polynomial by testing simple roots. Since p(1) = 1 - 1 - 2 + 6 - 4 = 0, (x - 1) is a factor. Dividing gives x^3 - 2x + 4. Next, p(-2) = -8 + 4 + 4 = 0, so (x + 2) is a factor. Dividing again gives x^2 - 2x + 2. Solve x^2 - 2x + 2 = 0: x = (2 ± sqrt(4 - 8))/2 = 1 ± j. Therefore the four roots are x = 1, -2, 1 + j, 1 - j.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution2_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution2_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem2_scan.png",
@@ -873,10 +866,7 @@
     "has_solution": true,
     "solution": "Use angle addition: sin(7π/12) = sin(π/3 + π/4) = sin(π/3)cos(π/4) + cos(π/3)sin(π/4). Substitute the exact values: = (sqrt(3)/2)(sqrt(2)/2) + (1/2)(sqrt(2)/2) = (sqrt(6) + sqrt(2))/4.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution3_img1.png",
-      "output/problem_images/Assignment1_Solution3_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution3_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem3_scan.png",
@@ -939,10 +929,7 @@
     "has_solution": true,
     "solution": "Use power-reduction identities. For cos^5(x): write cos^5(x) = cos(x)(cos^2(x))^2 and use cos^2(x) = (1 + cos(2x))/2. After simplifying, cos^5(x) = (10 cos x + 5 cos 3x + cos 5x)/16. For sin^4(x): sin^2(x) = (1 - cos 2x)/2, so sin^4(x) = ((1 - cos 2x)/2)^2 = (3 - 4 cos 2x + cos 4x)/8.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution4_img1.png",
-      "output/problem_images/Assignment1_Solution4_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution4_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem4_scan.png",
@@ -1079,10 +1066,7 @@
     "has_solution": true,
     "solution": "Start from sin(α) - sin(β) + k sin(α + β) = 0 and expand sin(α + β): sin α - sin β + k(sin α cos β + cos α sin β) = 0. Rearranging gives sin α(1 + k cos β) = sin β(1 - k cos α). Square both sides and use sin^2 β = 1 - cos^2 β. After simplifying, ((1 - 2k cos α + k^2) cos β) = (1 + k^2) cos α - 2k. Therefore cos β = (((1 + k^2) cos α) - 2k) / (1 - 2k cos α + k^2), so β = cos^(-1)((((1 + k^2) cos α) - 2k) / (1 - 2k cos α + k^2)).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution6_img1.png",
-      "output/problem_images/Assignment1_Solution6_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution6_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem6_scan.png",
@@ -1153,10 +1137,7 @@
     "has_solution": true,
     "solution": "Write each expression as a cos x + b sin x = C cos(x - φ). 1) cos x - sin x = sqrt(2) cos(x + π/4). 2) -cos x + sin x = sqrt(2) cos(x - 3π/4). 3) cos x + sin(x + π/3) = cos x + (1/2)sin x + (sqrt(3)/2)cos x = ((2 + sqrt(3))/2) cos x + (1/2) sin x = sqrt(2 + sqrt(3)) cos(x - π/12).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment1_Solution7_img1.png",
-      "output/problem_images/Assignment1_Solution7_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment1_Solution7_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment1_Problem7_scan.png",
@@ -2804,8 +2785,7 @@
     "solution": "If f(x) is periodic with period T, then f(x + T) = f(x) for all x. Differentiate both sides with respect to x to get f'(x + T) = f'(x). Therefore the derivative has the same period T, so it is periodic as well.",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution1_img1.png",
-      "output/problem_images/Assignment2_Solution1_img2.png"
+      "output/problem_images/Assignment2_Solution1_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment2_Solution1_page.png",
     "solution_text_bad": false,
@@ -3383,9 +3363,7 @@
     "solution": "Lecture 5:\n𝐶2\n2  for any (𝑡) = 𝐶cos(𝜔𝑡 + 𝜃), regardless\nIt can be shown that the average power of a sinusoid is\n2𝜋\nof frequency and/or 𝜃. Your Turn: Prove the above fact using Mathcad. Let 𝑇0 =\n𝜔, then\n2. Power of the sum of two complex exponential signals:\n𝑓(𝑡) = 𝐷1𝑒𝑗𝜔1𝑡 + 𝐷2𝑒𝑗𝜔2𝑡\n2 + 𝐷2\n2\nCase1:𝜔1 ≠𝜔2 →𝑃𝑓\n= 𝐷1\n2 + 𝐷2\n2 + 𝐷1\n= |𝐷1\n∗𝐷2 + 𝐷2\n∗𝐷1\nCase 2: 𝜔1 = 𝜔2→ 𝑃𝑓\n[Your turn: Verify these results using Mathcad integration]\n𝜔1 ≠𝜔2\n𝜔1 = 𝜔2 = 𝜔",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution2_img1.png",
-      "output/problem_images/Assignment2_Solution2_img2.png",
-      "output/problem_images/Assignment2_Solution2_img3.png"
+      "output/problem_images/Assignment2_Solution2_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment2_Solution2_page.png",
     "solution_text_bad": true,
@@ -3456,8 +3434,7 @@
     "images": [],
     "solution_images": [
       "output/problem_images/Assignment2_Solution3_img1.png",
-      "output/problem_images/Assignment2_Solution3_img2.png",
-      "output/problem_images/Assignment2_Solution3_img3.png"
+      "output/problem_images/Assignment2_Solution3_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment2_Solution3_page.png",
     "solution_text_bad": false,
@@ -3527,9 +3504,7 @@
     "solution": "𝑓(𝑡)𝛿̇(𝑡) = 𝑓(0)𝛿̇(𝑡) -𝑓̇(0)𝛿(𝑡)\n𝑓(𝑡) = 𝑡𝑒-𝑡\n𝑓̇(𝑡) = 𝑒-𝑡-𝑡𝑒-𝑡= (1 -𝑡)𝑒-𝑡\n𝑓(0) = 0\n𝑓̇(0) = 1\n𝑡𝑒-𝑡𝛿̇(𝑡) = -𝛿(𝑡)\nShow that 𝑓(𝑡)𝛿̈(𝑡) = 𝑓(0)𝛿̈(𝑡) - 2𝑓̇(0)𝛿̇(𝑡) + 𝑓̈(0)𝛿(𝑡)",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment2_Solution4_img1.png",
-      "output/problem_images/Assignment2_Solution4_img2.png",
-      "output/problem_images/Assignment2_Solution4_img3.png"
+      "output/problem_images/Assignment2_Solution4_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment2_Solution4_page.png",
     "solution_text_bad": true,
@@ -3539,7 +3514,7 @@
     "subtopics": [
       "Signals/Math"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "4. Show that the average power of 𝑓(𝑡) = 𝐶cos(𝜔𝑡+ 𝜃) is 𝑃𝑓= 2 , and is independent of the frequency and phase.",
       "goal": "Show that the average power of 𝑓(𝑡) = 𝐶cos(𝜔𝑡+ 𝜃) is 𝑃𝑓= 2 , and is independent of the frequency and phase",
@@ -3596,10 +3571,7 @@
     "has_solution": true,
     "solution": "+∞\nc. ∫\n𝑑𝑡\n𝛿(sin(𝑡))\n-∞\n𝑔(𝑡) = sin(𝑡), sin(𝑡) = 0 then 𝑡= 𝑘𝜋,  𝑔̇(𝑡) = cos(𝑡)\nIf 𝑘 is even: cos(𝑘𝜋) = 1 and |cos (𝑘𝜋)| = 1\nIf 𝑘 is odd: cos(𝑘𝜋) = -1 and |cos (𝑘𝜋)| = 1\nEmploying these results allow us to write,\n∞\n∞\n+∞\n+∞\n+∞\n+∞\n∑𝛿(𝑡-𝑘𝜋)\n∑𝛿(𝑡-𝑘𝜋)\n𝛿(𝑡-𝜋)𝑑𝑡\n𝛿(𝑡-𝑘𝜋)𝑑𝑡\n∫\n𝑑𝑡= ∫\n𝑑𝑡= ∫\n+ ⋯∫\n1\n-∞\n-∞\n-∞\n-∞\n𝑖=1\n𝑘=1\n= 1 + 1 + 1 + ⋯= ∞\n2 sin(𝜔𝑜𝑡) 𝛿(𝑡) = -𝜔𝑜\n2 sin(0) 𝛿(𝑡) = 0\n-𝜔𝑜\n2 sin(0) 𝛿(𝑡) = 2𝜔𝑜𝛿̇(𝑡)\n2𝜔𝑜cos(𝜔𝑜𝑡) 𝛿̇(𝑡) = 2𝜔𝑜cos(0) 𝛿̇(𝑡) -2𝜔𝑜\n2 sin(0) 𝛿(𝑡) = -2𝜔𝑜𝛿̇(𝑡)\nsin(𝜔𝑜𝑡) 𝛿̈(𝑡) = sin(0) 𝛿̈(𝑡) -2𝜔𝑜cos(0) 𝛿̇(𝑡) -2𝜔𝑜\nAdding the three simplified terms leads to,\n0 + 2𝜔𝑜𝛿̇(𝑡) -2𝜔𝑜𝛿̇(𝑡) = 0",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment2_Solution5_img1.png",
-      "output/problem_images/Assignment2_Solution5_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment2_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem5_scan.png",
@@ -3667,9 +3639,7 @@
     "has_solution": true,
     "solution": "Lecture 6:\n1\n1\n1\na. 𝑓(𝑡) =\n2 𝑡𝑢(𝑡-2)\n2 𝑡[𝑢(𝑡) -𝑢(𝑡-2)] =\n2 𝑡𝑢(𝑡) -\nLet 𝑡-2 = 𝑚 then 𝑡= 𝑚+ 2; Now we can rewrite 𝑡𝑢(𝑡-2) as:\n(𝑚+ 2)𝑢(𝑚) = 𝑚𝑢(𝑚) + 2𝑢(𝑚) = (𝑡-2)𝑢(𝑡-2) + 2𝑢(𝑡-2)\nThen we will have:\n𝑓(𝑡) = 1\n2 𝑡𝑢(𝑡) -1\n2 ((𝑡-2)𝑢(𝑡-2) + 2𝑢(𝑡-2))\n= 1\n2 𝑡𝑢(𝑡) -1\n2 (𝑡-2)𝑢(𝑡-2) -𝑢(𝑡-2)\nb.  𝑓(𝑡) = 1[𝑢(𝑡+ 1) -𝑢(𝑡)] + 3[𝑢(𝑡) -𝑢(𝑡-1)] + 2[𝑢(𝑡-1) -𝑢(𝑡-2)] +\n1[𝑢(𝑡-2) -𝑢(𝑡-3)]\nOr,\n𝑓(𝑡) = 𝑢(𝑡+ 1) + 2𝑢(𝑡) -𝑢(𝑡-1) -𝑢(𝑡-2) -𝑢(𝑡-3)\n𝑓(𝑡) = -4𝑒-𝑡[𝑢(𝑡) -𝑢(𝑡-1)] + (2𝑡-4)[𝑢(𝑡-2) -𝑢(𝑡-4)]",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment2_Solution6_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment2_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem6_scan.png",
@@ -3739,10 +3709,7 @@
     "images": [
       "output/problem_images/Assignment2_Problem7_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment2_Solution7_img1.png",
-      "output/problem_images/Assignment2_Solution7_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment2_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem7_scan.png",
@@ -3753,7 +3720,7 @@
       "Series and sums",
       "Delta functions"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "7. A real signal 𝑓(𝑡)⁡can always be decomposed into one even signal 𝑓𝑒(𝑡) and one odd signal 𝑓𝑜(𝑡) such that, 𝑓(𝑡) = 𝑓𝑒(𝑡) + 𝑓𝑜(𝑡). Show that the average power of this signal is the sum of the individual average powers of 𝑓𝑒(𝑡) and 𝑓𝑜(𝑡). Hints from calculus: the product 𝑓𝑜(𝑡)𝑓𝑒(𝑡) is an odd function and ∞ = 0. 𝑓𝑜(𝑡)𝑑𝑡 ∫ -∞",
       "goal": "Show that the average power of this signal is the sum of the individual average powers of 𝑓𝑒(𝑡) and 𝑓𝑜(𝑡)",
@@ -3813,10 +3780,7 @@
     "images": [
       "output/problem_images/Assignment2_Problem8_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment2_Solution8_img1.png",
-      "output/problem_images/Assignment2_Solution8_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment2_Solution8_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment2_Problem8_scan.png",
@@ -3825,7 +3789,7 @@
     "subtopics": [
       "Signals/Math"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "8. Express the following signals in terms of unit-step functions.",
       "goal": "Express the following signals in terms of unit-step functions",
@@ -3956,10 +3920,7 @@
       "output/problem_images/Assignment3_Problem1_img1.png",
       "output/problem_images/Assignment3_Problem1_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment3_Solution1_img1.png",
-      "output/problem_images/Assignment3_Solution1_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment3_Solution1_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem1_scan.png",
@@ -3968,7 +3929,7 @@
     "subtopics": [
       "Circuit response"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "1. Draw a circuit diagram for the cable problem and derive Blavier's formula. Also, provide a formula for the leakage resistance in terms of 𝑅, 𝑅𝑠 and 𝑅𝑜.",
       "goal": "derive Blavier's formula",
@@ -4028,10 +3989,7 @@
       "output/problem_images/Assignment3_Problem2_img1.png",
       "output/problem_images/Assignment3_Problem2_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment3_Solution2_img1.png",
-      "output/problem_images/Assignment3_Solution2_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment3_Solution2_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem2_scan.png",
@@ -4041,7 +3999,7 @@
       "Series and sums",
       "Circuit response"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "2. Consider the following resistive network of four resistors having values 𝑎, and 𝑏. Show that the resistance between nodes 𝐴 and 𝐵 with the switch open is always greater than or equal to the resistance when the switch is closed. Hint: The arithmetic mean of two 𝑎+𝑏 2𝑎𝑏 numbers 𝑎 and 𝑏 is greater than or equal to the geometric mean (i.e., 𝑎+𝑏). 2 ≥",
       "goal": "Show that the resistance between nodes 𝐴 and 𝐵 with the switch open is always greater than or equal to the resistance when the switch is closed",
@@ -4102,9 +4060,7 @@
       "output/problem_images/Assignment3_Problem3_img1.png",
       "output/problem_images/Assignment3_Problem3_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment3_Solution3_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment3_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem3_scan.png",
@@ -4115,7 +4071,7 @@
       "Differential equations",
       "Circuit response"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "3. Solve the 2nd order linear time-invariant ordinary differential equation: 𝑦̈(𝑡) + 5𝑦̇(𝑡) -2𝑦(𝑡) = 𝑓̇(𝑡) -3𝑓(𝑡) Given 𝑓(𝑡) = 𝑒-𝑡, 𝑦(0+) = 1 and 𝑦̇(0+) = 0, solve for 𝑦(𝑡), 𝑡> 0",
       "goal": "Solve the 2nd order linear time-invariant ordinary differential equation: 𝑦̈(𝑡) + 5𝑦̇(𝑡) -2𝑦(𝑡) = 𝑓̇(𝑡) -3𝑓(𝑡) Given 𝑓(𝑡) = 𝑒-𝑡, 𝑦(0+) = 1 and 𝑦̇(0+) = 0, solve for 𝑦(𝑡), 𝑡> 0",
@@ -4175,9 +4131,7 @@
       "output/problem_images/Assignment3_Problem4_img1.png",
       "output/problem_images/Assignment3_Problem4_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment3_Solution4_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment3_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem4_scan.png",
@@ -4188,7 +4142,7 @@
       "Zero-input response",
       "Differential equations"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "4. Solve and plot the following differential equation numerically (employ Matlab's ode45) 𝑦̈(𝑡) + 5𝑦̇(𝑡) + 6𝑦(𝑡) = 4𝑒-𝑡, 𝑡> 0 Assume the initial conditions 𝑦(0+) = 10, 𝑦̇(0+) = -2.",
       "goal": "Solve and plot the following differential equation numerically (employ Matlab's ode45) 𝑦̈(𝑡) + 5𝑦̇(𝑡) + 6𝑦(𝑡) = 4𝑒-𝑡, 𝑡> 0 Assume the initial conditions 𝑦(0+) = 10, 𝑦̇(0+) = -2",
@@ -4248,9 +4202,7 @@
       "output/problem_images/Assignment3_Problem5_img1.png",
       "output/problem_images/Assignment3_Problem5_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment3_Solution5_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment3_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment3_Problem5_scan.png",
@@ -4262,7 +4214,7 @@
       "Differential equations",
       "Circuit response"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "5. Solve for the complete response 𝑣(𝑡), 𝑡> 0, for the following circuit (Let, 𝑅1 = 1Ω, 𝑅2 = 1Ω, 𝐶= 1 F and 𝐿= 2 H). Assume that the switch has been in position 1 for a very long time. The switch moves into position 2 for all 𝑡≥0. Also, determine the steady- state response 𝑣𝑠𝑠(𝑡) and the transient response 𝑣𝑡𝑟(𝑡).",
       "goal": "Solve for the complete response 𝑣(𝑡), 𝑡> 0, for the following circuit (Let, 𝑅1 = 1Ω, 𝑅2 = 1Ω, 𝐶= 1 F and 𝐿= 2 H)",
@@ -4463,9 +4415,7 @@
       "output/problem_images/Assignment4_Problem10_img1.png",
       "output/problem_images/Assignment4_Problem10_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment4_Solution10_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment4_Solution10_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem10_scan.png",
@@ -4479,7 +4429,7 @@
       "Zero-state response",
       "Circuit response"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "10. Consider the following circuit. Obtain the unit-impulse response, ℎ(𝑡), 𝑡≥0. You may work in the time domain or in the s-domain (Laplace transform). Treat the voltage source as the input signal 𝑓(𝑡) and 𝑖𝐿(𝑡) as the output signal. Then, solve for the zero-state response, 𝑖𝑧𝑠(𝑡) = 𝑓(𝑡) ∗ℎ(𝑡), with 𝑓(𝑡) = 24𝑢(𝑡).",
       "goal": "Obtain the unit-impulse response, ℎ(𝑡), 𝑡≥0",
@@ -4674,11 +4624,7 @@
       "output/problem_images/Assignment4_Problem4_img1.png",
       "output/problem_images/Assignment4_Problem4_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment4_Solution4_img1.png",
-      "output/problem_images/Assignment4_Solution4_img2.png",
-      "output/problem_images/Assignment4_Solution4_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment4_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem4_scan.png",
@@ -4751,10 +4697,7 @@
       "output/problem_images/Assignment4_Problem5_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment4_Solution5_img1.png",
-      "output/problem_images/Assignment4_Solution5_img2.png",
-      "output/problem_images/Assignment4_Solution5_img3.png",
-      "output/problem_images/Assignment4_Solution5_img4.png"
+      "output/problem_images/Assignment4_Solution5_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment4_Solution5_page.png",
     "solution_text_bad": true,
@@ -4890,11 +4833,7 @@
       "output/problem_images/Assignment4_Problem7_img1.png",
       "output/problem_images/Assignment4_Problem7_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment4_Solution7_img1.png",
-      "output/problem_images/Assignment4_Solution7_img2.png",
-      "output/problem_images/Assignment4_Solution7_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment4_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment4_Problem7_scan.png",
@@ -4965,12 +4904,7 @@
       "output/problem_images/Assignment4_Problem8_img1.png",
       "output/problem_images/Assignment4_Problem8_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment4_Solution8_img1.png",
-      "output/problem_images/Assignment4_Solution8_img2.png",
-      "output/problem_images/Assignment4_Solution8_img3.png",
-      "output/problem_images/Assignment4_Solution8_img4.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment4_Solution8_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment4_Problem8_scan.png",
@@ -5265,11 +5199,7 @@
       "output/problem_images/Assignment5_Problem1_img2.png",
       "output/problem_images/Assignment5_Problem1_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution1_img1.png",
-      "output/problem_images/Assignment5_Solution1_img2.png",
-      "output/problem_images/Assignment5_Solution1_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution1_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem1_scan.png",
@@ -5341,8 +5271,7 @@
       "output/problem_images/Assignment5_Problem10_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution10_img1.png",
-      "output/problem_images/Assignment5_Solution10_img2.png"
+      "output/problem_images/Assignment5_Solution10_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment5_Solution10_page.png",
     "solution_text_bad": true,
@@ -5413,9 +5342,7 @@
       "output/problem_images/Assignment5_Problem11_img1.png",
       "output/problem_images/Assignment5_Problem11_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution11_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution11_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem11_scan.png",
@@ -5428,7 +5355,7 @@
       "Steady-state response",
       "Circuit response"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "11. Employ the Laplace transform's Initial Value and Final Value Properties in order to solve for 𝑖1(0+) and 𝑖1(∞), respectively, directly from 𝐼1(𝑠) = 12𝑠2 + 30𝑠+ 9 𝑠(2𝑠2 + 7𝑠+ 3)",
       "goal": "solve for 𝑖1(0+) and 𝑖1(∞), respectively, directly from 𝐼1(𝑠) = 12𝑠2 + 30𝑠+ 9 𝑠(2𝑠2 + 7𝑠+ 3)",
@@ -5488,9 +5415,7 @@
       "output/problem_images/Assignment5_Problem12_img1.png",
       "output/problem_images/Assignment5_Problem12_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution12_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution12_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem12_scan.png",
@@ -5500,7 +5425,7 @@
       "Laplace transform",
       "Circuit response"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "12. Consider the following circuit. Solve for the current, 𝑖𝑧𝑖(𝑡). Assume 𝑣𝐶(0-) = 8 and that the rest of the circuit has zero initial energy at 𝑡= 0-. Employ the 𝑠-domain circuit and the Laplace transform method. Also, determine the RHS capacitor current and voltage. Is the voltage of this capacitor continuous at 𝑡= 0? If not, justify the reason why?",
       "goal": "Solve for the current, 𝑖𝑧𝑖(𝑡)",
@@ -5561,10 +5486,7 @@
       "output/problem_images/Assignment5_Problem13_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution13_img1.png",
-      "output/problem_images/Assignment5_Solution13_img2.png",
-      "output/problem_images/Assignment5_Solution13_img3.png",
-      "output/problem_images/Assignment5_Solution13_img4.png"
+      "output/problem_images/Assignment5_Solution13_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment5_Solution13_page.png",
     "solution_text_bad": true,
@@ -5634,11 +5556,7 @@
       "output/problem_images/Assignment5_Problem14_img1.png",
       "output/problem_images/Assignment5_Problem14_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution14_img1.png",
-      "output/problem_images/Assignment5_Solution14_img2.png",
-      "output/problem_images/Assignment5_Solution14_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution14_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem14_scan.png",
@@ -5647,7 +5565,7 @@
     "subtopics": [
       "Signals/Math"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "14. Consider the following feedback system.",
       "goal": "Work through the requested calculation and state the final result.",
@@ -5708,10 +5626,7 @@
       "output/problem_images/Assignment5_Problem15_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution15_img1.png",
-      "output/problem_images/Assignment5_Solution15_img2.png",
-      "output/problem_images/Assignment5_Solution15_img3.png",
-      "output/problem_images/Assignment5_Solution15_img4.png"
+      "output/problem_images/Assignment5_Solution15_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment5_Solution15_page.png",
     "solution_text_bad": true,
@@ -5781,11 +5696,7 @@
       "output/problem_images/Assignment5_Problem16_img1.png",
       "output/problem_images/Assignment5_Problem16_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution16_img1.png",
-      "output/problem_images/Assignment5_Solution16_img2.png",
-      "output/problem_images/Assignment5_Solution16_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution16_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem16_scan.png",
@@ -5796,7 +5707,7 @@
       "Differential equations",
       "Circuit response"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "16. Give a time-domain block diagram realization for the system 𝐻(𝑠) = 𝑠2+4𝑠+10 by (directly) realizing the corresponding differential equation, 𝑦̈(𝑡) + 4𝑦̇(𝑡) + 10𝑦(𝑡) = 2𝑓̇(𝑡) + 5𝑓(𝑡) Which can be expressed as 𝑦(𝑡) to obtain, 𝑦(𝑡) = ∫[-4𝑦(𝜏) + 2𝑓(𝑡) + ∫(-10𝑦(𝑡) + 5𝑓(𝑡))𝑑𝜏] 𝑑𝜏",
       "goal": "Give a time-domain block diagram realization for the system 𝐻(𝑠) = 𝑠2+4𝑠+10 by (directly) realizing the corresponding differential equation, 𝑦̈(𝑡) + 4𝑦̇(𝑡) + 10𝑦(𝑡) = 2𝑓̇(𝑡) + 5𝑓(𝑡) Which can be expressed as 𝑦(𝑡) to obtain, 𝑦(𝑡) = ∫[-4𝑦(𝜏) + 2𝑓(𝑡) + ∫(-10𝑦(𝑡) + 5𝑓(𝑡))𝑑𝜏] 𝑑𝜏",
@@ -5856,9 +5767,7 @@
       "output/problem_images/Assignment5_Problem17_img1.png",
       "output/problem_images/Assignment5_Problem17_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution17_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution17_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem17_scan.png",
@@ -5999,9 +5908,7 @@
       "output/problem_images/Assignment5_Problem3_img2.png",
       "output/problem_images/Assignment5_Problem3_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution3_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution3_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem3_scan.png",
@@ -6071,9 +5978,7 @@
       "output/problem_images/Assignment5_Problem4_img2.png",
       "output/problem_images/Assignment5_Problem4_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution4_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem4_scan.png",
@@ -6146,9 +6051,7 @@
       "output/problem_images/Assignment5_Problem5_img2.png",
       "output/problem_images/Assignment5_Problem5_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution5_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem5_scan.png",
@@ -6219,9 +6122,7 @@
       "output/problem_images/Assignment5_Problem6_img2.png",
       "output/problem_images/Assignment5_Problem6_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution6_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem6_scan.png",
@@ -6292,9 +6193,7 @@
       "output/problem_images/Assignment5_Problem7_img2.png",
       "output/problem_images/Assignment5_Problem7_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment5_Solution7_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment5_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment5_Problem7_scan.png",
@@ -6437,8 +6336,7 @@
       "output/problem_images/Assignment5_Problem9_img3.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment5_Solution9_img1.png",
-      "output/problem_images/Assignment5_Solution9_img2.png"
+      "output/problem_images/Assignment5_Solution9_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment5_Solution9_page.png",
     "solution_text_bad": true,
@@ -6510,10 +6408,7 @@
       "output/problem_images/Assignment6_Problem1_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment6_Solution1_img1.png",
-      "output/problem_images/Assignment6_Solution1_img2.png",
-      "output/problem_images/Assignment6_Solution1_img3.png",
-      "output/problem_images/Assignment6_Solution1_img4.png"
+      "output/problem_images/Assignment6_Solution1_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment6_Solution1_page.png",
     "solution_text_bad": true,
@@ -6796,12 +6691,7 @@
     "has_solution": true,
     "solution": "The third line of the Matlab prompt takes the partial derivative with respect to each of the\ncoefficients that we want to compute for our LSE Fourier expansion. The fourth line takes the\nintegral of each one of those partial derivatives of 𝑓. Once we have the integral computed over\nthe range that we want, we can then start to set each equation to zero and solve for the respective\ncoefficient in that function\n1\nFrom this we can see that 𝑎0 =\n3\n4\nFrom this we can see that 𝑎1 = -\n𝜋2\n1\nFrom this we can see that 𝑎2 =\n𝜋2\nFrom this we can see that 𝑏1 and 𝑏2 = 0",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment6_Solution5_img1.png",
-      "output/problem_images/Assignment6_Solution5_img2.png",
-      "output/problem_images/Assignment6_Solution5_img3.png",
-      "output/problem_images/Assignment6_Solution5_img4.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment6_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem5_scan.png",
@@ -6811,7 +6701,7 @@
       "Series and sums",
       "Fourier series"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "5. Solve for the Fourier series coefficients and plot the spectra for the signal in Problem 4 employing the provided Mathcad compact Fourier Series Worksheet.",
       "goal": "Solve for the Fourier series coefficients and plot the spectra for the signal in Problem 4 employing the provided Mathcad compact Fourier Series Worksheet",
@@ -6868,12 +6758,7 @@
     "has_solution": true,
     "solution": "9.\nThe steady-state response is given by,\n∞\n2 |𝐻(0)| + ∑|𝐻(2𝑛𝜋)|\n𝑦𝑠𝑠(𝑡) = 1\ncos [2𝑛𝜋𝑡+ 𝜋\n2 + 𝑎𝑟𝑔(𝐻(2𝑛𝜋))]\n𝑛𝜋\n𝑛=1\n2-𝜔2\n√𝜔4-3𝜔2+4  and 𝑎𝑟𝑔(𝐻(𝜔)) = tan-1 (\n𝜔\nwhere |𝐻(𝜔)| =\n𝜔 ). Therefore (using 𝜔= 2𝑛𝜋),\n∞\n2 + tan-1 (2 -(2𝑛𝜋)2\n1\ncos [2𝑛𝜋𝑡+ 𝜋\n)]\n𝑦𝑠𝑠(𝑡) = ∑\n√4𝜋4𝑛4 -3𝜋2𝑛2 + 1\n2𝑛𝜋\n𝑛=1\nThe following is a plot of the steady-state response (using the first 200 harmonics),",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment6_Solution6_img1.png",
-      "output/problem_images/Assignment6_Solution6_img2.png",
-      "output/problem_images/Assignment6_Solution6_img3.png",
-      "output/problem_images/Assignment6_Solution6_img4.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment6_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem6_scan.png",
@@ -7018,11 +6903,7 @@
       "output/problem_images/Assignment6_Problem8_img2.png",
       "output/problem_images/Assignment6_Problem8_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment6_Solution8_img1.png",
-      "output/problem_images/Assignment6_Solution8_img2.png",
-      "output/problem_images/Assignment6_Solution8_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment6_Solution8_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem8_scan.png",
@@ -7095,11 +6976,7 @@
       "output/problem_images/Assignment6_Problem9_img2.png",
       "output/problem_images/Assignment6_Problem9_img3.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment6_Solution9_img1.png",
-      "output/problem_images/Assignment6_Solution9_img2.png",
-      "output/problem_images/Assignment6_Solution9_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment6_Solution9_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment6_Problem9_scan.png",
@@ -7173,9 +7050,7 @@
     ],
     "solution_images": [
       "output/problem_images/Assignment7_Solution1_img1.png",
-      "output/problem_images/Assignment7_Solution1_img2.png",
-      "output/problem_images/Assignment7_Solution1_img3.png",
-      "output/problem_images/Assignment7_Solution1_img4.png"
+      "output/problem_images/Assignment7_Solution1_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment7_Solution1_page.png",
     "solution_text_bad": true,
@@ -7247,12 +7122,7 @@
       "output/problem_images/Assignment7_Problem10_img3.png",
       "output/problem_images/Assignment7_Problem10_img4.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution10_img1.png",
-      "output/problem_images/Assignment7_Solution10_img2.png",
-      "output/problem_images/Assignment7_Solution10_img3.png",
-      "output/problem_images/Assignment7_Solution10_img4.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution10_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem10_scan.png",
@@ -7327,8 +7197,7 @@
     ],
     "solution_images": [
       "output/problem_images/Assignment7_Solution11_img1.png",
-      "output/problem_images/Assignment7_Solution11_img2.png",
-      "output/problem_images/Assignment7_Solution11_img3.png"
+      "output/problem_images/Assignment7_Solution11_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment7_Solution11_page.png",
     "solution_text_bad": true,
@@ -7399,11 +7268,7 @@
     "images": [
       "output/problem_images/Assignment7_Problem12_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution12_img1.png",
-      "output/problem_images/Assignment7_Solution12_img2.png",
-      "output/problem_images/Assignment7_Solution12_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution12_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem12_scan.png",
@@ -7477,11 +7342,7 @@
     "images": [
       "output/problem_images/Assignment7_Problem13_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution13_img1.png",
-      "output/problem_images/Assignment7_Solution13_img2.png",
-      "output/problem_images/Assignment7_Solution13_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution13_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem13_scan.png",
@@ -7554,9 +7415,7 @@
       "output/problem_images/Assignment7_Problem14_img1.png",
       "output/problem_images/Assignment7_Problem14_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution14_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution14_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem14_scan.png",
@@ -7697,11 +7556,7 @@
       "output/problem_images/Assignment7_Problem16_img1.png",
       "output/problem_images/Assignment7_Problem16_img2.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution16_img1.png",
-      "output/problem_images/Assignment7_Solution16_img2.png",
-      "output/problem_images/Assignment7_Solution16_img3.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution16_page.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Assignment7_Problem16_scan.png",
@@ -7844,9 +7699,7 @@
       "output/problem_images/Assignment7_Problem18_img2.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment7_Solution18_img1.png",
-      "output/problem_images/Assignment7_Solution18_img2.png",
-      "output/problem_images/Assignment7_Solution18_img3.png"
+      "output/problem_images/Assignment7_Solution18_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment7_Solution18_page.png",
     "solution_text_bad": false,
@@ -8010,8 +7863,7 @@
     "solution_images": [
       "output/problem_images/Assignment7_Solution20_img1.png",
       "output/problem_images/Assignment7_Solution20_img2.png",
-      "output/problem_images/Assignment7_Solution20_img3.png",
-      "output/problem_images/Assignment7_Solution20_img4.png"
+      "output/problem_images/Assignment7_Solution20_img3.png"
     ],
     "solution_scan": "output/problem_images/Assignment7_Solution20_page.png",
     "solution_text_bad": false,
@@ -8174,9 +8026,7 @@
     "images": [
       "output/problem_images/Assignment7_Problem4_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution4_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem4_scan.png",
@@ -8247,9 +8097,7 @@
     "images": [
       "output/problem_images/Assignment7_Problem5_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution5_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution5_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem5_scan.png",
@@ -8319,9 +8167,7 @@
     "images": [
       "output/problem_images/Assignment7_Problem6_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution6_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution6_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem6_scan.png",
@@ -8391,9 +8237,7 @@
     "images": [
       "output/problem_images/Assignment7_Problem7_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution7_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution7_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem7_scan.png",
@@ -8467,9 +8311,7 @@
       "output/problem_images/Assignment7_Problem8_img3.png",
       "output/problem_images/Assignment7_Problem8_img4.png"
     ],
-    "solution_images": [
-      "output/problem_images/Assignment7_Solution8_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment7_Solution8_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment7_Problem8_scan.png",
@@ -8546,8 +8388,7 @@
     ],
     "solution_images": [
       "output/problem_images/Assignment7_Solution9_img1.png",
-      "output/problem_images/Assignment7_Solution9_img2.png",
-      "output/problem_images/Assignment7_Solution9_img3.png"
+      "output/problem_images/Assignment7_Solution9_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment7_Solution9_page.png",
     "solution_text_bad": true,
@@ -9314,9 +9155,7 @@
     "solution": "Assignment 09\nECE 4330, Winter 2019\nDue: 2019-04-17\nLinear Systems and Signals\nGavin Chensue, gp8533\nDr. Mohamad Hassoun\nI have neither received nor provided any assistance on this work.\nP1.\nNumerical, recursion method for first 10 terms, (term 1 & 2 being 1, 1):\nZ-transform method:",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment9_Solution1_img1.png",
-      "output/problem_images/Assignment9_Solution1_img2.png",
-      "output/problem_images/Assignment9_Solution1_img3.png"
+      "output/problem_images/Assignment9_Solution1_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment9_Solution1_page.png",
     "solution_text_bad": false,
@@ -9327,7 +9166,7 @@
       "Trigonometric identities",
       "Z-transform"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "1. Solve numerically for the first 10 terms of the sequence generated by the following recursion formula, 𝑢𝑛+2 = 4𝑢𝑛+1 -8𝑢𝑛. Assume that 𝑢0 = 𝑢1 = 1. Then, employ the Z- transform method to find the expression for the 𝑛th term, 𝑢𝑛. Note: The above recursion formula can also be represented as the second-order homogeneous LTI difference equation 𝑦[𝑛+ 2] -4𝑦[𝑛+ 1] + 8𝑦[𝑛] = 0, with 𝑦[0] = 𝑦[1] = 1. 3𝑛 2 -1 [2cos ( 𝑛𝜋 𝑛𝜋 Ans. 𝑢𝑛= 2 4 )] , 𝑛≥0 4 ) -sin (",
       "goal": "Solve numerically for the first 10 terms of the sequence generated by the following recursion formula, 𝑢𝑛+2 = 4𝑢𝑛+1 -8𝑢𝑛",
@@ -9378,8 +9217,7 @@
     "solution": "ia: eu EVs\n\nMathcad result:\n\n(z- 3)\n\nU(z) = ufn) ztrans,n - z\nte -4at+ 3)",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment9_Solution2_img1.png",
-      "output/problem_images/Assignment9_Solution2_img2.png"
+      "output/problem_images/Assignment9_Solution2_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment9_Solution2_page.png",
     "solution_text_bad": true,
@@ -9449,8 +9287,7 @@
     "solution": "P2.\n\nHw? Pp.\n\neben EP PVE ee = yD + TV f£de+1)\n\nle oe aa). - > a\n\n|\n\nYie)(2-1) = T:2 Fee)\n\nYee =\n\nae |\n2a Ss i > = =T\n\naince 3 wth have ow nego | we veal pot aud\n\nTp io by kfuko\n\n| |\n| eo Se St ee ee\n\nre\" vewr yotie wit loz él 50 He\n\n\\ed4 nab? plane Waps \\wsIDE HE NT Cece |\n\nP3.\n\nHU7 p3\n\nla CG) vb * ute \"SS 2 ee eae A\n\n>\n\nlb) (4)*ete ¥G) ull cf ve - 5\") tes",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment9_Solution3_img1.png",
-      "output/problem_images/Assignment9_Solution3_img2.png"
+      "output/problem_images/Assignment9_Solution3_img1.png"
     ],
     "solution_scan": "output/problem_images/Assignment9_Solution3_page.png",
     "solution_text_bad": true,
@@ -9520,10 +9357,7 @@
     "has_solution": true,
     "solution": "ues) se ee\n\n(= We - 2V00e-1) +UCk-3)\n\nPO TS Oe\n\nwt a ONS gla 4) ot 1 fo ead\n| eae eeu bw if n2zo\n\nChamtonshe yu : = 2G Te. cee\nSwitthin Oo je (Nek);\nVi ‘ al=- 0 £ wie\n\nvtecl Cer onuse: Ce] = Bre\n\nrr\n\n(¥+2)-- Sofe+i] +b 4yckj = |! ie Or le\n\nbee \"mahal condition nc ule\nyEl=3 = A,2 +A23 +d\nTS oe SS ees\n\npee 2A = Ar -> /5= 301+ 2A2 ©:\n\nis.= 7 A\\ +5 Pe =? §4> 94,7 9a:",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Assignment9_Solution4_img1.png",
-      "output/problem_images/Assignment9_Solution4_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Assignment9_Solution4_page.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Assignment9_Problem4_scan.png",
@@ -9593,9 +9427,7 @@
     "solution": "ZSR: Y_zs(z)[z²−5z+6] = z³/(z−1). Y_zs(z) = z³/[(z−1)(z−2)(z−3)]. PFE gives A=1/2, B=−4, C=9/2. y_zs[n] = [(1/2)−4(2)^n+(9/2)(3)^n]u[n]. ZIR from y[−1]=3, y[−2]=2: y_zi[n] = [12(2)^n−9(3)^n]u[n]. Total: y[n] = (1/2)+8(2)^n−(9/2)(3)^n",
     "images": [],
     "solution_images": [
-      "output/problem_images/Assignment9_Solution5_img1.png",
-      "output/problem_images/Assignment9_Solution5_img2.png",
-      "output/problem_images/Assignment9_Solution5_img3.png"
+      "output/problem_images/Assignment9_Solution5_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment9_Solution5_page.png",
     "solution_text_bad": false,
@@ -9607,7 +9439,7 @@
       "Z-transform",
       "Difference equations"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "5. Solve Problem 4 employing the z-transform to find 𝑦[𝑛] = 𝑦𝑧𝑠[𝑛] + 𝑦𝑧𝑖[𝑛].",
       "goal": "Solve Problem 4 employing the z-transform to find 𝑦[𝑛] = 𝑦𝑧𝑠[𝑛] + 𝑦𝑧𝑖[𝑛]",
@@ -9668,7 +9500,6 @@
       "output/problem_images/Assignment9_Problem6_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/Assignment9_Solution6_img1.png",
       "output/problem_images/Assignment9_Solution6_img2.png"
     ],
     "solution_scan": "output/problem_images/Assignment9_Solution6_page.png",
@@ -9728,9 +9559,7 @@
     "has_solution": true,
     "solution": "f(t) = tu(t) - sin(t)u(t)",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Exam2W26_Solution1_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Exam2W26_Solution1_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Exam2W26_Problem1_scan.png",
@@ -9925,9 +9754,7 @@
     "images": [
       "output/problem_images/Exam2W26_Problem4_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Exam2W26_Solution4_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Exam2W26_Solution4_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Exam2W26_Problem4_scan.png",
@@ -10057,14 +9884,7 @@
     "has_solution": true,
     "solution": "y(t) = (3/4)sin(2(t-1))",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Exam3W26_Solution1_img1.png",
-      "output/problem_images/Exam3W26_Solution1_img2.png",
-      "output/problem_images/Exam3W26_Solution1_img3.png",
-      "output/problem_images/Exam3W26_Solution1_img4.png",
-      "output/problem_images/Exam3W26_Solution1_img5.png",
-      "output/problem_images/Exam3W26_Solution1_img6.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Exam3W26_Solution1_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Exam3W26_Problem1_scan.png",
@@ -10074,7 +9894,7 @@
       "Trigonometric identities",
       "Filter design"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "1. Determine the output 𝑦(𝑡) of the filter 𝐻(𝜔) = [𝑢(𝜔+ 5) -𝑢(𝜔-5)]𝑒-𝑗𝜔 when the input signal is 𝑓(𝑡) = sin3(2𝑡).",
       "goal": "Determine the output 𝑦(𝑡) of the filter 𝐻(𝜔) = [𝑢(𝜔+ 5) -𝑢(𝜔-5)]𝑒-𝑗𝜔 when the input signal is 𝑓(𝑡) = sin3(2𝑡)",
@@ -10128,14 +9948,7 @@
     "has_solution": true,
     "solution": "y(t) = (1 - e^(-a)cos(at) + te^(-a)sin(at)) / (1 + t^2)",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Exam3W26_Solution2_img1.png",
-      "output/problem_images/Exam3W26_Solution2_img2.png",
-      "output/problem_images/Exam3W26_Solution2_img3.png",
-      "output/problem_images/Exam3W26_Solution2_img4.png",
-      "output/problem_images/Exam3W26_Solution2_img5.png",
-      "output/problem_images/Exam3W26_Solution2_img6.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Exam3W26_Solution2_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Exam3W26_Problem2_scan.png",
@@ -10198,14 +10011,7 @@
     "has_solution": true,
     "solution": "H(s) = s^4 / (s^4 + 1306.6s^3 + 853550s^2 + 3.2665×10^8·s + 6.25×10^10)",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Exam3W26_Solution3_img1.png",
-      "output/problem_images/Exam3W26_Solution3_img2.png",
-      "output/problem_images/Exam3W26_Solution3_img3.png",
-      "output/problem_images/Exam3W26_Solution3_img4.png",
-      "output/problem_images/Exam3W26_Solution3_img5.png",
-      "output/problem_images/Exam3W26_Solution3_img6.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Exam3W26_Solution3_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Exam3W26_Problem3_scan.png",
@@ -10216,7 +10022,7 @@
       "Steady-state response",
       "Filter design"
     ],
-    "difficulty": "Challenge",
+    "difficulty": "Medium",
     "learning": {
       "given": "3. Determine the transfer function 𝐻(𝑠) for a high-pass Butterworth filter with the following specifications on the frequency response: |𝐻(100)| = 0.002 and |𝐻(1000)| = 0.98.",
       "goal": "Determine the transfer function 𝐻(𝑠) for a high-pass Butterworth filter with the following specifications on the frequency response: |𝐻(100)| = 0",
@@ -10270,14 +10076,7 @@
     "has_solution": true,
     "solution": "F(z) = e^(z^(-1))",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Exam3W26_Solution4_img1.png",
-      "output/problem_images/Exam3W26_Solution4_img2.png",
-      "output/problem_images/Exam3W26_Solution4_img3.png",
-      "output/problem_images/Exam3W26_Solution4_img4.png",
-      "output/problem_images/Exam3W26_Solution4_img5.png",
-      "output/problem_images/Exam3W26_Solution4_img6.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Exam3W26_Solution4_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Exam3W26_Problem4_scan.png",
@@ -10286,7 +10085,7 @@
     "subtopics": [
       "Z-transform"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "4. Determine the Z-transform for the following signal. Express the answer in closed analytical form. 1 𝑘! 𝑓[𝑘] =",
       "goal": "Determine the Z-transform for the following signal",
@@ -10342,14 +10141,7 @@
     "images": [
       "output/problem_images/Exam3W26_Problem5_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Exam3W26_Solution5_img1.png",
-      "output/problem_images/Exam3W26_Solution5_img2.png",
-      "output/problem_images/Exam3W26_Solution5_img3.png",
-      "output/problem_images/Exam3W26_Solution5_img4.png",
-      "output/problem_images/Exam3W26_Solution5_img5.png",
-      "output/problem_images/Exam3W26_Solution5_img6.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Exam3W26_Solution5_scan.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Exam3W26_Problem5_scan.png",
@@ -10358,7 +10150,7 @@
     "subtopics": [
       "Filter design"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "5. The signal 𝑓(𝑡) = 𝑒-|𝑡| has been modulated (multiplied) by the sinusoid 2cos2(5𝑡). Let 𝑔(𝑡) = 2𝑓(𝑡) cos2 5𝑡 be the input to the brick-wall low pass filter 𝐻(𝜔) = 𝑢(𝜔+ 10) -𝑢(𝜔-10). Assume the filter output is 𝑦(𝑡). Express 𝑌(𝜔) analytically.",
       "goal": "Express 𝑌(𝜔) analytically",
@@ -10418,10 +10210,7 @@
     "images": [
       "output/problem_images/FinalSample_Problem1_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/FinalSample_Solution1_img1.png",
-      "output/problem_images/FinalSample_Solution1_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/FinalSample_Solution1_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem1_scan.png",
@@ -10430,7 +10219,7 @@
     "subtopics": [
       "Filter design"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "1. Determine the filter type, and the value of 𝐾 that leads to 𝜔𝑐= 5rad/sec.",
       "goal": "Determine the filter type, and the value of 𝐾 that leads to 𝜔𝑐= 5rad/sec",
@@ -10479,10 +10268,7 @@
     "has_solution": true,
     "solution": "For the zero-state response with input f(t)=u(t), use Yzs(s) = H(s)F(s) = 1/[s(s^2+2)]. Write this as Yzs(s) = (1/2)(1/s) - (1/2)(s/(s^2+2)). Taking the inverse Laplace transform gives yzs(t) = (1/2)[1 - cos(√2 t)]u(t).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/FinalSample_Solution2_img1.png",
-      "output/problem_images/FinalSample_Solution2_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem2_scan.png",
@@ -10542,10 +10328,7 @@
     "has_solution": true,
     "solution": "Write H(z) in powers of z^(-1): H(z) = z/(z^2 - z/6 - 1/6) = z^(-1) / [1 - (1/6)z^(-1) - (1/6)z^(-2)]. For the unit-sample response, H(z)=Y(z) with input δ[k], so the recursion is h[k] - (1/6)h[k-1] - (1/6)h[k-2] = δ[k-1], with h[-1]=h[0]=0. Now compute sequentially: h[1]=1, h[2]=(1/6)h[1]+(1/6)h[0]=1/6, and h[3]=(1/6)h[2]+(1/6)h[1]=1/36+1/6=7/36. Therefore h[3]=7/36.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/FinalSample_Solution3_img1.png",
-      "output/problem_images/FinalSample_Solution3_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem3_scan.png",
@@ -10609,10 +10392,7 @@
     "has_solution": true,
     "solution": "Use the steady-state response of the discrete-time system from Problem 3. The DC component of the input contributes a constant term of 1.5, and the cosine at frequency π/3 is scaled and phase-shifted by the frequency response. The result is yss[k] = 1.5 + 1.92 cos((π/3)k - 1.328).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/FinalSample_Solution4_img1.png",
-      "output/problem_images/FinalSample_Solution4_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/FinalSample_Solution4_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem4_scan.png",
@@ -10672,10 +10452,7 @@
     "has_solution": true,
     "solution": "For the zero-input response set f[k] = 0, so the recurrence becomes y[k+1] = (1/2)y[k-1]. Using y[-1] = 1 and y[0] = 0 gives y[1] = 1/2, y[2] = 0, y[3] = 1/4, y[4] = 0, y[5] = 1/8, and so on. Thus the even-indexed samples are zero and the odd-indexed samples form a geometric sequence. Equivalently, yzi[2m] = 0 and yzi[2m+1] = (1/2)^(m+1) for m ≥ 0.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/FinalSample_Solution5_img1.png",
-      "output/problem_images/FinalSample_Solution5_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/FinalSample_Problem5_scan.png",
@@ -10745,8 +10522,7 @@
     "solution": "Use the bilinear transform with Ts=2, so s = (2/Ts)(1-z^(-1))/(1+z^(-1)) = (1-z^(-1))/(1+z^(-1)). Substitute into H(s)=1/(s^2+s+1): H(z)=1 / [((1-z^(-1))/(1+z^(-1)))^2 + ((1-z^(-1))/(1+z^(-1))) + 1]. Multiply numerator and denominator by (1+z^(-1))^2 to simplify: H(z) = (1 + 2z^(-1) + z^(-2)) / (3 + z^(-2)). Equivalently, H(z) = (z+1)^2 / (3z^2+1). The choice Ts=2 is not very good for accurate analog-to-digital matching, because it is fairly large relative to the analog dynamics and causes noticeable frequency warping. A smaller sampling period would be more appropriate.",
     "images": [],
     "solution_images": [
-      "output/problem_images/FinalSample_Solution6_img1.png",
-      "output/problem_images/FinalSample_Solution6_img2.png"
+      "output/problem_images/FinalSample_Solution6_img1.png"
     ],
     "solution_scan": "",
     "solution_text_bad": false,
@@ -10828,8 +10604,7 @@
       "output/problem_images/FinalSample_Problem7_img1.png"
     ],
     "solution_images": [
-      "output/problem_images/FinalSample_Solution7_img1.png",
-      "output/problem_images/FinalSample_Solution7_img2.png"
+      "output/problem_images/FinalSample_Solution7_img1.png"
     ],
     "solution_scan": "output/problem_images/FinalSample_Solution7_scan.png",
     "solution_text_bad": true,
@@ -10839,7 +10614,7 @@
     "subtopics": [
       "Steady-state response"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "7. Consider the following system. Sketch the spectrum at the indicated nodes. 𝛿𝑠(𝑡) is an everlasting train of unit-impulses with period 𝑇𝑠. (Bonus, 10 points) Consider the following system. Assume max[𝑚(𝑡)] = 𝐵 and 𝐴≫𝐵. a. Sketch the spectrum at node 1. b. Determine 𝑦(𝑡) assuming steady-state operation.",
       "goal": "Determine 𝑦(𝑡) assuming steady-state operation",
@@ -10896,9 +10671,7 @@
     "has_solution": true,
     "solution": "1.\n𝑓(𝑡) = √5 -2√2 cos [𝑡+ tan-1 (1 -√2\n2 ) ]",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test1Sample1_Solution1_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample1_Solution1_scan.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test1Sample1_Problem1_scan.png",
@@ -10964,9 +10737,7 @@
     "has_solution": true,
     "solution": "2.\n∞\nsin(𝑗) = 𝑗-𝑗3\n3! + 𝑗5\n5! -𝑗7\n1\n7! + ⋯= 𝑗∑\n(2𝑛+ 1)!\n𝑛=0\n2𝑗[𝑒𝑗2 -𝑒-𝑗2] = 𝑗sinh (1) to get\n1\nEquate that to sin(𝑗) =\n∞\n1\n= sinh (1)\n∑\n(2𝑛+ 1)!\n𝑛=0",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test1Sample1_Solution2_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample1_Solution2_scan.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test1Sample1_Problem2_scan.png",
@@ -11035,9 +10806,7 @@
     "images": [
       "output/problem_images/Test1Sample1_Problem3_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Test1Sample1_Solution3_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample1_Solution3_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample1_Problem3_scan.png",
@@ -11101,9 +10870,7 @@
     "images": [
       "output/problem_images/Test1Sample1_Problem4_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Test1Sample1_Solution4_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample1_Solution4_scan.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test1Sample1_Problem4_scan.png",
@@ -11171,9 +10938,7 @@
     "images": [
       "output/problem_images/Test1Sample1_Problem5_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Test1Sample1_Solution5_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample1_Problem5_scan.png",
@@ -11246,9 +11011,7 @@
     "images": [
       "output/problem_images/Test1Sample1_Problem6_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Test1Sample1_Solution6_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample1_Solution6_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample1_Problem6_scan.png",
@@ -11314,9 +11077,7 @@
     "images": [
       "output/problem_images/Test1Sample1_Problem7_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Test1Sample1_Solution7_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample1_Solution7_scan.png",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test1Sample1_Problem7_scan.png",
@@ -11385,13 +11146,7 @@
     "has_solution": true,
     "solution": "First simplify the complex number: z = 1 - (1-j)/(j√2) + e^(jπ/2). Since e^(jπ/2)=j and (1-j)/j = -1-j, we get -(1-j)/(j√2) = (1+j)/√2. Hence z = 1 + j + (1+j)/√2 = (1 + 1/√2) + j(1 + 1/√2). So the Cartesian form is z = (1 + 1/√2) + j(1 + 1/√2). The magnitude is |z| = √2(1 + 1/√2) = 1 + √2, and the angle is π/4 because the real and imaginary parts are equal and positive. Therefore the exponential form is z = (1 + √2)e^(jπ/4).",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test1Sample_Solution1_img1.png",
-      "output/problem_images/Test1Sample_Solution1_img2.png",
-      "output/problem_images/Test1Sample_Solution1_img3.png",
-      "output/problem_images/Test1Sample_Solution1_img4.png",
-      "output/problem_images/Test1Sample_Solution1_img5.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test1Sample_Problem1_scan.png",
@@ -11401,7 +11156,7 @@
       "Euler identity",
       "Complex numbers"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "1. Express the complex number in Cartesian form and in exponential 1 + - = 2 j 2 form. C t f t t t",
       "goal": "Express the complex number in Cartesian form and in exponential 1 + - = 2 j 2 form",
@@ -11463,13 +11218,7 @@
     "has_solution": true,
     "solution": "2.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test1Sample_Solution2_img1.png",
-      "output/problem_images/Test1Sample_Solution2_img2.png",
-      "output/problem_images/Test1Sample_Solution2_img3.png",
-      "output/problem_images/Test1Sample_Solution2_img4.png",
-      "output/problem_images/Test1Sample_Solution2_img5.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample_Solution2_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample_Problem2_scan.png",
@@ -11478,7 +11227,7 @@
     "subtopics": [
       "Trigonometric identities"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "2. Express the signal as . cos( 3 ( ) cos( 3 cos( 3 = - ) - + /2) +θ ) π a. Determine C and θ. b. What is the signal average power?",
       "goal": "Express the signal as",
@@ -11532,13 +11281,7 @@
     "has_solution": true,
     "solution": "3.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test1Sample_Solution3_img1.png",
-      "output/problem_images/Test1Sample_Solution3_img2.png",
-      "output/problem_images/Test1Sample_Solution3_img3.png",
-      "output/problem_images/Test1Sample_Solution3_img4.png",
-      "output/problem_images/Test1Sample_Solution3_img5.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample_Solution3_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample_Problem3_scan.png",
@@ -11547,7 +11290,7 @@
     "subtopics": [
       "Series and sums"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "3. Find the first two non-zero terms of the Taylor Series expansion of the 2 + , at the point x = 1.\\ f x x function ( ) 1 = 3 2     f t t t",
       "goal": "Find the first two non-zero terms of the Taylor Series expansion of the 2 + , at the point x = 1",
@@ -11601,13 +11344,7 @@
     "has_solution": true,
     "solution": "4.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test1Sample_Solution4_img1.png",
-      "output/problem_images/Test1Sample_Solution4_img2.png",
-      "output/problem_images/Test1Sample_Solution4_img3.png",
-      "output/problem_images/Test1Sample_Solution4_img4.png",
-      "output/problem_images/Test1Sample_Solution4_img5.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test1Sample_Solution4_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample_Problem4_scan.png",
@@ -11616,7 +11353,7 @@
     "subtopics": [
       "Trigonometric identities"
     ],
-    "difficulty": "Medium",
+    "difficulty": "Core",
     "learning": {
       "given": "4. Consider the signal . ( ) 1 2 cos sin = + -     3 4     a. Find the fundamental frequency ωo. b. Sketch the Trigonometric Spectra for this signal.",
       "goal": "Find the fundamental frequency ωo",
@@ -11671,11 +11408,7 @@
     "solution": "5.\nConvolution Result g(t) = cos(nt)[u(t) - u(t - 1)] * [u(t) - u(t- 2)]\n\n-0.5 0.0 0s 10 15 2.0 2.5 3.0 3.5",
     "images": [],
     "solution_images": [
-      "output/problem_images/Test1Sample_Solution5_img1.png",
-      "output/problem_images/Test1Sample_Solution5_img2.png",
-      "output/problem_images/Test1Sample_Solution5_img3.png",
-      "output/problem_images/Test1Sample_Solution5_img4.png",
-      "output/problem_images/Test1Sample_Solution5_img5.png"
+      "output/problem_images/Test1Sample_Solution5_img1.png"
     ],
     "solution_scan": "output/problem_images/Test1Sample_Solution5_scan.png",
     "solution_text_bad": true,
@@ -11746,9 +11479,7 @@
     "has_solution": true,
     "solution": "Interpret the Fourier series as a sum of orthogonal sinusoids with amplitudes 1/3, 1/5, 1/7, 1/9, and so on. By Parseval, the average power is the sum of the average powers of the individual harmonics. Each sinusoid A cos(nt) or A sin(nt) contributes A^2/2, so P = (1/2)[(1/3)^2 + (1/5)^2 + (1/7)^2 + (1/9)^2 + ...] = (1/2)Σ_{n=1}^∞ 1/(2n+1)^2. Using Σ_{m odd≥1} 1/m^2 = π^2/8 and subtracting the m=1 term gives Σ_{n=1}^∞ 1/(2n+1)^2 = π^2/8 - 1. Therefore the exact average power is P = π^2/16 - 1/2.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test1Sample_Solution7_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test1Sample_Problem7_scan.png",
@@ -12337,10 +12068,7 @@
     "has_solution": true,
     "solution": "1. Start with sin(𝑎𝑘) =\n𝑧2-2 cos(𝑎)𝑧+1",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test3Sample3_Solution1_img1.png",
-      "output/problem_images/Test3Sample3_Solution1_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test3Sample3_Solution1_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test3Sample3_Problem1_scan.png",
@@ -12405,10 +12133,7 @@
     "has_solution": true,
     "solution": "2. Bandwidth (rad/sec) is 𝜔𝑜 and 2𝜔𝑜 for 𝑓(𝑡) and 𝑓2(𝑡), respectively.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test3Sample3_Solution2_img1.png",
-      "output/problem_images/Test3Sample3_Solution2_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test3Sample3_Solution2_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test3Sample3_Problem2_scan.png",
@@ -12473,10 +12198,7 @@
     "images": [
       "output/problem_images/Test3Sample3_Problem3_img1.png"
     ],
-    "solution_images": [
-      "output/problem_images/Test3Sample3_Solution3_img1.png",
-      "output/problem_images/Test3Sample3_Solution3_img2.png"
-    ],
+    "solution_images": [],
     "solution_scan": "output/problem_images/Test3Sample3_Solution3_scan.png",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test3Sample3_Problem3_scan.png",
@@ -12539,8 +12261,7 @@
     "solution": "4.\n𝑘\n𝑘\n1\n1\n5. ℎ[𝑘] = [2 (\n] 𝑢[𝑘]\n2)\n-(\n4)\n𝑧-1\n6. 𝐻(𝑧) =\n6𝑧+4\n6𝑦[𝑘+ 1] + 4𝑦[𝑘] = 𝑓[𝑘+ 1] -𝑓[𝑘]\nRecursion:\n𝑦𝑧𝑠[𝑘+ 1] = -2\n3 𝑦[𝑘] + 1\n6 𝑇(𝑘+ 1)𝑢[𝑘+ 1] -1\n6 𝑇𝑘𝑢[𝑘]\nThe above recursion (with the assumptions 𝑦[-1] = 0 and 𝑇= 1) will give the\n1\n1\n7\noutput sequence, for 𝑘≥0: 𝑦𝑧𝑠[𝑘] = {0,\n54 , … }\n6 ,\n18 ,\nThis final result is consistent with the result from solving the problem employing the\n𝑧-transform that leads to:\n𝑘\n𝑦𝑧𝑠[𝑘] = -1\n10 (-2\n𝑢[𝑘] + 1\n10 𝑢[𝑘]\n3)\n1\n1\n7\n𝑦𝑧𝑠[0] = 0 and 𝑦𝑧𝑠[1] =\n6, 𝑦𝑧𝑠[2] =\n18, 𝑦𝑧𝑠[3] =\n54, etc.\nExtra simulation:\n10(1-𝑒-10)-1\n1\n10(1)-1\n1\n𝑦(𝑘𝑇)-𝑦𝑑[𝑘]\n400\n7. 𝜀(𝑘𝑇) = 100 |\n9 % ≅44%\n18\n18\n| , 𝜀(2) = 100 |\n10(1-𝑒-10) | % ≅100 |\n10(1) | % =\n1\n1\n𝑦(𝑘𝑇)\nNumerical verification (continued based on the recursion formula shown in the Mathcad\nsession above):",
     "images": [],
     "solution_images": [
-      "output/problem_images/Test3Sample3_Solution4_img1.png",
-      "output/problem_images/Test3Sample3_Solution4_img2.png"
+      "output/problem_images/Test3Sample3_Solution4_img1.png"
     ],
     "solution_scan": "output/problem_images/Test3Sample3_Solution4_scan.png",
     "solution_text_bad": true,
@@ -12609,9 +12330,7 @@
     "has_solution": true,
     "solution": "Take the z-transform with zero initial conditions: Y(z)[1 - (3/4)z^(-1) + (1/8)z^(-2)] = F(z). Hence H(z) = Y(z)/F(z) = 1 / [(1 - (1/2)z^(-1))(1 - (1/4)z^(-1))]. Use partial fractions: H(z) = 2/(1 - (1/2)z^(-1)) - 1/(1 - (1/4)z^(-1)). Taking the inverse z-transform gives h[k] = [2(1/2)^k - (1/4)^k]u[k].",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test3Sample3_Solution5_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": false,
     "problem_scan": "output/problem_images/Test3Sample3_Problem5_scan.png",
@@ -12677,9 +12396,7 @@
     "has_solution": true,
     "solution": "The continuous-time transfer function is H(s) = s/(s + 10). With the bilinear transform and T = 1, substitute s = 2(1 - z^(-1))/(1 + z^(-1)). Then H(z) = 2(1 - z^(-1)) / (12 + 8z^(-1)) = (1 - z^(-1)) / (6 + 4z^(-1)). Therefore the difference equation is 6y[k] + 4y[k-1] = f[k] - f[k-1], or y[k] = -(2/3)y[k-1] + (1/6)f[k] - (1/6)f[k-1]. For f(t)=tu(t), the sampled input is f[k]=k u[k]. With zero-state initial conditions, y[0]=0, y[1]=1/6, and y[2]=-(2/3)(1/6) + (1/6)(2) - (1/6)(1) = 1/18. The continuous-time response satisfies ẏ + 10y = u(t), so y(t) = (1 - e^(-10t))/10. At t=2 this is about 0.1, while the discrete result is 1/18 ≈ 0.0556. The absolute relative error is approximately |0.1 - 1/18| / 0.1 × 100% ≈ 44.4%.",
     "images": [],
-    "solution_images": [
-      "output/problem_images/Test3Sample3_Solution6_img1.png"
-    ],
+    "solution_images": [],
     "solution_scan": "",
     "solution_text_bad": true,
     "problem_scan": "output/problem_images/Test3Sample3_Problem6_scan.png",

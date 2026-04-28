@@ -75,9 +75,22 @@ def validate_assets(record: dict) -> None:
 def validate_html() -> None:
     study = STUDY_PATH.read_text(encoding="utf-8")
     index = INDEX_PATH.read_text(encoding="utf-8")
-    for needle in ["output/problems.js", "window.ECE4330_PROBLEMS", "output/problems.json", "localStorage", "Reveal next step", "Review weak"]:
+    for needle in [
+        "output/problems.js",
+        "window.ECE4330_PROBLEMS",
+        "output/problems.json",
+        "localStorage",
+        "indexedDB",
+        "Attach work",
+        "Reveal next step",
+        "Review weak",
+    ]:
         if needle not in study:
             raise AssertionError(f"study.html missing expected text: {needle}")
+    if "scan-backed" in study:
+        raise AssertionError("study.html should not render the scan-backed pill")
+    if "Felt like" in study:
+        raise AssertionError("study.html should not render the removed Felt like rating")
     if re.search(r"return `/\\$\\{cleaned\\}", study):
         raise AssertionError("study.html still appears to use root-relative image URLs")
     if "./study.html" not in index:

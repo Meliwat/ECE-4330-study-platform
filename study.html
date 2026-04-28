@@ -771,6 +771,34 @@
           render();
         }
 
+        function resetLearningRevealState(problem) {
+          const progress = state.progress[problemId(problem)];
+          if (!progress) return false;
+          const shouldReset =
+            progress.hintsRevealed ||
+            progress.stepsRevealed ||
+            progress.solutionVisible;
+          if (!shouldReset) return false;
+          progress.hintsRevealed = 0;
+          progress.stepsRevealed = 0;
+          progress.solutionVisible = false;
+          return true;
+        }
+
+        function refreshLearningForFilteredProblems() {
+          let changed = false;
+          getFilteredProblems().forEach((problem) => {
+            changed = resetLearningRevealState(problem) || changed;
+          });
+          if (changed) saveProgress();
+        }
+
+        function applyFilterChange(updateState) {
+          updateState();
+          refreshLearningForFilteredProblems();
+          render();
+        }
+
         function getCategory(source) {
           const normalized = String(source || "").toLowerCase();
           if (normalized.includes("assignment")) return "Assignments";
@@ -1027,7 +1055,16 @@
             ]
               .filter(Boolean)
               .join(" ");
-            statusRow.appendChild(button(label, cls, false, () => updateProgress(problem, { status: value })));
+            statusRow.appendChild(
+              button(label, cls, false, () =>
+                updateProgress(
+                  problem,
+                  value === "new"
+                    ? { status: value, hintsRevealed: 0, stepsRevealed: 0, solutionVisible: false }
+                    : { status: value }
+                )
+              )
+            );
           });
 
           const confidenceRow = document.createElement("div");
@@ -1272,42 +1309,49 @@
 
         function wireEvents() {
           els.searchInput.addEventListener("input", () => {
-            state.search = els.searchInput.value;
-            render();
+            applyFilterChange(() => {
+              state.search = els.searchInput.value;
+            });
           });
           els.modeSelect.addEventListener("change", () => {
-            state.mode = els.modeSelect.value;
-            render();
+            applyFilterChange(() => {
+              state.mode = els.modeSelect.value;
+            });
           });
           els.topicSelect.addEventListener("change", () => {
-            state.currentTopic = els.topicSelect.value;
-            render();
+            applyFilterChange(() => {
+              state.currentTopic = els.topicSelect.value;
+            });
           });
           els.categorySelect.addEventListener("change", () => {
-            state.currentCategory = els.categorySelect.value;
-            state.currentSourceItem = "All";
-            render();
+            applyFilterChange(() => {
+              state.currentCategory = els.categorySelect.value;
+              state.currentSourceItem = "All";
+            });
           });
           els.sourceItemSelect.addEventListener("change", () => {
-            state.currentSourceItem = els.sourceItemSelect.value;
-            render();
+            applyFilterChange(() => {
+              state.currentSourceItem = els.sourceItemSelect.value;
+            });
           });
           els.shuffleButton.addEventListener("click", () => {
-            state.shuffled = !state.shuffled;
-            els.shuffleButton.classList.toggle("active", state.shuffled);
-            render();
+            applyFilterChange(() => {
+              state.shuffled = !state.shuffled;
+              els.shuffleButton.classList.toggle("active", state.shuffled);
+            });
           });
           els.resetFiltersButton.addEventListener("click", () => {
-            state.search = "";
-            state.mode = "practice";
-            state.currentTopic = "All";
-            state.currentCategory = "All";
-            state.currentSourceItem = "All";
-            state.shuffled = false;
-            els.searchInput.value = "";
-            els.modeSelect.value = "practice";
-            els.shuffleButton.classList.remove("active");
-            render();
+            applyFilterChange(() => {
+              state.search = "";
+              state.mode = "practice";
+              state.currentTopic = "All";
+              state.currentCategory = "All";
+              state.currentSourceItem = "All";
+              state.shuffled = false;
+              els.searchInput.value = "";
+              els.modeSelect.value = "practice";
+              els.shuffleButton.classList.remove("active");
+            });
           });
           els.exportButton.addEventListener("click", exportProgress);
           els.resetProgressButton.addEventListener("click", () => {
